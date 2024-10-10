@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ureca
+      MYSQL_USER: ureca
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
