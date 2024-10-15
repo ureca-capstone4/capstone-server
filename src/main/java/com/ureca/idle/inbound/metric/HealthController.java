@@ -1,4 +1,4 @@
-package com.ureca.idle.inbound.health;
+package com.ureca.idle.inbound.metric;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

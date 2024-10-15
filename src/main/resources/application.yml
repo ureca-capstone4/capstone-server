@@ -18,3 +18,7 @@ spring:
 logging:
   level:
     root: INFO
+
+jwt:
+  secret: dummy-key-dummy-key-dummy-key-dummy-key-dummy-key-dummy-key-
+  expiration: 360000
