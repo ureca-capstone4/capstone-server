@@ -10,7 +10,7 @@ spring:
     open-in-view: false
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
@@ -20,5 +20,5 @@ logging:
     root: INFO
 
 jwt:
-  secret: dummy-key-dummy-key-dummy-key-dummy-key-dummy-key-dummy-key-
-  expiration: 360000
+  secret: dummy-key-dummy-key-dummy-key-dummy
+  expiration: 360000000
