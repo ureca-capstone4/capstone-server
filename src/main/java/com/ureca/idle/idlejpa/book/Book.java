@@ -1,5 +1,6 @@
-package com.ureca.idle.idlejpa.user;
+package com.ureca.idle.idlejpa.book;
 
+import com.ureca.idle.idlejpa.bookdetails.BooksDetail;
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,25 +10,29 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class User extends BaseEntity {
+public class Book extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "books_detail_id")
+    private BooksDetail booksDetail;
 
     @Column(nullable = false)
-    private String password;
+    private String title;
+
+    @Lob
+    @Column(nullable = false)
+    private String story;
 
     @Column(nullable = false)
-    private String name;
+    private String author;
 
     @Column(nullable = false)
-    private String phoneNum;
+    private String publisher;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private int recommendedAge;
 }

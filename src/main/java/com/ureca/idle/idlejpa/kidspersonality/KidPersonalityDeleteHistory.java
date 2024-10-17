@@ -1,33 +1,37 @@
-package com.ureca.idle.idlejpa.user;
+package com.ureca.idle.idlejpa.kidspersonality;
 
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
+
 
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class User extends BaseEntity {
+public class KidPersonalityDeleteHistory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+    @Column(nullable = false)
+    private Long kidsId;
 
     @Column(nullable = false)
-    private String password;
+    private int ei;
 
     @Column(nullable = false)
-    private String name;
+    private int sn;
 
     @Column(nullable = false)
-    private String phoneNum;
+    private int tf;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private int jp;
+
+    @Column(nullable = false)
+    private String mbti;
 }

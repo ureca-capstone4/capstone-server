@@ -19,6 +19,6 @@ public enum Role {
         return Arrays.stream(Role.values())
                 .filter(it -> it.value.equalsIgnoreCase(role))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("해당 유저의 역할을 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("해당 유저의 역할을 찾을 수 없습니다."));
     }
 }
