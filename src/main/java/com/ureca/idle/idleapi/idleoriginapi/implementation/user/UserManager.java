@@ -34,12 +34,6 @@ public class UserManager {
                 .orElseThrow(() -> new UserNotFoundException("현재 로그인한 유저를 찾을 수 없습니다, 다시 로그인해주세요."));
     }
 
-    public void checkCurrentLoginUser(Long id) {
-        if(!repository.existsById(id)) {
-            throw new UserNotFoundException("현재 로그인한 유저를 찾을 수 없습니다, 다시 로그인해주세요.");
-        }
-    }
-
     public User registerUser(String email, String password, String name, String phoneNum) {
         User newUser = User.builder()
                 .email(email)
