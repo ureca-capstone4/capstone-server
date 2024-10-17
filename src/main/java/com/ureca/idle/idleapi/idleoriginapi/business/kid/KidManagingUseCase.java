@@ -3,7 +3,7 @@ package com.ureca.idle.idleapi.idleoriginapi.business.kid;
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.*;
 
 public interface KidManagingUseCase {
-    AddKidResp addMyKid(String email, AddKidReq req);
-    GetKidsProfilesResp getMyKidsProfiles(String email);
-    GetKidsDetailResp getMyKidsDetail(String email, Long kidId);
+    AddKidResp addMyKid(Long userId, AddKidReq req);
+    GetKidsProfilesResp getMyKidsProfiles(Long userId);
+    GetKidsDetailResp getMyKidsDetail(Long userId, Long kidId);
 }

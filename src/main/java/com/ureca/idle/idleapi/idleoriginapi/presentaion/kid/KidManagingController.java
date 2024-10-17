@@ -21,19 +21,19 @@ public class KidManagingController {
 
     @PostMapping("")
     public ResponseEntity<AddKidResp> addMyKid(@LoginUser IdAndAuthority loginUser, @RequestBody AddKidReq req) {
-        AddKidResp resp = kidManagingUseCase.addMyKid(loginUser.email(), req);
+        AddKidResp resp = kidManagingUseCase.addMyKid(loginUser.id(), req);
         return ResponseEntity.ok(resp);
     }
 
     @GetMapping("")
     public ResponseEntity<GetKidsProfilesResp> getMyKidsProfiles(@LoginUser IdAndAuthority loginUser) {
-        GetKidsProfilesResp resp = kidManagingUseCase.getMyKidsProfiles(loginUser.email());
+        GetKidsProfilesResp resp = kidManagingUseCase.getMyKidsProfiles(loginUser.id());
         return ResponseEntity.ok(resp);
     }
 
     @GetMapping("/{kidId}/detail")
     public ResponseEntity<GetKidsDetailResp> getMyKidsDetail(@LoginUser IdAndAuthority loginUser, @PathVariable Long kidId) {
-        GetKidsDetailResp resp = kidManagingUseCase.getMyKidsDetail(loginUser.email(), kidId);
+        GetKidsDetailResp resp = kidManagingUseCase.getMyKidsDetail(loginUser.id(), kidId);
         return ResponseEntity.ok(resp);
     }
 }

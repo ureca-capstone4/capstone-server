@@ -13,7 +13,7 @@ public class UserManager {
 
     private final UserRepository repository;
 
-    public User getUserById(Long id) {
+    public User getUser(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("해당 ID 를 가진 유저를 찾을 수 없습니다."));
     }
@@ -29,13 +29,13 @@ public class UserManager {
     }
 
     // TODO AuthManager 생성 고려
-    public User getCurrentLoginUser(String email) {
-        return repository.findByEmail(email)
+    public User getCurrentLoginUser(Long id) {
+        return repository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("현재 로그인한 유저를 찾을 수 없습니다, 다시 로그인해주세요."));
     }
 
-    public void checkCurrentLoginUser(String email) {
-        if(!repository.existsByEmail(email)) {
+    public void checkCurrentLoginUser(Long id) {
+        if(!repository.existsById(id)) {
             throw new UserNotFoundException("현재 로그인한 유저를 찾을 수 없습니다, 다시 로그인해주세요.");
         }
     }
