@@ -2,7 +2,7 @@ package com.ureca.idle.idleapi.idleoriginapi.business.kid;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetKidsSummariesResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetKidsProfilesResp;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.kid.KidManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.user.UserManager;
 import com.ureca.idle.idlejpa.kid.Kid;
@@ -22,16 +22,16 @@ public class KidManagingService implements KidManagingUseCase {
 
     @Transactional
     public AddKidResp addKid(String targetUserEmail, AddKidReq req) {
-        User targetUser = userManager.getUserByEmail(targetUserEmail);
+        User targetUser = userManager.getCurrentLoginUser(targetUserEmail);
         kidManager.checkExitsKidByUserAndName(targetUser, req.name());
         Kid newKid = kidManager.registerKid(targetUser, req.name(), req.birthDate());
         return AddKidResp.of(newKid);
     }
 
     @Transactional(readOnly = true)
-    public GetKidsSummariesResp getKidsSummaries(String targetUserEmail) {
+    public GetKidsProfilesResp getKidsProfiles(String targetUserEmail) {
         User targetUser = userManager.getUserByEmail(targetUserEmail);
         List<Kid> targetUsersKids = kidManager.getKidsByUser(targetUser);
-        return GetKidsSummariesResp.of(targetUsersKids);
+        return GetKidsProfilesResp.of(targetUsersKids);
     }
 }

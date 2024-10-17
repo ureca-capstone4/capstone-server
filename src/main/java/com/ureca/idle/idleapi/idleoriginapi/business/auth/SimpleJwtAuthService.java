@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthService implements AuthUseCase {
+public class SimpleJwtAuthService implements AuthUseCase {
 
     private final UserManager userManager;
 
     @Override
-    public LoginResp getUserForLogin(LoginReq req) {
+    public LoginResp login(LoginReq req) {
         return LoginResp.from(userManager.getUserByEmailAndPassword(req.email(), req.password()));
     }
 

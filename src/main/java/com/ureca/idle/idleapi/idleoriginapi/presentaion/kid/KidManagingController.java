@@ -3,7 +3,7 @@ package com.ureca.idle.idleapi.idleoriginapi.presentaion.kid;
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.KidManagingUseCase;
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetKidsSummariesResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetKidsProfilesResp;
 import com.ureca.idle.idleapi.web.auth.LoginUser;
 import com.ureca.idle.idleapi.web.auth.IdAndAuthority;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +25,8 @@ public class KidManagingController {
     }
 
     @GetMapping("")
-    public ResponseEntity<GetKidsSummariesResp> getMyKids(@LoginUser IdAndAuthority loginUser) {
-        GetKidsSummariesResp resp = kidManagingUseCase.getKidsSummaries(loginUser.email());
+    public ResponseEntity<GetKidsProfilesResp> getMyKidsProfiles(@LoginUser IdAndAuthority loginUser) {
+        GetKidsProfilesResp resp = kidManagingUseCase.getKidsProfiles(loginUser.email());
         return ResponseEntity.ok(resp);
     }
 }
