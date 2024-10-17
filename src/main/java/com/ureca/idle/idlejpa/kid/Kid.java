@@ -1,7 +1,6 @@
 package com.ureca.idle.idlejpa.kid;
 
 import com.ureca.idle.idlejpa.config.BaseEntity;
-import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import com.ureca.idle.idlejpa.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,13 +19,9 @@ public class Kid extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "kids_personality_id", nullable = false)
-    private KidsPersonality kidsPersonality;
 
     @Column(nullable = false)
     private String name;
