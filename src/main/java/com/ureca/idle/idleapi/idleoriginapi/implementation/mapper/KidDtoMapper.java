@@ -1,9 +1,8 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.mapper;
 
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetMyKidsProfileResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetMyKidsProfilesResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.*;
 import com.ureca.idle.idlejpa.kid.Kid;
+import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,15 +14,23 @@ public class KidDtoMapper {
         return new AddKidResp("성공적으로 " + newKid.getName() + " 이(가) 등록되었습니다.");
     }
 
-    public GetMyKidsProfilesResp toGetMyKidsProfilesResp(List<Kid> kids) {
-        return new GetMyKidsProfilesResp(
+    public GetKidsProfilesResp toGetMyKidsProfilesResp(List<Kid> kids) {
+        return new GetKidsProfilesResp(
                 kids.stream()
                         .map(this::toGetMyKidsProfileResp)
                         .toList()
         );
     }
 
-    public GetMyKidsProfileResp toGetMyKidsProfileResp(Kid kid) {
-        return new GetMyKidsProfileResp(kid.getId(), kid.getName(), kid.getProfileImageUrl());
+    public GetKidsProfileResp toGetMyKidsProfileResp(Kid kid) {
+        return new GetKidsProfileResp(kid.getId(), kid.getName(), kid.getProfileImageUrl());
+    }
+
+    public GetKidsDetailResp toGetKidsDetailResp(Kid kid) {
+        KidsPersonality personality = kid.getPersonality();
+        return new GetKidsDetailResp(
+                new GetKidsProfileResp(kid.getId(), kid.getName(), kid.getProfileImageUrl()),
+                new GetKidsPersonalityResp(personality.getId(), personality.getEi(), personality.getSn(), personality.getTf(), personality.getJp(), personality.getMbti())
+        );
     }
 }

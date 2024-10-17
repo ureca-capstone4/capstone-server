@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.bookdetails;
+package com.ureca.idle.idlejpa.booksdetail;
 
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;

@@ -1,6 +1,6 @@
 package com.ureca.idle.idlejpa.book;
 
-import com.ureca.idle.idlejpa.bookdetails.BooksDetail;
+import com.ureca.idle.idlejpa.booksdetail.BooksDetail;
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;

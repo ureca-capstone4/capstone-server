@@ -1,6 +1,8 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.kid;
 
+import com.ureca.idle.idleapi.idleoriginapi.common.exception.KidNotFoundException;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.kid.KidRepository;
+import com.ureca.idle.idlejpa.kid.Gender;
 import com.ureca.idle.idlejpa.kid.Kid;
 import com.ureca.idle.idlejpa.user.User;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +17,11 @@ public class KidManager {
 
     private final KidRepository repository;
 
-    public Kid registerKid(User user, String name, LocalDate birthDate) {
+    public Kid registerKid(User user, String name, String gender, LocalDate birthDate) {
         Kid newKid = Kid.builder()
                 .user(user)
                 .name(name)
+                .gender(Gender.from(gender))
                 .birthDate(birthDate)
                 .build();
         return repository.save(newKid);
@@ -26,6 +29,11 @@ public class KidManager {
 
     public List<Kid> getKidsByUser(User user) {
         return repository.getKidsByUser(user);
+    }
+
+    public Kid getKidWithPersonality(Long id) {
+        return repository.findKidWithPersonalityById(id)
+                .orElseThrow(() -> new KidNotFoundException("해당 KID 를 찾을 수 없습니다."));
     }
 
     public void checkDuplicatedKidName(User user, String name) {
