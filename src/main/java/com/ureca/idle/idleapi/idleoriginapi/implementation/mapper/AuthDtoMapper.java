@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthDtoMapper {
 
-    public LoginResp toLoginResp(User user) {
-        return new LoginResp(user.getEmail(), user.getRole().getValue());
+    public LoginResp toLoginResp(User loginUser) {
+        return new LoginResp(loginUser.getEmail(), loginUser.getRole().getValue());
     }
 
     public SignupResp toSignupResp(User registeredUser) {
