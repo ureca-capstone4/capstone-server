@@ -26,9 +26,9 @@ public class JwtProvider {
         key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
     }
 
-    public String create(String email, String role) {
+    public String create(Long userId, String role) {
         Claims claims = Jwts.claims();
-        claims.put("email", email);
+        claims.put("id", userId);
         claims.put("role", role);
         return createToken(claims);
     }
@@ -58,7 +58,7 @@ public class JwtProvider {
                     .setSigningKey(jwtProperties.getSecret().getBytes())
                     .parseClaimsJws(token)
                     .getBody();
-            return new IdAndAuthority(claims.get("email", String.class), claims.get("role", String.class));
+            return new IdAndAuthority(claims.get("id", Long.class), claims.get("role", String.class));
         } catch (MalformedJwtException e) {
             throw new JwtException("토큰의 길이 및 형식이 올바르지 않습니다.");
         } catch (ExpiredJwtException e) {

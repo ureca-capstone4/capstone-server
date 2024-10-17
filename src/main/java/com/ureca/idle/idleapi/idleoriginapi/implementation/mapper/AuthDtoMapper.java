@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class AuthDtoMapper {
 
     public LoginResp toLoginResp(User loginUser) {
-        return new LoginResp(loginUser.getEmail(), loginUser.getRole().getValue());
+        return new LoginResp(loginUser.getId(), loginUser.getRole().getValue());
     }
 
     public SignupResp toSignupResp(User registeredUser) {

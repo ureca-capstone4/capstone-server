@@ -25,7 +25,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@RequestBody LoginReq req) {
         LoginResp resp = authUseCase.login(req);
-        String jwt = jwtProvider.create(resp.email(), resp.role());
+        String jwt = jwtProvider.create(resp.id(), resp.role());
         return ResponseEntity.ok(new JwtDto(jwt));
     }
 
