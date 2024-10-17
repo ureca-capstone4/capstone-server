@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.4'
     id 'io.spring.dependency-management' version '1.1.6'
-    id "com.diffplug.spotless" version "6.25.0"
 }
 
 group = 'com.ureca'
@@ -23,47 +22,27 @@ configurations {
 repositories {
     mavenCentral()
 }
-subprojects {
-    apply plugin: 'java'
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'com.diffplug.spotless'
 
-    spotless {
-        java {
-            // 구글 자바 포맷 적용
-            googleJavaFormat().aosp()
-            // 사용하지 않는 import 제거
-            removeUnusedImports()
-            // 어노테이션 정렬
-            formatAnnotations()
-            // 공백 제거
-            trimTrailingWhitespace()
-            // 끝부분 New Line 처리
-            endWithNewline()
-        }
-    }
-    dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-web'
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-        implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-        implementation 'io.jsonwebtoken:jjwt-api:0.10.5'
-        runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
-        runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.10.5'
+    implementation 'io.jsonwebtoken:jjwt-api:0.10.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.10.5'
 
-        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-        runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.mysql:mysql-connector-j'
 
-        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-        compileOnly 'org.projectlombok:lombok'
-        annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    }
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
 
-    tasks.named('test') {
-        useJUnitPlatform()
-    }
+tasks.named('test') {
+    useJUnitPlatform()
 }
