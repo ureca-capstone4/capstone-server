@@ -21,7 +21,7 @@ public class Kid extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kids_personality_id")
-    private KidsPersonality kidsPersonality;
+    private KidsPersonality personality;
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -34,4 +34,8 @@ public class Kid extends BaseEntity {
 
     @Column(nullable = false)
     private LocalDate birthDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Gender gender;
 }
