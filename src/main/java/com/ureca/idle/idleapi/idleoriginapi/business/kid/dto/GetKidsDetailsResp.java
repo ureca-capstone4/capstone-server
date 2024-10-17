@@ -1,4 +1,3 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.kid.dto;
 
-public record GetKidsDetailsResp() {
-}
+public record GetKidsDetailsResp() {}

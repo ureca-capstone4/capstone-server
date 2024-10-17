@@ -28,7 +28,7 @@ public class KidManager {
         return repository.getKidsByUser(user);
     }
 
-    public void checkExitsKidByUserAndName(User user, String name) {
+    public void checkDuplicatedKidName(User user, String name) {
         if(repository.existsByUserAndName(user, name)) {
             throw new RuntimeException("이미 존재하는 이름의 KID 입니다.");
         }
