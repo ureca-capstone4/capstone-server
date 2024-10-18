@@ -1,6 +1,6 @@
 package com.ureca.idle.idlejpa.book;
 
-import com.ureca.idle.idlejpa.booksdetail.BooksDetail;
+import com.ureca.idle.idlejpa.bookscharacteristic.BooksCharacteristic;
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,8 +17,8 @@ public class Book extends BaseEntity {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "books_detail_id")
-    private BooksDetail booksDetail;
+    @JoinColumn(name = "books_characteristic_id")
+    private BooksCharacteristic booksCharacteristic;
 
     @Column(nullable = false)
     private String title;
@@ -26,6 +26,10 @@ public class Book extends BaseEntity {
     @Lob
     @Column(nullable = false)
     private String story;
+
+    @Lob
+    @Column(nullable = false)
+    private String summary;
 
     @Column(nullable = false)
     private String author;
@@ -35,4 +39,6 @@ public class Book extends BaseEntity {
 
     @Column(nullable = false)
     private int recommendedAge;
+
+    // TODO book image url 추가
 }
