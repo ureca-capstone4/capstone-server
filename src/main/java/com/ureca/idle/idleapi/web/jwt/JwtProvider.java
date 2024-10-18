@@ -4,14 +4,13 @@ import com.ureca.idle.idleapi.web.auth.IdAndAuthority;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-
 import java.security.Key;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Component
@@ -49,16 +48,21 @@ public class JwtProvider {
 
     private Date expiredAt() {
         LocalDateTime now = LocalDateTime.now();
-        return Date.from(now.plusHours(jwtProperties.getExpiration()).atZone(ZoneId.systemDefault()).toInstant());
+        return Date.from(
+                now.plusHours(jwtProperties.getExpiration())
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant());
     }
 
     public IdAndAuthority extract(String token) {
         try {
-            Claims claims = Jwts.parser()
-                    .setSigningKey(jwtProperties.getSecret().getBytes())
-                    .parseClaimsJws(token)
-                    .getBody();
-            return new IdAndAuthority(claims.get("id", Long.class), claims.get("role", String.class));
+            Claims claims =
+                    Jwts.parser()
+                            .setSigningKey(jwtProperties.getSecret().getBytes())
+                            .parseClaimsJws(token)
+                            .getBody();
+            return new IdAndAuthority(
+                    claims.get("id", Long.class), claims.get("role", String.class));
         } catch (MalformedJwtException e) {
             throw new JwtException("토큰의 길이 및 형식이 올바르지 않습니다.");
         } catch (ExpiredJwtException e) {

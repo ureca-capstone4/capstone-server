@@ -1,4 +1,3 @@
 package com.ureca.idle.idlecache;
 
-public class IdleCache {
-}
+public class IdleCache {}

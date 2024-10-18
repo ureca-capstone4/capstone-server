@@ -5,8 +5,8 @@ import com.ureca.idle.idleapi.idleoriginapi.business.auth.dto.LoginResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.auth.dto.SignupReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.auth.dto.SignupResp;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.AuthDtoMapper;
-import com.ureca.idle.idlejpa.user.User;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.user.UserManager;
+import com.ureca.idle.idlejpa.user.User;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,20 +25,17 @@ public class SimpleJwtAuthService implements AuthUseCase {
     }
 
     @Override
-    public void logout() {
-
-    }
+    public void logout() {}
 
     @Override
     @Transactional
     public SignupResp signup(SignupReq req) {
         userManager.checkExitsUserByEmail(req.email());
-        User registeredUser = userManager.registerUser(req.email(), req.password(), req.name(), req.phoneNum());
+        User registeredUser =
+                userManager.registerUser(req.email(), req.password(), req.name(), req.phoneNum());
         return authDtoMapper.toSignupResp(registeredUser);
     }
 
     @Override
-    public void withdraw() {
-
-    }
+    public void withdraw() {}
 }

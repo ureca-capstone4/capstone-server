@@ -4,9 +4,8 @@ import com.ureca.idle.idlejpa.config.BaseEntity;
 import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import com.ureca.idle.idlejpa.user.User;
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
+import lombok.*;
 
 @Getter
 @Builder

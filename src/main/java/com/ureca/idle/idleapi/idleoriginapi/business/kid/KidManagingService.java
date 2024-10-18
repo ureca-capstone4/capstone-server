@@ -6,11 +6,10 @@ import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.KidDtoMapper;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.user.UserManager;
 import com.ureca.idle.idlejpa.kid.Kid;
 import com.ureca.idle.idlejpa.user.User;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

@@ -1,4 +1,3 @@
 package com.ureca.idle.idlecommon.config;
 
-public class ConfigDummy {
-}
+public class ConfigDummy {}

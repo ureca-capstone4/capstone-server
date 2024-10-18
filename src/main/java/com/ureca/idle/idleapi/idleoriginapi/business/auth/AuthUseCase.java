@@ -7,7 +7,10 @@ import com.ureca.idle.idleapi.idleoriginapi.business.auth.dto.SignupResp;
 
 public interface AuthUseCase {
     LoginResp login(LoginReq req);
+
     void logout();
+
     SignupResp signup(SignupReq req);
+
     void withdraw();
 }

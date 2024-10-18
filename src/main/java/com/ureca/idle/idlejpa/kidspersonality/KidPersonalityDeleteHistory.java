@@ -4,8 +4,6 @@ import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-
-
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)

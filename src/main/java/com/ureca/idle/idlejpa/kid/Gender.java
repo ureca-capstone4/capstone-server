@@ -1,11 +1,10 @@
 package com.ureca.idle.idlejpa.kid;
 
-import lombok.Getter;
 import java.util.Arrays;
+import lombok.Getter;
 
 @Getter
 public enum Gender {
-
     BOY("boy"),
     GIRL("girl");
 
@@ -22,4 +21,3 @@ public enum Gender {
                 .orElseThrow(() -> new RuntimeException("올바른 성별을 입력해주세요.")); // TODO 예외의 정확한 포맷 정하기
     }
 }
-

@@ -1,4 +1,3 @@
 package com.ureca.idle.idleconsumer;
 
-public class IdleConsumer {
-}
+public class IdleConsumer {}

@@ -18,15 +18,17 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterAnnotation(LoginUser.class) != null &&
-                parameter.getParameterType().equals(IdAndAuthority.class);
+        return parameter.getParameterAnnotation(LoginUser.class) != null
+                && parameter.getParameterType().equals(IdAndAuthority.class);
     }
 
     @Override
-    public IdAndAuthority resolveArgument(MethodParameter parameter,
-                                          ModelAndViewContainer mavContainer,
-                                          NativeWebRequest webRequest,
-                                          WebDataBinderFactory binderFactory) throws Exception {
+    public IdAndAuthority resolveArgument(
+            MethodParameter parameter,
+            ModelAndViewContainer mavContainer,
+            NativeWebRequest webRequest,
+            WebDataBinderFactory binderFactory)
+            throws Exception {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
         String token = resolveToken(request);
         if (token != null) {
@@ -44,4 +46,3 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
         return null;
     }
 }
-

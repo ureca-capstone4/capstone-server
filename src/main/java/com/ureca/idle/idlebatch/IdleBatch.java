@@ -1,4 +1,3 @@
 package com.ureca.idle.idlebatch;
 
-public class IdleBatch {
-}
+public class IdleBatch {}

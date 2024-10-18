@@ -1,12 +1,10 @@
 package com.ureca.idle.idlejpa.bookpreference;
 
-import lombok.Getter;
-
 import java.util.Arrays;
+import lombok.Getter;
 
 @Getter
 public enum Hobulho {
-
     HO("ho"),
     BULHO("bulho");
 
@@ -20,6 +18,7 @@ public enum Hobulho {
         return Arrays.stream(Hobulho.values())
                 .filter(it -> it.value.equalsIgnoreCase(hobulho))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("give me ho or bulho.")); // TODO 예외의 정확한 포맷 정하기
+                .orElseThrow(
+                        () -> new RuntimeException("give me ho or bulho.")); // TODO 예외의 정확한 포맷 정하기
     }
 }
