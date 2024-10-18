@@ -1,6 +1,7 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.kid;
 
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.KidNotFoundException;
+import com.ureca.idle.idleapi.idleoriginapi.common.exception.kid.KidException;
+import com.ureca.idle.idleapi.idleoriginapi.common.exception.kid.KidExceptionType;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.kid.KidRepository;
 import com.ureca.idle.idlejpa.kid.Gender;
 import com.ureca.idle.idlejpa.kid.Kid;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
+
+
 
 @Component
 @RequiredArgsConstructor
@@ -33,12 +36,12 @@ public class KidManager {
 
     public Kid getKidWithPersonality(Long id) {
         return repository.findKidWithPersonalityById(id)
-                .orElseThrow(() -> new KidNotFoundException("해당 KID 를 찾을 수 없습니다."));
+                .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION));
     }
 
     public void checkDuplicatedKidName(User user, String name) {
         if(repository.existsByUserAndName(user, name)) {
-            throw new RuntimeException("이미 존재하는 이름의 KID 입니다.");
+            throw new KidException(KidExceptionType.ALREADY_EXITS_NAME);
         }
     }
 }

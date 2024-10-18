@@ -1,12 +1,12 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.kid;
+package com.ureca.idle.idleapi.idleoriginapi.presentaion.controller.kid;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.KidManagingUseCase;
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetKidsDetailResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetKidsProfilesResp;
-import com.ureca.idle.idleapi.web.auth.LoginUser;
-import com.ureca.idle.idleapi.web.auth.IdAndAuthority;
+import com.ureca.idle.idleapi.idleoriginapi.presentaion.web.auth.LoginUser;
+import com.ureca.idle.idleapi.idleoriginapi.presentaion.web.auth.IdAndAuthority;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
