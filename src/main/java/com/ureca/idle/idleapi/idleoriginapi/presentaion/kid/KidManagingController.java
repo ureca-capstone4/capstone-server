@@ -32,8 +32,8 @@ public class KidManagingController {
     }
 
     @GetMapping("/{kidId}/detail")
-    public ResponseEntity<GetKidsDetailResp> getMyKidsDetail(@LoginUser IdAndAuthority loginUser, @PathVariable Long kidId) {
-        GetKidsDetailResp resp = kidManagingUseCase.getMyKidsDetail(loginUser.id(), kidId);
+    public ResponseEntity<GetKidsDetailResp> getMyKidsDetail(/*TODO @LoginUser 이외에 인증인가 검증 필터를 만들 것*/@LoginUser IdAndAuthority loginUser, @PathVariable Long kidId) {
+        GetKidsDetailResp resp = kidManagingUseCase.getKidsDetail(kidId);
         return ResponseEntity.ok(resp);
     }
 }

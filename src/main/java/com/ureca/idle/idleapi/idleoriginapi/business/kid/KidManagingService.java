@@ -40,8 +40,7 @@ public class KidManagingService implements KidManagingUseCase {
     // TODO 현재 사용자와 join 해서 찾을 필요가 있을까? 일단 지금은 아이의 ID 로만 찾는다
     @Override
     @Transactional(readOnly = true)
-    public GetKidsDetailResp getMyKidsDetail(Long userId, Long kidId) {
-        userManager.checkCurrentLoginUser(userId);
+    public GetKidsDetailResp getKidsDetail(Long kidId) {
         Kid kid = kidManager.getKidWithPersonality(kidId);
         return kidDtoMapper.toGetKidsDetailResp(kid);
     }
