@@ -5,7 +5,6 @@ import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.book.BookManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.BookDtoMapper;
 import com.ureca.idle.idlejpa.book.Book;
-import com.ureca.idle.idlejpa.booksdetail.BooksDetail;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

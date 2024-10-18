@@ -1,6 +1,6 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.web.jwt;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.web.jwt;
 
-import com.ureca.idle.idleapi.idleoriginapi.presentaion.web.auth.IdAndAuthority;
+import com.ureca.idle.idleapi.idleoriginapi.presentation.web.auth.IdAndAuthority;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
