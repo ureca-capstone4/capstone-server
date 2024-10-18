@@ -2,7 +2,6 @@ package com.ureca.idle.idleapi.idleoriginapi.business.book;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.GetBooksDetailResp;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.book.BookManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.BookDtoMapper;
 import com.ureca.idle.idlejpa.book.Book;
@@ -25,10 +24,5 @@ public class BookManagingService implements BookManagingUseCase {
         return bookDtoMapper.toAddBookResp(newBook);
     }
 
-//    @Override
-//    public GetBooksDetailResp getBooksDetail(Long bookId) {
-//        Book book = bookManager.getBookById(bookId);
-//        return bookDtoMapper.toGetBooksDetailResp(book);
-//    }
 
 }

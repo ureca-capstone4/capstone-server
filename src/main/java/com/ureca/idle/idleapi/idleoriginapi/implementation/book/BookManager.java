@@ -27,10 +27,5 @@ public class BookManager {
         return repository.save(newBook);
     }
 
-//    public BookPreference getBookById(Long id) {
-//        return repository.getBookWithDetailById(id)
-//                .orElseThrow(() -> new BookException(BookExceptionType.NOT_FOUND_EXCEPTION));
-//    }
-
 
 }
