@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.bookpreference;
+package com.ureca.idle.bookpreference;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.config;
+package com.ureca.idle.config;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

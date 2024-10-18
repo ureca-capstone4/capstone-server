@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.kid;
+package com.ureca.idle.kid;
 
 import lombok.Getter;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.config;
+package com.ureca.idle.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

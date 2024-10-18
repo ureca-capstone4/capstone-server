@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.user;
+package com.ureca.idle.user;
 
 import lombok.Getter;
 

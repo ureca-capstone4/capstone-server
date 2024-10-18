@@ -1,17 +1,15 @@
-package com.ureca.idle.idlejpa.kidspersonality;
+package com.ureca.idle.kidspersonality;
 
-import com.ureca.idle.idlejpa.config.BaseEntity;
+import com.ureca.idle.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-
-
 
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class KidsPersonalityDeleteHistory extends BaseEntity {
+public class KidsPersonalityChangeHistory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

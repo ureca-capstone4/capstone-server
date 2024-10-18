@@ -1,8 +1,8 @@
-package com.ureca.idle.idlejpa.bookpreference;
+package com.ureca.idle.bookpreference;
 
-import com.ureca.idle.idlejpa.book.Book;
-import com.ureca.idle.idlejpa.config.BaseEntity;
-import com.ureca.idle.idlejpa.kid.Kid;
+import com.ureca.idle.book.Book;
+import com.ureca.idle.config.BaseEntity;
+import com.ureca.idle.kid.Kid;
 import jakarta.persistence.*;
 import lombok.*;
 

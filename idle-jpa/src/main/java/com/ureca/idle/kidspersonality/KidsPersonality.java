@@ -1,6 +1,6 @@
-package com.ureca.idle.idlejpa.booksdetail;
+package com.ureca.idle.kidspersonality;
 
-import com.ureca.idle.idlejpa.config.BaseEntity;
+import com.ureca.idle.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class BooksDetail extends BaseEntity {
+public class KidsPersonality extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

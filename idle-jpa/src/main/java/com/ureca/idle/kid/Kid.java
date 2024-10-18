@@ -1,8 +1,8 @@
-package com.ureca.idle.idlejpa.kid;
+package com.ureca.idle.kid;
 
-import com.ureca.idle.idlejpa.config.BaseEntity;
-import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
-import com.ureca.idle.idlejpa.user.User;
+import com.ureca.idle.config.BaseEntity;
+import com.ureca.idle.kidspersonality.KidsPersonality;
+import com.ureca.idle.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
