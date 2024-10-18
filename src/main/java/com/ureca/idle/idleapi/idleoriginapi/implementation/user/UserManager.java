@@ -1,6 +1,7 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.user;
 
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.UserNotFoundException;
+import com.ureca.idle.idleapi.idleoriginapi.common.exception.user.UserException;
+import com.ureca.idle.idleapi.idleoriginapi.common.exception.user.UserExceptionType;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.user.UserRepository;
 import com.ureca.idle.idlejpa.user.Role;
 import com.ureca.idle.idlejpa.user.User;
@@ -15,23 +16,23 @@ public class UserManager {
 
     public User getUser(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("해당 ID 를 가진 유저를 찾을 수 없습니다."));
+                .orElseThrow(() -> new UserException(UserExceptionType.ID_NOT_FOUND_EXCEPTION));
     }
 
     public User getUserByEmail(String email) {
         return repository.findByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException("해당 이메일을 가진 유저를 찾을 수 없습니다."));
+                .orElseThrow(() -> new UserException(UserExceptionType.EMAIL_NOT_FOUND_EXCEPTION));
     }
 
     public User getUserByEmailAndPassword(String email, String password) {
         return repository.findByEmailAndPassword(email, password)
-                .orElseThrow(() -> new UserNotFoundException("해당 이메일, 혹은 비밀번호를 가진 유저를 찾을 수 없습니다."));
+                .orElseThrow(() -> new UserException(UserExceptionType.EMAIL_OR_PASSWORD_NOT_FOUND_EXCEPTION));
     }
 
     // TODO AuthManager 생성 고려
     public User getCurrentLoginUser(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("현재 로그인한 유저를 찾을 수 없습니다, 다시 로그인해주세요."));
+                .orElseThrow(() -> new UserException(UserExceptionType.LOGIN_USER_NOT_FOUND_EXCEPTION));
     }
 
     public User registerUser(String email, String password, String name, String phoneNum) {
@@ -47,7 +48,7 @@ public class UserManager {
 
     public void checkExitsUserByEmail(String email) {
         if(repository.existsByEmail(email)) {
-            throw new UserNotFoundException("이미 해당 이메일을 가진 유저가 존재합니다.");
+            throw new UserException(UserExceptionType.EMAIL_ALREADY_EXITS_EXCEPTION);
         }
     }
 }

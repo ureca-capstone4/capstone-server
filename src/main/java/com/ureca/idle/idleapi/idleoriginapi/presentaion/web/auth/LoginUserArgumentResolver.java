@@ -1,6 +1,6 @@
-package com.ureca.idle.idleapi.web.auth;
+package com.ureca.idle.idleapi.idleoriginapi.presentaion.web.auth;
 
-import com.ureca.idle.idleapi.web.jwt.JwtProvider;
+import com.ureca.idle.idleapi.idleoriginapi.presentaion.web.jwt.JwtProvider;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
@@ -32,8 +32,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
         if (token != null) {
             return jwtProvider.extract(token);
         }
-        // TODO 로그인을 시도해주세요
-        throw new Exception();
+        throw new RuntimeException();
     }
 
     private String resolveToken(HttpServletRequest request) {
