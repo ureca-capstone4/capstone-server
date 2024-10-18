@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.web.jwt;
+package com.ureca.idle.idleapi.idleoriginapi.presentaion.web.jwt;
 
 public class JwtException extends RuntimeException {
     public JwtException(String message) {
