@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.web.jwt;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.web.jwt;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

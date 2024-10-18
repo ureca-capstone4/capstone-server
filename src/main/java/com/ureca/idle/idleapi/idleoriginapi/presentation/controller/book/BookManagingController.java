@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.book;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.controller.book;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.book.BookManagingUseCase;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;

@@ -1,6 +1,6 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.web.auth;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.web.auth;
 
-import com.ureca.idle.idleapi.idleoriginapi.presentaion.web.jwt.JwtProvider;
+import com.ureca.idle.idleapi.idleoriginapi.presentation.web.jwt.JwtProvider;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;

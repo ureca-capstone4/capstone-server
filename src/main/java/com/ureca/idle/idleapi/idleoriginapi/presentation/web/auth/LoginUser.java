@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.web.auth;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.web.auth;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
