@@ -49,3 +49,6 @@ out/
 *.zip
 *.tar.gz
 *.rar
+
+# Environment Variable Files #
+*.env
