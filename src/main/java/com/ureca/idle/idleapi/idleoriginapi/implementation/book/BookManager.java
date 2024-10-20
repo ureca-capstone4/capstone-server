@@ -4,7 +4,6 @@ import com.ureca.idle.idleapi.idleoriginapi.common.exception.book.BookException;
 import com.ureca.idle.idleapi.idleoriginapi.common.exception.book.BookExceptionType;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookRepository;
 import com.ureca.idle.idlejpa.book.Book;
-import com.ureca.idle.idlejpa.bookpreference.BookPreference;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -27,5 +26,17 @@ public class BookManager {
         return repository.save(newBook);
     }
 
+    public Book updateBook( Book book ) {
+        return repository.save(book);
+    }
 
+    public void deleteBook(Long bookId) {
+        repository.deleteById(bookId);
+    }
+
+    public void checkExistsBook(Long bookId) {
+        if(!repository.existsById(bookId)) {
+            throw new BookException(BookExceptionType.NOT_FOUND_EXCEPTION);
+        }
+    }
 }

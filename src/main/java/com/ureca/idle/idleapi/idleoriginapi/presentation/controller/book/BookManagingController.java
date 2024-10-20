@@ -5,10 +5,7 @@ import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/books")
@@ -17,11 +14,16 @@ public class BookManagingController {
 
     private final BookManagingUseCase bookManagingUseCase;
 
-    @PatchMapping("")
+    @PostMapping("")
     public ResponseEntity<AddBookResp> addBook(@RequestBody AddBookReq req) {
         AddBookResp resp = bookManagingUseCase.addBook(req);
         return ResponseEntity.ok(resp);
     }
 
+    @DeleteMapping("/{bookId}")
+    public ResponseEntity<String> deleteBook(@PathVariable Long bookId) {
+        bookManagingUseCase.deleteBook(bookId);
+        return ResponseEntity.ok("성공적으로 삭제되었습니다.");
+    }
 
 }

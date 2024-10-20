@@ -5,4 +5,5 @@ import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
 
 public interface BookManagingUseCase {
     AddBookResp addBook(AddBookReq req);
+    void deleteBook(Long bookId);
 }

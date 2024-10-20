@@ -24,5 +24,11 @@ public class BookManagingService implements BookManagingUseCase {
         return bookDtoMapper.toAddBookResp(newBook);
     }
 
+    @Override
+    @Transactional
+    public void deleteBook(Long bookId) {
+        bookManager.checkExistsBook(bookId);
+        bookManager.deleteBook(bookId);
+    }
 
 }
