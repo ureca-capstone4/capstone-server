@@ -1,4 +1,5 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.personality.dto;
 
-public record GetTestQuestionsResp() {
-}
+import java.util.List;
+
+public record GetTestQuestionsResp(List<GetQuestionsDetailResp> questions) {}
