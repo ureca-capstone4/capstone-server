@@ -2,9 +2,12 @@ package com.ureca.idle.idlejpa.question;
 
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class PersonalityQuestion extends BaseEntity {
 
