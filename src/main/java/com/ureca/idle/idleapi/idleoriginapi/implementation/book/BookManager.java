@@ -13,7 +13,7 @@ public class BookManager {
 
     private final BookRepository repository;
 
-    public Book registerBook(/* TODO BooksDetail booksDetail,*/ String title, String story, String summary, String author, String publisher, int recommendedAge) {
+    public Book addBook(/* TODO BooksDetail booksDetail,*/ String title, String story, String summary, String author, String publisher, int recommendedAge) {
         Book newBook = Book.builder()
                 // TODO .booksDetail(booksDetail)
                 .title(title)
@@ -26,8 +26,11 @@ public class BookManager {
         return repository.save(newBook);
     }
 
-    public Book updateBook( Book book ) {
-        return repository.save(book);
+    public void updateBook(Long bookId, String title, String story, String summary, String author, String publisher, int recommendedAge ) {
+        Book book = repository.findById(bookId)
+                .orElseThrow(() -> new BookException(BookExceptionType.NOT_FOUND_EXCEPTION));
+        book.updateBook(title, story, summary, author, publisher, recommendedAge);
+        repository.save(book);
     }
 
     public void deleteBook(Long bookId) {
