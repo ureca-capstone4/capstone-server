@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 public interface PersonalityRepository extends JpaRepository<PersonalityQuestion, Long> {
-    List<PersonalityQuestion> findAll(Long questionId);
+    List<PersonalityQuestion> findAll();
 
 
 

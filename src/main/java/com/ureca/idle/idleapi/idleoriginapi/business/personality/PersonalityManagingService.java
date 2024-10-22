@@ -6,7 +6,7 @@ import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.PersonalityDto
 import com.ureca.idle.idleapi.idleoriginapi.implementation.personality.PersonalityManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.user.UserManager;
 import com.ureca.idle.idlejpa.question.PersonalityQuestion;
-import com.ureca.idle.idlejpa.user.User;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
