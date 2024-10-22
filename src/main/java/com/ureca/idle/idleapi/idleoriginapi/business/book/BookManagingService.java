@@ -2,10 +2,12 @@ package com.ureca.idle.idleapi.idleoriginapi.business.book;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.GetBookDetailResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.book.BookManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.BookDtoMapper;
 import com.ureca.idle.idlejpa.book.Book;
+import com.ureca.idle.idlejpa.bookpreference.BookPreference;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,5 +41,12 @@ public class BookManagingService implements BookManagingUseCase {
         bookManager.updateBook(bookId, req);
     }
 
+    @Override
+    @Transactional
+    public GetBookDetailResp getBookDetail(Long bookId, Long kidId) {
+        Book book = bookManager.getBook(bookId);
+        String preference = bookManager.getBookPreference(bookId, kidId);
+        return bookDtoMapper.toSelectBookDetailResp(book,preference);
+    }
 
 }
