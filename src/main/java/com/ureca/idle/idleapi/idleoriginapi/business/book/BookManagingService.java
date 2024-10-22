@@ -7,8 +7,7 @@ import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.book.BookManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.BookDtoMapper;
 import com.ureca.idle.idlejpa.book.Book;
-import com.ureca.idle.idlejpa.bookpreference.BookPreference;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +41,7 @@ public class BookManagingService implements BookManagingUseCase {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public GetBookDetailResp getBookDetail(Long bookId, Long kidId) {
         Book book = bookManager.getBook(bookId);
         String preference = bookManager.getBookPreference(bookId, kidId);
