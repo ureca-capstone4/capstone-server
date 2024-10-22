@@ -2,6 +2,7 @@ package com.ureca.idle.idleapi.idleoriginapi.business.book;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.book.BookManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.BookDtoMapper;
 import com.ureca.idle.idlejpa.book.Book;
@@ -20,7 +21,7 @@ public class BookManagingService implements BookManagingUseCase {
     @Transactional
     public AddBookResp addBook(AddBookReq req) {
         // TODO BooksDetail newBooksDetail = add~;
-        Book newBook = bookManager.registerBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge());
+        Book newBook = bookManager.addBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge());
         return bookDtoMapper.toAddBookResp(newBook);
     }
 
@@ -29,6 +30,13 @@ public class BookManagingService implements BookManagingUseCase {
     public void deleteBook(Long bookId) {
         bookManager.checkExistsBook(bookId);
         bookManager.deleteBook(bookId);
+    }
+
+    @Override
+    @Transactional
+    public void updateBook(Long bookId, UpdateBookReq req) {
+        bookManager.checkExistsBook(bookId);
+        bookManager.updateBook(bookId, req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge());
     }
 
 }

@@ -3,6 +3,7 @@ package com.ureca.idle.idleapi.idleoriginapi.presentation.controller.book;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.BookManagingUseCase;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,12 @@ public class BookManagingController {
     public ResponseEntity<String> deleteBook(@PathVariable Long bookId) {
         bookManagingUseCase.deleteBook(bookId);
         return ResponseEntity.ok("성공적으로 삭제되었습니다.");
+    }
+
+    @PatchMapping("/{bookId}")
+    public ResponseEntity<String> updateBook(@PathVariable Long bookId, @RequestBody UpdateBookReq req) {
+        bookManagingUseCase.updateBook(bookId,req);
+        return ResponseEntity.ok("성공적으로 수정되었습니다.");
     }
 
 }
