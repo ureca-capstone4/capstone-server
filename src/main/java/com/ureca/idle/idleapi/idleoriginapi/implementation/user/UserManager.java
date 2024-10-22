@@ -46,7 +46,7 @@ public class UserManager {
         return repository.save(newUser);
     }
 
-    public void checkExitsUserByEmail(String email) {
+    public void checkExistsUserByEmail(String email) {
         if(repository.existsByEmail(email)) {
             throw new UserException(UserExceptionType.EMAIL_ALREADY_EXITS_EXCEPTION);
         }

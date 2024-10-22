@@ -1,6 +1,6 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.web.config;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.web.config;
 
-import com.ureca.idle.idleapi.idleoriginapi.presentaion.web.auth.LoginUserArgumentResolver;
+import com.ureca.idle.idleapi.idleoriginapi.presentation.web.auth.LoginUserArgumentResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

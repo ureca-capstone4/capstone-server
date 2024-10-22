@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.controller.metric;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.controller.metric;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

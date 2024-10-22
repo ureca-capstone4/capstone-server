@@ -32,7 +32,7 @@ public class SimpleJwtAuthService implements AuthUseCase {
     @Override
     @Transactional
     public SignupResp signup(SignupReq req) {
-        userManager.checkExitsUserByEmail(req.email());
+        userManager.checkExistsUserByEmail(req.email());
         User registeredUser = userManager.registerUser(req.email(), req.password(), req.name(), req.phoneNum());
         return authDtoMapper.toSignupResp(registeredUser);
     }

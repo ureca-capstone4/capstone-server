@@ -1,12 +1,12 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.controller.auth;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.controller.auth;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.auth.AuthUseCase;
 import com.ureca.idle.idleapi.idleoriginapi.business.auth.dto.LoginReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.auth.dto.LoginResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.auth.dto.SignupReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.auth.dto.SignupResp;
-import com.ureca.idle.idleapi.idleoriginapi.presentaion.web.jwt.JwtDto;
-import com.ureca.idle.idleapi.idleoriginapi.presentaion.web.jwt.JwtProvider;
+import com.ureca.idle.idleapi.idleoriginapi.presentation.web.jwt.JwtDto;
+import com.ureca.idle.idleapi.idleoriginapi.presentation.web.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

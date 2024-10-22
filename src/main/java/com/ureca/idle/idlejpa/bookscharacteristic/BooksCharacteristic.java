@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.booksdetail;
+package com.ureca.idle.idlejpa.bookscharacteristic;
 
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;
@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class BooksDetail extends BaseEntity {
+public class BooksCharacteristic extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
