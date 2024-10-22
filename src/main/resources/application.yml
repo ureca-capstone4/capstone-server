@@ -22,3 +22,7 @@ logging:
 jwt:
   secret: dummy-key-dummy-key-dummy-key-dummy
   expiration: 360000000
+
+idle:
+  ai_server:
+    ip: ${LGAI_IP:127.0.0.1}
