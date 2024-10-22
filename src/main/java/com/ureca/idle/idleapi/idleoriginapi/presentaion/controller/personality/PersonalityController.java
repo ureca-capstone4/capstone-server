@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/personalities")
 @RequiredArgsConstructor
-public class personalityController {
+public class PersonalityController {
     private final PersonalityManagingUseCase personalityManagingUseCase;
 
     @GetMapping("")

@@ -19,6 +19,6 @@ public class PersonalityDtoMapper {
     }
 
     public GetQuestionsDetailResp toGetPersonalityQuestions(PersonalityQuestion question) {
-        return new GetQuestionsDetailResp(question.getId(), question.getQuestion(), question.getAnswer1(), question.getAnswer2(), question.getValue(), question.getMbtiType());
+        return new GetQuestionsDetailResp(question.getId(), question.getQuestion(), question.getAnswer1(), question.getAnswer2(), question.getAnswerValue(), question.getMbtiType());
     }
 }

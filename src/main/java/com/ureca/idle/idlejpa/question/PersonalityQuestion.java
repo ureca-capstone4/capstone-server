@@ -22,7 +22,7 @@ public class PersonalityQuestion extends BaseEntity {
     private String answer2;
 
     @Column(nullable = false)
-    private int value;
+    private int answerValue;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
