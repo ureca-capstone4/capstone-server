@@ -36,7 +36,8 @@ public class BookManagingService implements BookManagingUseCase {
     @Transactional
     public void updateBook(Long bookId, UpdateBookReq req) {
         bookManager.checkExistsBook(bookId);
-        bookManager.updateBook(bookId, req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge());
+        bookManager.updateBook(bookId, req);
     }
+
 
 }

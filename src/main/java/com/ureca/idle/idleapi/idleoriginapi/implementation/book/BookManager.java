@@ -1,5 +1,6 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.book;
 
+import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.common.exception.book.BookException;
 import com.ureca.idle.idleapi.idleoriginapi.common.exception.book.BookExceptionType;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookRepository;
@@ -26,10 +27,10 @@ public class BookManager {
         return repository.save(newBook);
     }
 
-    public void updateBook(Long bookId, String title, String story, String summary, String author, String publisher, int recommendedAge ) {
+    public void updateBook(Long bookId, UpdateBookReq req) {
         Book book = repository.findById(bookId)
                 .orElseThrow(() -> new BookException(BookExceptionType.NOT_FOUND_EXCEPTION));
-        book.updateBook(title, story, summary, author, publisher, recommendedAge);
+        book.updateBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge());
         repository.save(book);
     }
 
