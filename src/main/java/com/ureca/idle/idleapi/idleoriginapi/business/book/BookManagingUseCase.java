@@ -10,5 +10,4 @@ public interface BookManagingUseCase {
     void updateBook(Long bookId,UpdateBookReq req);
     GetBookDetailResp getBookDetail(Long bookId, Long kidId);
     List<GetBookProfileResp> getRecommendedBooks(Long kidId);
-    List<GetBookProfileResp> getRandomBooks(int quantity);
 }

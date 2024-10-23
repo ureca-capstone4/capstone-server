@@ -71,19 +71,14 @@ public class BookManager {
 
     public List<Book> getRecommendedBooks(Long id){
         KidsPersonality kidsPersonality = kidManager.getKidWithPersonality(id).getPersonality();
-        List<Book> recommendedBooks = bookRepository.getRecommendedBooksByKidPersonality(
+        return bookRepository.getRecommendedBooksByKidPersonality(
                 kidsPersonality.getEi(),
                 kidsPersonality.getSn(),
                 kidsPersonality.getTf(),
                 kidsPersonality.getJp());
-        if(recommendedBooks.isEmpty()){
-            recommendedBooks= getRandomBooks(10);
-        }
-        return recommendedBooks;
     }
 
     public List<Book> getRandomBooks(int quantity){
-        List<Book> randomBooks = bookRepository.getRandomBooks(quantity);
-        return randomBooks;
+        return bookRepository.getRandomBooks(quantity);
     }
 }

@@ -50,14 +50,10 @@ public class BookManagingService implements BookManagingUseCase {
     @Override
     @Transactional(readOnly = true)
     public List<GetBookProfileResp> getRecommendedBooks(Long kidId) {
-        List<Book> books = bookManager.getRecommendedBooks(kidId);
-        return bookDtoMapper.toGetBookProfileResp(books);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<GetBookProfileResp> getRandomBooks(int quantity) {
-        List<Book> books = bookManager.getRandomBooks(quantity);
-        return bookDtoMapper.toGetBookProfileResp(books);
+        List<Book> recommendedBooks = bookManager.getRecommendedBooks(kidId);
+        if(recommendedBooks.isEmpty()){
+            recommendedBooks = bookManager.getRandomBooks(10);
+        }
+        return bookDtoMapper.toGetBookProfileResp(recommendedBooks);
     }
 }
