@@ -29,4 +29,8 @@ public class KidsPersonality extends BaseEntity {
 
     @Column(nullable = false)
     private String mbti;
+
+    @Column(nullable = false)
+    private boolean isTested;
+
 }
