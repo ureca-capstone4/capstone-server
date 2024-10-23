@@ -77,8 +77,13 @@ public class BookManager {
                 kidsPersonality.getTf(),
                 kidsPersonality.getJp());
         if(recommendedBooks.isEmpty()){
-            throw new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION);
+            recommendedBooks= getRandomBooks(10);
         }
         return recommendedBooks;
+    }
+
+    public List<Book> getRandomBooks(int quantity){
+        List<Book> randomBooks = bookRepository.getRandomBooks(quantity);
+        return randomBooks;
     }
 }

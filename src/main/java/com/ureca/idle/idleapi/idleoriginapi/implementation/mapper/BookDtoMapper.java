@@ -23,7 +23,7 @@ public class BookDtoMapper {
                 preference, book.getRecommendedAge());
     }
 
-    public List<GetBookProfileResp> toSelectRecommendedBooksResp(List<Book> books) {
+    public List<GetBookProfileResp> toGetBookProfileResp(List<Book> books) {
         return books.stream()
                 .map(book -> new GetBookProfileResp(
                         book.getId(),
