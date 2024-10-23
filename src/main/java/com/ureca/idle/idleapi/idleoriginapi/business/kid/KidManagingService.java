@@ -1,10 +1,13 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.kid;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.*;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.UpdateKidPersonalityReq;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.UpdateKidPersonalityResp;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.kid.KidManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.KidDtoMapper;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.user.UserManager;
 import com.ureca.idle.idlejpa.kid.Kid;
+import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import com.ureca.idle.idlejpa.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,5 +46,12 @@ public class KidManagingService implements KidManagingUseCase {
     public GetKidsDetailResp getKidsDetail(Long kidId) {
         Kid kid = kidManager.getKidWithPersonality(kidId);
         return kidDtoMapper.toGetKidsDetailResp(kid);
+    }
+
+    @Override
+    @Transactional
+    public UpdateKidPersonalityResp updateKidsPersonality(Long kidId, UpdateKidPersonalityReq req) {
+        kidManager.updateKidPersonality(kidId, req);
+        return kidDtoMapper.toUpdateKidPersonality();
     }
 }

@@ -33,4 +33,12 @@ public class KidsPersonality extends BaseEntity {
     @Column(nullable = false)
     private boolean isTested;
 
+    public void updateKidsPersonality(int ei, int sn, int tf, int jp, String mbti, boolean isTested) {
+        this.ei = ei;
+        this.sn = sn;
+        this.tf = tf;
+        this.jp = jp;
+        this.mbti = mbti;
+        this.isTested = isTested;
+    }
 }

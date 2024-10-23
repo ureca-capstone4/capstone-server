@@ -10,5 +10,5 @@ public interface KidManagingUseCase {
     GetKidsDetailResp getKidsDetail(Long kidId);
 
     // 성향 검사 진행 결과 발송
-    UpdateKidPersonalityResp updateKidPersonality(Long kidId, UpdateKidPersonalityReq req);
+    UpdateKidPersonalityResp updateKidsPersonality(Long kidId, UpdateKidPersonalityReq req);
 }
