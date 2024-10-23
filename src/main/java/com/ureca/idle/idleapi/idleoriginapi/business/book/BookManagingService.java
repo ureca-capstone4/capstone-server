@@ -51,7 +51,13 @@ public class BookManagingService implements BookManagingUseCase {
     @Transactional(readOnly = true)
     public List<GetBookProfileResp> getRecommendedBooks(Long kidId) {
         List<Book> books = bookManager.getRecommendedBooks(kidId);
-        return bookDtoMapper.toSelectRecommendedBooksResp(books);
+        return bookDtoMapper.toGetBookProfileResp(books);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<GetBookProfileResp> getRandomBooks(int quantity) {
+        List<Book> books = bookManager.getRandomBooks(quantity);
+        return bookDtoMapper.toGetBookProfileResp(books);
+    }
 }
