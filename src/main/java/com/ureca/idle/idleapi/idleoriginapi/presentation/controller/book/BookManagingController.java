@@ -1,13 +1,12 @@
 package com.ureca.idle.idleapi.idleoriginapi.presentation.controller.book;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.book.BookManagingUseCase;
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.GetBookDetailResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
+import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/books")
@@ -36,9 +35,16 @@ public class BookManagingController {
 
     @GetMapping
     public ResponseEntity<GetBookDetailResp> getBookDetailWithPreference(
-            @RequestParam("bookid") Long bookId,
-            @RequestParam("kidid") Long kidId) {
+            @RequestParam("bookId") Long bookId,
+            @RequestParam("kidId") Long kidId) {
         GetBookDetailResp resp = bookManagingUseCase.getBookDetail(bookId, kidId);
+        return ResponseEntity.ok(resp);
+    }
+
+    @GetMapping("/recommendations")
+    public ResponseEntity<List<GetRecommendedBooksResp>> getRecommendedBooks(
+            @RequestParam("kidId") Long kidId ){
+        List<GetRecommendedBooksResp> resp = bookManagingUseCase.getRecommendedBooks(kidId);
         return ResponseEntity.ok(resp);
     }
 }
