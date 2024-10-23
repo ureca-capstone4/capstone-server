@@ -21,7 +21,7 @@ public class BookManagingService implements BookManagingUseCase {
     @Transactional
     public AddBookResp addBook(AddBookReq req) {
         // TODO BooksDetail newBooksDetail = add~;
-        Book newBook = bookManager.addBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge());
+        Book newBook = bookManager.addBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge(), req.bookImageUrl());
         return bookDtoMapper.toAddBookResp(newBook);
     }
 

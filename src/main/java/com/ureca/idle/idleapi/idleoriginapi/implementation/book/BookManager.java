@@ -7,14 +7,10 @@ import com.ureca.idle.idleapi.idleoriginapi.implementation.kid.KidManager;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookPreferenceRepository;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookRepository;
 import com.ureca.idle.idlejpa.book.Book;
-import com.ureca.idle.idlejpa.bookpreference.BookPreference;
-import com.ureca.idle.idlejpa.bookpreference.Hobulho;
-import com.ureca.idle.idlejpa.kid.Kid;
 import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +19,10 @@ import java.util.Optional;
 public class BookManager {
 
     private final BookRepository bookRepository;
-    private final BookPreferenceRepository preferenceRepository;
     private final BookPreferenceRepository bookPreferenceRepository;
     private final KidManager kidManager;
 
-    public Book addBook(/* TODO BooksDetail booksDetail,*/ String title, String story, String summary, String author, String publisher, int recommendedAge) {
+    public Book addBook(/* TODO BooksDetail booksDetail,*/ String title, String story, String summary, String author, String publisher, int recommendedAge, String bookImageUrl) {
         Book newBook = Book.builder()
                 // TODO .booksDetail(booksDetail)
                 .title(title)
@@ -36,6 +31,7 @@ public class BookManager {
                 .author(author)
                 .publisher(publisher)
                 .recommendedAge(recommendedAge)
+                .bookImageUrl(bookImageUrl)
                 .build();
         return bookRepository.save(newBook);
     }
@@ -43,7 +39,7 @@ public class BookManager {
     public void updateBook(Long bookId, UpdateBookReq req) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
-        book.updateBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge());
+        book.updateBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge(), req.bookImageUrl());
     }
 
     public void deleteBook(Long bookId) {

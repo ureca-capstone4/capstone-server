@@ -5,5 +5,6 @@ public record UpdateBookReq(String title,
                             String story,
                             String author,
                             String publisher,
-                            int recommendedAge) {
+                            int recommendedAge,
+                            String bookImageUrl) {
 }

@@ -1,6 +1,5 @@
 package com.ureca.idle.idlejpa.book;
 
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
 import com.ureca.idle.idlejpa.bookscharacteristic.BooksCharacteristic;
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;
@@ -40,14 +39,16 @@ public class Book extends BaseEntity {
 
     @Column(nullable = false)
     private int recommendedAge;
-    // TODO book image url 추가
 
-    public void updateBook(String title, String story, String summary, String author, String publisher, int recommendedAge) {
+    private String bookImageUrl;
+
+    public void updateBook(String title, String story, String summary, String author, String publisher, int recommendedAge, String bookImageUrl) {
         this.title = title;
         this.story = story;
         this.summary = summary;
         this.author = author;
         this.publisher = publisher;
         this.recommendedAge = recommendedAge;
+        this.bookImageUrl = bookImageUrl;
     }
 }
