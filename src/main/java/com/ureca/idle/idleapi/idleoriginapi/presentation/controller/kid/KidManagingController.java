@@ -1,10 +1,7 @@
 package com.ureca.idle.idleapi.idleoriginapi.presentation.controller.kid;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.KidManagingUseCase;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidReq;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetKidsDetailResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.GetKidsProfilesResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.*;
 import com.ureca.idle.idleapi.idleoriginapi.presentation.web.auth.LoginUser;
 import com.ureca.idle.idleapi.idleoriginapi.presentation.web.auth.IdAndAuthority;
 import lombok.RequiredArgsConstructor;
@@ -36,5 +33,14 @@ public class KidManagingController {
         GetKidsDetailResp resp = kidManagingUseCase.getKidsDetail(kidId);
         return ResponseEntity.ok(resp);
     }
+
+
+    @PostMapping("/{kidId}/personalities")
+    public ResponseEntity<UpdateKidPersonalityResp> updateKidsPersonalities(@PathVariable Long kidId, @RequestBody UpdateKidPersonalityReq req) {
+        // @LoginUser IdAndAuthority loginUser,
+        UpdateKidPersonalityResp resp = kidManagingUseCase.updateKidsPersonality(kidId, req);
+        return ResponseEntity.ok(resp);
+    }
+
 }
 
