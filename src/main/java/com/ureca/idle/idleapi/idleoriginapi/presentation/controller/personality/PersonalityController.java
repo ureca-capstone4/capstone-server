@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.presentaion.controller.personality;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.controller.personality;
 
 
 import com.ureca.idle.idleapi.idleoriginapi.business.personality.PersonalityManagingUseCase;

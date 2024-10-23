@@ -1,15 +1,14 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.book;
 
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.GetBookDetailResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
+import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.*;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.book.BookManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.BookDtoMapper;
 import com.ureca.idle.idlejpa.book.Book;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -48,4 +47,13 @@ public class BookManagingService implements BookManagingUseCase {
         return bookDtoMapper.toSelectBookDetailResp(book,preference);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<GetBookProfileResp> getRecommendedBooks(Long kidId) {
+        List<Book> recommendedBooks = bookManager.getRecommendedBooks(kidId);
+        if(recommendedBooks.isEmpty()){
+            recommendedBooks = bookManager.getRandomBooks(10);
+        }
+        return bookDtoMapper.toGetBookProfileResp(recommendedBooks);
+    }
 }
