@@ -2,9 +2,8 @@ package com.ureca.idle.idleapi.idleoriginapi.implementation.mapper;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.GetBookDetailResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.GetRecommendedBooksResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.GetBookProfileResp;
 import com.ureca.idle.idlejpa.book.Book;
-import com.ureca.idle.idlejpa.bookpreference.BookPreference;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,9 +23,9 @@ public class BookDtoMapper {
                 preference, book.getRecommendedAge());
     }
 
-    public List<GetRecommendedBooksResp> toSelectRecommendedBooksResp(List<Book> books) {
+    public List<GetBookProfileResp> toSelectRecommendedBooksResp(List<Book> books) {
         return books.stream()
-                .map(book -> new GetRecommendedBooksResp(
+                .map(book -> new GetBookProfileResp(
                         book.getId(),
                         book.getTitle(),
                         book.getRecommendedAge()

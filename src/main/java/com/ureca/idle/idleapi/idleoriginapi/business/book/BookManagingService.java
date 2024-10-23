@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -50,7 +49,7 @@ public class BookManagingService implements BookManagingUseCase {
 
     @Override
     @Transactional(readOnly = true)
-    public List<GetRecommendedBooksResp> getRecommendedBooks(Long kidId) {
+    public List<GetBookProfileResp> getRecommendedBooks(Long kidId) {
         List<Book> books = bookManager.getRecommendedBooks(kidId);
         return bookDtoMapper.toSelectRecommendedBooksResp(books);
     }

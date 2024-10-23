@@ -10,6 +10,7 @@ import com.ureca.idle.idlejpa.book.Book;
 import com.ureca.idle.idlejpa.bookpreference.BookPreference;
 import com.ureca.idle.idlejpa.bookpreference.Hobulho;
 import com.ureca.idle.idlejpa.kid.Kid;
+import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -69,12 +70,12 @@ public class BookManager {
     }
 
     public List<Book> getRecommendedBooks(Long id){
-        Kid kid = kidManager.getKidWithPersonality(id);
-        List<Book> recommendedBooks = bookRepository.getBooksByBooksDetail(
-                kid.getPersonality().getEi(),
-                kid.getPersonality().getSn(),
-                kid.getPersonality().getTf(),
-                kid.getPersonality().getJp());
+        KidsPersonality kidsPersonality = kidManager.getKidWithPersonality(id).getPersonality();
+        List<Book> recommendedBooks = bookRepository.getRecommendedBooksByKidPersonality(
+                kidsPersonality.getEi(),
+                kidsPersonality.getSn(),
+                kidsPersonality.getTf(),
+                kidsPersonality.getJp());
         if(recommendedBooks.isEmpty()){
             throw new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION);
         }

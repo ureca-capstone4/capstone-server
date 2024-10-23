@@ -21,6 +21,6 @@ public class BookManagerTest {
         List<Book> recommendedBooks = bookManager.getRecommendedBooks(1L);
         Assertions.assertNotNull(recommendedBooks);
         Assertions.assertEquals(recommendedBooks.get(0).getTitle(), "The Secret Garden");
-        Assertions.assertEquals(recommendedBooks.size(), 1);
+        Assertions.assertEquals(recommendedBooks.size(), 2);
     }
 }

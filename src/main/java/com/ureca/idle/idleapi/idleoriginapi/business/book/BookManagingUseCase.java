@@ -9,5 +9,5 @@ public interface BookManagingUseCase {
     void deleteBook(Long bookId);
     void updateBook(Long bookId,UpdateBookReq req);
     GetBookDetailResp getBookDetail(Long bookId, Long kidId);
-    List<GetRecommendedBooksResp> getRecommendedBooks(Long kidId);
+    List<GetBookProfileResp> getRecommendedBooks(Long kidId);
 }

@@ -42,9 +42,9 @@ public class BookManagingController {
     }
 
     @GetMapping("/recommendations")
-    public ResponseEntity<List<GetRecommendedBooksResp>> getRecommendedBooks(
+    public ResponseEntity<List<GetBookProfileResp>> getRecommendedBooks(
             @RequestParam("kidId") Long kidId ){
-        List<GetRecommendedBooksResp> resp = bookManagingUseCase.getRecommendedBooks(kidId);
+        List<GetBookProfileResp> resp = bookManagingUseCase.getRecommendedBooks(kidId);
         return ResponseEntity.ok(resp);
     }
 }
