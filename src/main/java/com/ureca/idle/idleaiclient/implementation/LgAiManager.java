@@ -2,8 +2,6 @@ package com.ureca.idle.idleaiclient.implementation;
 
 import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiReq;
 import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiResp;
-import com.ureca.idle.idleaiclient.config.AiException;
-import com.ureca.idle.idleaiclient.config.AiExceptionType;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONException;
 import org.json.JSONObject;
