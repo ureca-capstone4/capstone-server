@@ -51,8 +51,7 @@ public class LgAiManager implements AiClientManager {
             );
             return resp;
         } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
+            throw new JSONException("AI 응답의 형식이 올바르지 않습니다.");
         }
     }
 }
