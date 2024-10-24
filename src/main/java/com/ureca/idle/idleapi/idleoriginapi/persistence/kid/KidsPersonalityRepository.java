@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.persistence.kidPersonality;
+package com.ureca.idle.idleapi.idleoriginapi.persistence.kid;
 
 
 import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;

@@ -1,10 +1,8 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.kid;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.UpdateKidPersonalityReq;
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.kid.KidException;
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.kid.KidExceptionType;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.kid.KidRepository;
-import com.ureca.idle.idleapi.idleoriginapi.persistence.kidPersonality.KidsPersonalityRepository;
+import com.ureca.idle.idleapi.idleoriginapi.persistence.kid.KidsPersonalityRepository;
 import com.ureca.idle.idlejpa.kid.Gender;
 import com.ureca.idle.idlejpa.kid.Kid;
 import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
