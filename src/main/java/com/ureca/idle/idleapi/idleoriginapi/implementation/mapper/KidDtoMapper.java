@@ -1,6 +1,8 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.mapper;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.*;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.UpdateKidPersonalityReq;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.UpdateKidPersonalityResp;
 import com.ureca.idle.idlejpa.kid.Kid;
 import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import org.springframework.stereotype.Component;
@@ -33,4 +35,11 @@ public class KidDtoMapper {
                 new GetKidsPersonalityResp(personality.getId(), personality.getEi(), personality.getSn(), personality.getTf(), personality.getJp(), personality.getMbti())
         );
     }
+
+    public UpdateKidPersonalityResp toUpdateKidPersonality() {
+        return new UpdateKidPersonalityResp("성공적으로 성향이 등록되었습니다.");
+
+    }
+
+
 }
