@@ -1,6 +1,7 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.personality;
 
 
+import com.ureca.idle.idleapi.idleoriginapi.business.KidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.personality.dto.*;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.PersonalityDtoMapper;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.personality.PersonalityManager;
@@ -35,7 +36,7 @@ public class PersonalityManagingService implements PersonalityManagingUseCase{
     }
 
     @Override
-    public GetKidsPersonalityHistoryResp getKidsPersonalityHistory(Long kidId) {
+    public GetKidsPersonalityChangeHistoryResp getKidsPersonalityHistory(Long kidId) {
 
         return null;
     }

@@ -1,5 +1,6 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.personality;
 
+import com.ureca.idle.idleapi.idleoriginapi.business.KidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.personality.dto.*;
 
 public interface PersonalityManagingUseCase {
@@ -11,7 +12,7 @@ public interface PersonalityManagingUseCase {
     RemoveKidPersonalityResp removePersonality(Long userId, Long kidId);
 
     // 4. 성향 히스토리 조회
-    GetKidsPersonalityHistoryResp getKidsPersonalityHistory(Long kidId);
+    GetKidsPersonalityChangeHistoryResp getKidsPersonalityHistory(Long kidId);
 
 
 
