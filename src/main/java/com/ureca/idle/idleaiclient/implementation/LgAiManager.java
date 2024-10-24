@@ -2,6 +2,8 @@ package com.ureca.idle.idleaiclient.implementation;
 
 import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiReq;
 import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiResp;
+import com.ureca.idle.idleaiclient.config.AiException;
+import com.ureca.idle.idleaiclient.config.AiExceptionType;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +53,7 @@ public class LgAiManager implements AiClientManager {
             );
             return resp;
         } catch (JSONException e) {
-            throw new JSONException("AI 응답의 형식이 올바르지 않습니다.");
+            throw new AiException(AiExceptionType.AI_RESPONSE_NOT_PROPER);
         }
     }
 }
