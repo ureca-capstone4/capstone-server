@@ -22,6 +22,11 @@ public class PersonalityManagingService implements PersonalityManagingUseCase{
     private final PersonalityDtoMapper personalityDtoMapper;
 
     @Override
+    public AddKidPersonalityResp addMyKidPersonality(Long kidId, AddKidPersonalityReq req) {
+        return null;
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public GetTestQuestionsResp getPersonalityTestQuestions() {
         List<PersonalityQuestion> questionList = personalityManager.getPersonalityQuestions();
