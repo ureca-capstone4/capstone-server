@@ -3,7 +3,7 @@ package com.ureca.idle.idleapi.idleoriginapi.business.personality;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.personality.dto.*;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.PersonalityDtoMapper;
-import com.ureca.idle.idleapi.idleoriginapi.implementation.personality.PersonalityManager;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.personality.PersonalityQuestionManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.user.UserManager;
 import com.ureca.idle.idlejpa.question.PersonalityQuestion;
 
@@ -19,13 +19,13 @@ import java.util.List;
 public class PersonalityManagingService implements PersonalityManagingUseCase{
 
     private final UserManager userManager;
-    private final PersonalityManager personalityManager;
+    private final PersonalityQuestionManager personalityQuestionManager;
     private final PersonalityDtoMapper personalityDtoMapper;
 
     @Override
     @Transactional(readOnly = true)
     public GetTestQuestionsResp getPersonalityTestQuestions() {
-        List<PersonalityQuestion> questionList = personalityManager.getPersonalityQuestions();
+        List<PersonalityQuestion> questionList = personalityQuestionManager.getPersonalityQuestions();
         return personalityDtoMapper.toGetPersonalityQuestions(questionList);
     }
 
