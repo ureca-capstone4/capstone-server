@@ -46,7 +46,7 @@ public class KidManager {
                 .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION));
     }
 
-    public Kid getId(Long id) {
+    public Kid getKid(Long id) {
         return repository.getKidById(id)
                 .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION));
     }
