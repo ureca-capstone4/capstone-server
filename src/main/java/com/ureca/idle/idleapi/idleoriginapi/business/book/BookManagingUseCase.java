@@ -1,5 +1,6 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.book;
 
+import com.ureca.idle.idleaiclient.dto.AddBookMbtiResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.*;
 
 import java.util.List;

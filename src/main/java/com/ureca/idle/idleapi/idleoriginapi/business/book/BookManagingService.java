@@ -4,6 +4,7 @@ import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.*;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.book.BookManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.BookDtoMapper;
 import com.ureca.idle.idlejpa.book.Book;
+import com.ureca.idle.idlejpa.bookscharacteristic.BooksCharacteristic;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ public class BookManagingService implements BookManagingUseCase {
     @Override
     @Transactional
     public AddBookResp addBook(AddBookReq req) {
-        // TODO BooksDetail newBooksDetail = add~;
-        Book newBook = bookManager.addBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge(), req.bookImageUrl());
+        BooksCharacteristic newBooksCharacteristic = bookManager.addBooksCharacteristic(req);
+        Book newBook = bookManager.addBook(req,newBooksCharacteristic);
         return bookDtoMapper.toAddBookResp(newBook);
     }
 
