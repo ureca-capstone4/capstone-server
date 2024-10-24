@@ -20,7 +20,7 @@ public class Kid extends BaseEntity {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "kids_personality_id")
+    @JoinColumn(name = "kids_personality_id", nullable = false)
     private KidsPersonality personality;
 
     @OneToOne
