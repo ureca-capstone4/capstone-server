@@ -1,7 +1,7 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.mapper;
 
-import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestions.dto.GetQuestionsDetailResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestions.dto.GetTestQuestionsResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetQuestionsDetailResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetTestQuestionsResp;
 import com.ureca.idle.idlejpa.personalityquestion.PersonalityQuestion;
 import org.springframework.stereotype.Component;
 

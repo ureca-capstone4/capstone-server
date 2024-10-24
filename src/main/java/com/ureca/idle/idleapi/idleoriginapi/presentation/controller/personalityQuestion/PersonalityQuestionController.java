@@ -1,8 +1,8 @@
 package com.ureca.idle.idleapi.idleoriginapi.presentation.controller.personalityQuestion;
 
 
-import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestions.PersonalityQuestionManagingUseCase;
-import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestions.dto.GetTestQuestionsResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.PersonalityQuestionManagingUseCase;
+import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetTestQuestionsResp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

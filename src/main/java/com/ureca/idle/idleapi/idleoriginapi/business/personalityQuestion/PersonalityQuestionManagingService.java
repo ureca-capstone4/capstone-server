@@ -1,7 +1,7 @@
-package com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestions;
+package com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion;
 
 
-import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestions.dto.*;
+import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.*;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.PersonalityQuestionDtoMapper;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.personalityQuestion.PersonalityQuestionManager;
 import com.ureca.idle.idlejpa.personalityquestion.PersonalityQuestion;
