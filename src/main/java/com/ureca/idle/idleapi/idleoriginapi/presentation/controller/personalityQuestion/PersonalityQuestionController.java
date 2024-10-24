@@ -16,7 +16,7 @@ public class PersonalityQuestionController {
     private final PersonalityQuestionManagingUseCase personalityQuestionManagingUseCase;
 
     @GetMapping("")
-    public ResponseEntity<GetPersonalityQuestionsResp> getTestQuestions() {
+    public ResponseEntity<GetPersonalityQuestionsResp> getPersonalityQuestions() {
         GetPersonalityQuestionsResp resp = personalityQuestionManagingUseCase.getPersonalityQuestions();
         return ResponseEntity.ok(resp);
     }
