@@ -1,6 +1,10 @@
-package com.ureca.idle.idleapi.idleoriginapi.common.exception.config;
+package com.ureca.idle.idleapi.idleoriginapi.presentation.controller;
 
 
+import com.ureca.idle.idleexception.BaseException;
+import com.ureca.idle.idleexception.ExceptionResponse;
+import com.ureca.idle.idleexception.ExceptionStatus;
+import com.ureca.idle.idleexception.ExceptionType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

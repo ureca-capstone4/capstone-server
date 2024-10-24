@@ -1,7 +1,8 @@
 package com.ureca.idle.idleaiclient;
 
-import com.ureca.idle.idleaiclient.dto.AddBookMbtiReq;
-import com.ureca.idle.idleaiclient.dto.AddBookMbtiResp;
+import com.ureca.idle.idleaiclient.business.AiClientManagingUseCase;
+import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiReq;
+import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiResp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class AiClientTest {
     @Autowired
-    private AIService aiService;
+    private AiClientManagingUseCase aiService;
 
     @Test
     void LGAI_connection(){

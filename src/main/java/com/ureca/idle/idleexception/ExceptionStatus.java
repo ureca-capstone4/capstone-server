@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.common.exception.config;
+package com.ureca.idle.idleexception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

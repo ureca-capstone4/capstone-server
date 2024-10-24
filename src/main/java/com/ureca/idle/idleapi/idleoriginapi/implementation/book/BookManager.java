@@ -1,12 +1,10 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.book;
 
-import com.ureca.idle.idleaiclient.LGAIClient;
-import com.ureca.idle.idleaiclient.dto.AddBookMbtiReq;
-import com.ureca.idle.idleaiclient.dto.AddBookMbtiResp;
+import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiReq;
+import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiResp;
+import com.ureca.idle.idleaiclient.implementation.AiClientManager;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.book.BookException;
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.book.BookExceptionType;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.kid.KidManager;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookPreferenceRepository;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookRepository;
@@ -28,9 +26,7 @@ public class BookManager {
     private final BookPreferenceRepository bookPreferenceRepository;
     private final BooksCharacteristicRepository booksCharacteristicRepository;
     private final KidManager kidManager;
-
-    //TODO implementation에서 service를 역참조 하는 일 발생, manager를 만들어야 할 듯
-    private final LGAIClient lgaiClient;
+    private final AiClientManager aiClientManager;
 
     public Book addBook(AddBookReq req, BooksCharacteristic booksCharacteristic ) {
         Book newBook = Book.builder()
@@ -49,13 +45,13 @@ public class BookManager {
     public BooksCharacteristic addBooksCharacteristic(AddBookReq req) {
         AddBookMbtiReq MbtiReq = new AddBookMbtiReq(req.title(), req.summary(), req.story());
         //TODO AI api에 장애가 발생했을 때 어떻게 할 지 생각 필요
-        AddBookMbtiResp resp = lgaiClient.createBookMbti(MbtiReq);
+        AddBookMbtiResp resp = aiClientManager.createBookMbti(MbtiReq);
         String mbti = calculateMbti(resp);
         BooksCharacteristic newBooksCharacteristic = BooksCharacteristic.builder()
-                .ei(resp.getEi())
-                .sn(resp.getSn())
-                .tf(resp.getTf())
-                .jp(resp.getJp())
+                .ei(resp.ei())
+                .sn(resp.sn())
+                .tf(resp.tf())
+                .jp(resp.jp())
                 .mbti(mbti)
                 .build();
         return booksCharacteristicRepository.save(newBooksCharacteristic);
@@ -64,10 +60,10 @@ public class BookManager {
     private String calculateMbti(AddBookMbtiResp resp) {
         //TODO 추후 kids mbti 계산에 사용하기 위해 따로 Manager 만들어 빼는 것 고민
         String mbti =
-                (resp.getEi() > 50 ? "E" : "I") +
-                (resp.getSn() > 50 ? "S" : "N") +
-                (resp.getTf() > 50 ? "T" : "F") +
-                (resp.getJp() > 50 ? "J" : "P");
+                (resp.ei() > 50 ? "E" : "I") +
+                (resp.sn() > 50 ? "S" : "N") +
+                (resp.tf() > 50 ? "T" : "F") +
+                (resp.jp() > 50 ? "J" : "P");
         return mbti;
     }
 
