@@ -29,8 +29,8 @@ public class KidManagingService implements KidManagingUseCase {
     public AddKidResp addMyKid(Long userId, AddKidReq req) {
         User loginUser = userManager.getCurrentLoginUser(userId);
         kidManager.checkDuplicatedKidName(loginUser, req.name());
-        KidsPersonality randomPersonality = kidManager.generateRandomKidsPersonality();
-        Kid newKid = kidManager.registerKid(loginUser, req, randomPersonality);
+        KidsPersonality randomKidsPersonality = kidManager.generateRandomKidsPersonality();
+        Kid newKid = kidManager.registerKid(loginUser, req, randomKidsPersonality);
         return kidDtoMapper.toAddKidResp(newKid);
     }
 
