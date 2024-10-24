@@ -27,7 +27,6 @@ public class PersonalityQuestion extends BaseEntity {
     @Column(nullable = false)
     private int answerValue;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MBTIType mbtiType;
+    private String mbti;
 }
