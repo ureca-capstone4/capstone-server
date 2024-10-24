@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.business.KidsPersonalityChangeHistory.dto;
+package com.ureca.idle.idleapi.idleoriginapi.business.kidsPersonalityChangeHistory.dto;
 
 import java.util.List;
 
