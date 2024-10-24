@@ -1,7 +1,7 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.mapper;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetQuestionDetailResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetPersonalityTestQuestionsResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetPersonalityQuestionsResp;
 import com.ureca.idle.idlejpa.personalityquestion.PersonalityQuestion;
 import org.springframework.stereotype.Component;
 
@@ -9,8 +9,8 @@ import java.util.List;
 
 @Component
 public class PersonalityQuestionDtoMapper {
-    public GetPersonalityTestQuestionsResp toGetPersonalityQuestionList(List<PersonalityQuestion> questions) {
-        return new GetPersonalityTestQuestionsResp(
+    public GetPersonalityQuestionsResp toGetPersonalityQuestionList(List<PersonalityQuestion> questions) {
+        return new GetPersonalityQuestionsResp(
                 questions.stream()
                         .map(this::toGetPersonalityQuestion)
                         .toList()

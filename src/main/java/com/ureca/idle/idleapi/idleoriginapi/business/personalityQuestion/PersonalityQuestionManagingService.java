@@ -22,7 +22,7 @@ public class PersonalityQuestionManagingService implements PersonalityQuestionMa
 
     @Override
     @Transactional(readOnly = true)
-    public GetPersonalityTestQuestionsResp getPersonalityTestQuestions() {
+    public GetPersonalityQuestionsResp getPersonalityQuestions() {
         List<PersonalityQuestion> questionList = personalityQuestionManager.getPersonalityQuestions();
         return personalityQuestionDtoMapper.toGetPersonalityQuestionList(questionList);
     }

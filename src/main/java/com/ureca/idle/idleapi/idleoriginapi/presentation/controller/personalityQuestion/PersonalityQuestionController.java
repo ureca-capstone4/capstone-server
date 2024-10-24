@@ -2,7 +2,7 @@ package com.ureca.idle.idleapi.idleoriginapi.presentation.controller.personality
 
 
 import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.PersonalityQuestionManagingUseCase;
-import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetPersonalityTestQuestionsResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetPersonalityQuestionsResp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +16,8 @@ public class PersonalityQuestionController {
     private final PersonalityQuestionManagingUseCase personalityQuestionManagingUseCase;
 
     @GetMapping("")
-    public ResponseEntity<GetPersonalityTestQuestionsResp> getTestQuestions() {
-        GetPersonalityTestQuestionsResp resp = personalityQuestionManagingUseCase.getPersonalityTestQuestions();
+    public ResponseEntity<GetPersonalityQuestionsResp> getTestQuestions() {
+        GetPersonalityQuestionsResp resp = personalityQuestionManagingUseCase.getPersonalityQuestions();
         return ResponseEntity.ok(resp);
     }
 
