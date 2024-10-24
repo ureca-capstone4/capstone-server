@@ -1,11 +1,11 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.kid;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.*;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.UpdateKidPersonalityReq;
-import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.UpdateKidPersonalityResp;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.kid.KidManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.KidDtoMapper;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.user.UserManager;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTI;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTIUtil;
 import com.ureca.idle.idlejpa.kid.Kid;
 import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import com.ureca.idle.idlejpa.user.User;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +29,8 @@ public class KidManagingService implements KidManagingUseCase {
     public AddKidResp addMyKid(Long userId, AddKidReq req) {
         User loginUser = userManager.getCurrentLoginUser(userId);
         kidManager.checkDuplicatedKidName(loginUser, req.name());
-        Kid newKid = kidManager.registerKid(loginUser, req.name(), req.gender(), req.birthDate());
+        KidsPersonality randomKidsPersonality = kidManager.generateRandomKidsPersonality();
+        Kid newKid = kidManager.registerKid(loginUser, req, randomKidsPersonality);
         return kidDtoMapper.toAddKidResp(newKid);
     }
 
