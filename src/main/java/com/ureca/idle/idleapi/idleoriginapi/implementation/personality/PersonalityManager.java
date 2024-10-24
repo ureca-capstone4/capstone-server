@@ -12,12 +12,10 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class PersonalityManager {
-    private final PersonalityRepository repository;
 
+    private final PersonalityRepository repository;
 
     public List<PersonalityQuestion> getPersonalityQuestions(){
         return repository.findAll();
     }
-
-
 }

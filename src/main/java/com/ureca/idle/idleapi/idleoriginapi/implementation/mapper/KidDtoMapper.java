@@ -40,6 +40,4 @@ public class KidDtoMapper {
         return new UpdateKidPersonalityResp("성공적으로 성향이 등록되었습니다.");
 
     }
-
-
 }

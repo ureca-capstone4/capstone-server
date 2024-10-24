@@ -1,10 +1,15 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.book;
 
+import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.kid.KidManager;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTI;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTIUtil;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookPreferenceRepository;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookRepository;
+import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BooksCharacteristicRepository;
 import com.ureca.idle.idlejpa.book.Book;
+import com.ureca.idle.idlejpa.bookscharacteristic.BooksCharacteristic;
 import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,19 +22,20 @@ import java.util.Optional;
 public class BookManager {
 
     private final BookRepository bookRepository;
-    private final BookPreferenceRepository preferenceRepository;
+    private final BooksCharacteristicRepository booksCharacteristicRepository;
     private final BookPreferenceRepository bookPreferenceRepository;
     private final KidManager kidManager;
+    private final MBTIUtil mbtiUtil;
 
-    public Book addBook(/* TODO BooksDetail booksDetail,*/ String title, String story, String summary, String author, String publisher, int recommendedAge) {
+    public Book addBook(AddBookReq req, BooksCharacteristic newBooksCharacteristic) {
         Book newBook = Book.builder()
-                // TODO .booksDetail(booksDetail)
-                .title(title)
-                .story(story)
-                .summary(summary)
-                .author(author)
-                .publisher(publisher)
-                .recommendedAge(recommendedAge)
+                .title(req.title())
+                .story(req.story())
+                .summary(req.summary())
+                .author(req.author())
+                .publisher(req.publisher())
+                .recommendedAge(req.recommendedAge())
+                .booksCharacteristic(newBooksCharacteristic)
                 .build();
         return bookRepository.save(newBook);
     }
@@ -63,8 +69,8 @@ public class BookManager {
 
     }
 
-    public List<Book> getRecommendedBooks(Long id){
-        KidsPersonality kidsPersonality = kidManager.getKidWithPersonality(id).getPersonality();
+    public List<Book> getRecommendedBooks(Long kidId){
+        KidsPersonality kidsPersonality = kidManager.getKidWithPersonality(kidId).getPersonality();
         return bookRepository.getRecommendedBooksByKidPersonality(
                 kidsPersonality.getEi(),
                 kidsPersonality.getSn(),
@@ -74,5 +80,17 @@ public class BookManager {
 
     public List<Book> getRandomBooks(int quantity){
         return bookRepository.getRandomBooks(quantity);
+    }
+
+    public BooksCharacteristic generateRandomBooksCharacteristic() {
+        MBTI randomMBTI = mbtiUtil.generateRandomMBTI();
+        BooksCharacteristic randomBooksCharacteristic = BooksCharacteristic.builder()
+                .ei(randomMBTI.ei())
+                .sn(randomMBTI.sn())
+                .tf(randomMBTI.tf())
+                .jp(randomMBTI.jp())
+                .mbti(randomMBTI.mbti())
+                .build();
+        return booksCharacteristicRepository.save(randomBooksCharacteristic);
     }
 }
