@@ -1,8 +1,8 @@
-package com.ureca.idle.idleapi.idleoriginapi.common.exception.kid;
+package com.ureca.idle.idleapi.idleoriginapi.implementation.kid;
 
 
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.config.ExceptionType;
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.config.Status;
+import com.ureca.idle.idleexception.ExceptionType;
+import com.ureca.idle.idleexception.Status;
 import lombok.AllArgsConstructor;
 
 

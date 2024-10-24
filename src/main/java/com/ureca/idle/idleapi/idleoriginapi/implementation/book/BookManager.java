@@ -1,20 +1,14 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.book;
 
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.book.BookException;
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.book.BookExceptionType;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.kid.KidManager;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookPreferenceRepository;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookRepository;
 import com.ureca.idle.idlejpa.book.Book;
-import com.ureca.idle.idlejpa.bookpreference.BookPreference;
-import com.ureca.idle.idlejpa.bookpreference.Hobulho;
-import com.ureca.idle.idlejpa.kid.Kid;
 import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

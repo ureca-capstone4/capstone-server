@@ -1,7 +1,8 @@
-package com.ureca.idle.idleaiclient.config;
+package com.ureca.idle.idleaiclient.implementation;
 
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.config.ExceptionType;
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.config.Status;
+
+import com.ureca.idle.idleexception.ExceptionType;
+import com.ureca.idle.idleexception.Status;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
