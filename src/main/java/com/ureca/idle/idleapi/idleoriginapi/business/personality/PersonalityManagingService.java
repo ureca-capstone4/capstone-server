@@ -1,7 +1,7 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.personality;
 
 
-import com.ureca.idle.idleapi.idleoriginapi.business.KidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.kidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.personality.dto.*;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.PersonalityDtoMapper;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.personality.PersonalityManager;
