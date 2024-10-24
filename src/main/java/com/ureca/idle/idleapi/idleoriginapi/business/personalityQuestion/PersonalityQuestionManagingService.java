@@ -22,8 +22,8 @@ public class PersonalityQuestionManagingService implements PersonalityQuestionMa
 
     @Override
     @Transactional(readOnly = true)
-    public GetTestQuestionsResp getPersonalityTestQuestions() {
+    public GetPersonalityTestQuestionsResp getPersonalityTestQuestions() {
         List<PersonalityQuestion> questionList = personalityQuestionManager.getPersonalityQuestions();
-        return personalityQuestionDtoMapper.toGetPersonalityQuestions(questionList);
+        return personalityQuestionDtoMapper.toGetPersonalityQuestionList(questionList);
     }
 }

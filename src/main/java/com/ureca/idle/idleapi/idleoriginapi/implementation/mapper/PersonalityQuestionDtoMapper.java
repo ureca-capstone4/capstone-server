@@ -1,7 +1,7 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.mapper;
 
-import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetQuestionsDetailResp;
-import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetTestQuestionsResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetQuestionDetailResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestion.dto.GetPersonalityTestQuestionsResp;
 import com.ureca.idle.idlejpa.personalityquestion.PersonalityQuestion;
 import org.springframework.stereotype.Component;
 
@@ -9,16 +9,16 @@ import java.util.List;
 
 @Component
 public class PersonalityQuestionDtoMapper {
-    public GetTestQuestionsResp toGetPersonalityQuestions(List<PersonalityQuestion> questions) {
-        return new GetTestQuestionsResp(
+    public GetPersonalityTestQuestionsResp toGetPersonalityQuestionList(List<PersonalityQuestion> questions) {
+        return new GetPersonalityTestQuestionsResp(
                 questions.stream()
-                        .map(this::toGetPersonalityQuestions)
+                        .map(this::toGetPersonalityQuestion)
                         .toList()
 
         );
     }
 
-    public GetQuestionsDetailResp toGetPersonalityQuestions(PersonalityQuestion question) {
-        return new GetQuestionsDetailResp(question.getId(), question.getQuestion(), question.getAnswer1(), question.getAnswer2(), question.getAnswerValue(), question.getMbtiType());
+    public GetQuestionDetailResp toGetPersonalityQuestion(PersonalityQuestion question) {
+        return new GetQuestionDetailResp(question.getId(), question.getQuestion(), question.getAnswer1(), question.getAnswer2(), question.getAnswerValue(), question.getMbtiType());
     }
 }
