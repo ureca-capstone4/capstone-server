@@ -1,6 +1,6 @@
-package com.ureca.idle.idleapi.idleoriginapi.persistence.personality;
+package com.ureca.idle.idleapi.idleoriginapi.persistence.personalityQuestion;
 
-import com.ureca.idle.idlejpa.question.PersonalityQuestion;
+import com.ureca.idle.idlejpa.personalityquestion.PersonalityQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
-package com.ureca.idle.idleapi.idleoriginapi.implementation.personality;
+package com.ureca.idle.idleapi.idleoriginapi.implementation.personalityQuestion;
 
-import com.ureca.idle.idleapi.idleoriginapi.persistence.personality.PersonalityQuestionRepository;
-import com.ureca.idle.idlejpa.question.PersonalityQuestion;
+import com.ureca.idle.idleapi.idleoriginapi.persistence.personalityQuestion.PersonalityQuestionRepository;
+import com.ureca.idle.idlejpa.personalityquestion.PersonalityQuestion;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

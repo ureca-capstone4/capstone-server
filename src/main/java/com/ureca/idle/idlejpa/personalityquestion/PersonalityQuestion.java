@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.question;
+package com.ureca.idle.idlejpa.personalityquestion;
 
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;
@@ -27,7 +27,6 @@ public class PersonalityQuestion extends BaseEntity {
     @Column(nullable = false)
     private int answerValue;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MBTIType mbtiType;
+    private String mbti;
 }
