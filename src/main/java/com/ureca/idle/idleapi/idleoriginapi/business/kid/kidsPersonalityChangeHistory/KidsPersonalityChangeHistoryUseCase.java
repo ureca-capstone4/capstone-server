@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.business.kidsPersonalityChangeHistory;
+package com.ureca.idle.idleapi.idleoriginapi.business.kid.kidsPersonalityChangeHistory;
 
 public interface KidsPersonalityChangeHistoryUseCase {
 

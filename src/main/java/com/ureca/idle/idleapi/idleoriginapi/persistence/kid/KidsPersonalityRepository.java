@@ -7,4 +7,5 @@ import org.springframework.data.repository.query.Param;
 
 public interface KidsPersonalityRepository extends JpaRepository<KidsPersonality, Long> {
 
+    KidsPersonality findByKidsPersonalityId(@Param("id") Long id);
 }

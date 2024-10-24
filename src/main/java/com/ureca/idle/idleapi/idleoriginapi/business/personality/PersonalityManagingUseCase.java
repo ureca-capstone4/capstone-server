@@ -1,6 +1,6 @@
 package com.ureca.idle.idleapi.idleoriginapi.business.personality;
 
-import com.ureca.idle.idleapi.idleoriginapi.business.kidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.kidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
 import com.ureca.idle.idleapi.idleoriginapi.business.personality.dto.*;
 
 public interface PersonalityManagingUseCase {
