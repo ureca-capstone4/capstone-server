@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.question;
+package com.ureca.idle.idlejpa.personalityquestion;
 
 import lombok.Getter;
 

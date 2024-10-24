@@ -1,4 +1,4 @@
-package com.ureca.idle.idlejpa.question;
+package com.ureca.idle.idlejpa.personalityquestion;
 
 import com.ureca.idle.idlejpa.config.BaseEntity;
 import jakarta.persistence.*;

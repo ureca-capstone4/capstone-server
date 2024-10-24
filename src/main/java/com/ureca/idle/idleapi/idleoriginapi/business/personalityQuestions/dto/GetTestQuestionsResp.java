@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.business.personality.dto;
+package com.ureca.idle.idleapi.idleoriginapi.business.personalityQuestions.dto;
 
 import java.util.List;
 
