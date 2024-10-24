@@ -1,7 +1,5 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.user;
 
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.user.UserException;
-import com.ureca.idle.idleapi.idleoriginapi.common.exception.user.UserExceptionType;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.user.UserRepository;
 import com.ureca.idle.idlejpa.user.Role;
 import com.ureca.idle.idlejpa.user.User;

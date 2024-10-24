@@ -1,4 +1,4 @@
-package com.ureca.idle.idleapi.idleoriginapi.common.exception.config;
+package com.ureca.idle.idleexception;
 
 
 
