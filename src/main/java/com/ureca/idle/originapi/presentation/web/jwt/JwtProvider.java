@@ -4,6 +4,7 @@ import com.ureca.idle.originapi.presentation.web.auth.IdAndAuthority;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -50,6 +51,14 @@ public class JwtProvider {
     private Date expiredAt() {
         LocalDateTime now = LocalDateTime.now();
         return Date.from(now.plusHours(jwtProperties.getExpiration()).atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 
     public IdAndAuthority extract(String token) {

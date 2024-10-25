@@ -20,6 +20,4 @@ public class PersonalityQuestionController {
         GetPersonalityQuestionsResp resp = personalityQuestionManagingUseCase.getPersonalityQuestions();
         return ResponseEntity.ok(resp);
     }
-
-
 }

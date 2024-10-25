@@ -4,7 +4,7 @@ import com.ureca.idle.originapi.business.kid.KidManagingUseCase;
 import com.ureca.idle.originapi.business.kid.dto.*;
 import com.ureca.idle.originapi.business.kid.kidsPersonalityDeleteHistory.KidsPersonalityDeleteHistoryUseCase;
 import com.ureca.idle.originapi.business.kid.kidsPersonalityDeleteHistory.dto.PutKidsPersonalityToDeleteHistoryResp;
-import com.ureca.idle.originapi.presentation.web.auth.LoginUser;
+import com.ureca.idle.originapi.presentation.web.auth.LoginUserId;
 import com.ureca.idle.originapi.presentation.web.auth.IdAndAuthority;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,19 +20,19 @@ public class KidManagingController {
     private final KidsPersonalityDeleteHistoryUseCase kidsPersonalityDeleteHistoryUseCase;
 
     @PostMapping("")
-    public ResponseEntity<AddKidResp> addMyKid(@LoginUser IdAndAuthority loginUser, @RequestBody AddKidReq req) {
-        AddKidResp resp = kidManagingUseCase.addMyKid(loginUser.id(), req);
+    public ResponseEntity<AddKidResp> addMyKid(@LoginUserId Long userId, @RequestBody AddKidReq req) {
+        AddKidResp resp = kidManagingUseCase.addMyKid(userId, req);
         return ResponseEntity.ok(resp);
     }
 
     @GetMapping("")
-    public ResponseEntity<GetKidsProfilesResp> getMyKidsProfiles(@LoginUser IdAndAuthority loginUser) {
-        GetKidsProfilesResp resp = kidManagingUseCase.getMyKidsProfiles(loginUser.id());
+    public ResponseEntity<GetKidsProfilesResp> getMyKidsProfiles(@LoginUserId Long userId) {
+        GetKidsProfilesResp resp = kidManagingUseCase.getMyKidsProfiles(userId);
         return ResponseEntity.ok(resp);
     }
 
     @GetMapping("/{kidId}/detail")
-    public ResponseEntity<GetKidsDetailResp> getMyKidsDetail(/*TODO @LoginUser 이외에 인증인가 검증 필터를 만들 것*/@LoginUser IdAndAuthority loginUser, @PathVariable Long kidId) {
+    public ResponseEntity<GetKidsDetailResp> getMyKidsDetail(@PathVariable Long kidId) {
         GetKidsDetailResp resp = kidManagingUseCase.getKidsDetail(kidId);
         return ResponseEntity.ok(resp);
     }
