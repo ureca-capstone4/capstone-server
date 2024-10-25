@@ -3,6 +3,9 @@ package com.ureca.idle.idleapi.idleoriginapi.business.book;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.*;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.book.BookManager;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.mapper.BookDtoMapper;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTI;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTIUtil;
+import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BooksCharacteristicRepository;
 import com.ureca.idle.idlejpa.book.Book;
 import com.ureca.idle.idlejpa.bookscharacteristic.BooksCharacteristic;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +24,8 @@ public class BookManagingService implements BookManagingUseCase {
     @Override
     @Transactional
     public AddBookResp addBook(AddBookReq req) {
-        BooksCharacteristic newBooksCharacteristic = bookManager.addBooksCharacteristic(req);
-        Book newBook = bookManager.addBook(req,newBooksCharacteristic);
+        BooksCharacteristic randomBooksCharacteristic = bookManager.generateRandomBooksCharacteristic();
+        Book newBook = bookManager.addBook(req, randomBooksCharacteristic);
         return bookDtoMapper.toAddBookResp(newBook);
     }
 

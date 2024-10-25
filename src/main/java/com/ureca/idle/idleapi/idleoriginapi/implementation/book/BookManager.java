@@ -6,6 +6,8 @@ import com.ureca.idle.idleaiclient.implementation.AiClientManager;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.kid.KidManager;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTI;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTIUtil;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookPreferenceRepository;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookRepository;
 import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BooksCharacteristicRepository;
@@ -26,11 +28,12 @@ public class BookManager {
     private final BookPreferenceRepository bookPreferenceRepository;
     private final BooksCharacteristicRepository booksCharacteristicRepository;
     private final KidManager kidManager;
+    private final MBTIUtil mbtiUtil;
     private final AiClientManager aiClientManager;
 
-    public Book addBook(AddBookReq req, BooksCharacteristic booksCharacteristic ) {
+    public Book addBook(AddBookReq req, BooksCharacteristic newBooksCharacteristic) {
         Book newBook = Book.builder()
-                .booksCharacteristic(booksCharacteristic)
+                .booksCharacteristic(newBooksCharacteristic)
                 .title(req.title())
                 .story(req.story())
                 .summary(req.summary())
@@ -42,11 +45,10 @@ public class BookManager {
         return bookRepository.save(newBook);
     }
 
-    public BooksCharacteristic addBooksCharacteristic(AddBookReq req) {
+    public BooksCharacteristic generateBooksCharacteristicByAI(AddBookReq req) {
         AddBookMbtiReq MbtiReq = new AddBookMbtiReq(req.title(), req.summary(), req.story());
-        //TODO AI api에 장애가 발생했을 때 어떻게 할 지 생각 필요
         AddBookMbtiResp resp = aiClientManager.createBookMbti(MbtiReq);
-        String mbti = calculateMbti(resp);
+        String mbti = mbtiUtil.getMBTIByElement(resp.ei(), resp.sn(), resp.tf(), resp.jp());
         BooksCharacteristic newBooksCharacteristic = BooksCharacteristic.builder()
                 .ei(resp.ei())
                 .sn(resp.sn())
@@ -56,17 +58,6 @@ public class BookManager {
                 .build();
         return booksCharacteristicRepository.save(newBooksCharacteristic);
     }
-
-    private String calculateMbti(AddBookMbtiResp resp) {
-        //TODO 추후 kids mbti 계산에 사용하기 위해 따로 Manager 만들어 빼는 것 고민
-        String mbti =
-                (resp.ei() > 50 ? "E" : "I") +
-                (resp.sn() > 50 ? "S" : "N") +
-                (resp.tf() > 50 ? "T" : "F") +
-                (resp.jp() > 50 ? "J" : "P");
-        return mbti;
-    }
-
 
     public void updateBook(Long bookId, UpdateBookReq req) {
         Book book = bookRepository.findById(bookId)
@@ -94,10 +85,11 @@ public class BookManager {
         return bookPreferenceRepository.findBookPreferenceWithBookAndKid(bookId, kidId)
                 .map(bookPreference -> bookPreference.getHobulho().getValue())
                 .orElse("none");
+
     }
 
-    public List<Book> getRecommendedBooks(Long id){
-        KidsPersonality kidsPersonality = kidManager.getKidWithPersonality(id).getPersonality();
+    public List<Book> getRecommendedBooks(Long kidId){
+        KidsPersonality kidsPersonality = kidManager.getKidWithPersonality(kidId).getPersonality();
         return bookRepository.getRecommendedBooksByKidPersonality(
                 kidsPersonality.getEi(),
                 kidsPersonality.getSn(),
@@ -107,5 +99,17 @@ public class BookManager {
 
     public List<Book> getRandomBooks(int quantity){
         return bookRepository.getRandomBooks(quantity);
+    }
+
+    public BooksCharacteristic generateRandomBooksCharacteristic() {
+        MBTI randomMBTI = mbtiUtil.generateRandomMBTI();
+        BooksCharacteristic randomBooksCharacteristic = BooksCharacteristic.builder()
+                .ei(randomMBTI.ei())
+                .sn(randomMBTI.sn())
+                .tf(randomMBTI.tf())
+                .jp(randomMBTI.jp())
+                .mbti(randomMBTI.mbti())
+                .build();
+        return booksCharacteristicRepository.save(randomBooksCharacteristic);
     }
 }

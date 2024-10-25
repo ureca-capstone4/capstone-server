@@ -17,7 +17,7 @@ public class Book extends BaseEntity {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "books_characteristic_id")
+    @JoinColumn(name = "books_characteristic_id", nullable = false)
     private BooksCharacteristic booksCharacteristic;
 
     @Column(nullable = false)
