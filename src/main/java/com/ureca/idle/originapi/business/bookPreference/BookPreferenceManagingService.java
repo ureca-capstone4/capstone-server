@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class BookBookPreferenceManagingService implements BookPreferenceManagingUseCase {
+public class BookPreferenceManagingService implements BookPreferenceManagingUseCase {
     private final BookPreferenceManager bookPreferenceManager;
     private final KidManager kidManager;
 

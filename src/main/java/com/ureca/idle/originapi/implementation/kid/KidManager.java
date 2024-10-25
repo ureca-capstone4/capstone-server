@@ -112,6 +112,7 @@ public class KidManager {
         kidPersonality.updateKidsPersonality(randomMBTI.ei(), randomMBTI.sn(), randomMBTI.tf(), randomMBTI.jp(), randomMBTI.mbti(), false);
     }
 
+    // TODO increase, decrease -> update(-2A, +2A, -A, +A) 이걸로 바꾸기
     public void increasePersonality(Long kidId, Long bookId){
         KidsPersonality kidsPersonality = kidRepository.findKidPersonalityByKidId(kidId);
         BooksCharacteristic booksCharacteristic = booksCharacteristicRepository.findBooksCharacteristicByBookId(bookId);
