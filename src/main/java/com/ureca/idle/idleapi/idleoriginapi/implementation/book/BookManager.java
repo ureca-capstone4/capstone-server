@@ -1,5 +1,8 @@
 package com.ureca.idle.idleapi.idleoriginapi.implementation.book;
 
+import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiReq;
+import com.ureca.idle.idleaiclient.business.dto.AddBookMbtiResp;
+import com.ureca.idle.idleaiclient.implementation.AiClientManager;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.AddBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.business.book.dto.UpdateBookReq;
 import com.ureca.idle.idleapi.idleoriginapi.implementation.kid.KidManager;
@@ -22,28 +25,44 @@ import java.util.Optional;
 public class BookManager {
 
     private final BookRepository bookRepository;
-    private final BooksCharacteristicRepository booksCharacteristicRepository;
     private final BookPreferenceRepository bookPreferenceRepository;
+    private final BooksCharacteristicRepository booksCharacteristicRepository;
     private final KidManager kidManager;
     private final MBTIUtil mbtiUtil;
+    private final AiClientManager aiClientManager;
 
     public Book addBook(AddBookReq req, BooksCharacteristic newBooksCharacteristic) {
         Book newBook = Book.builder()
+                .booksCharacteristic(newBooksCharacteristic)
                 .title(req.title())
                 .story(req.story())
                 .summary(req.summary())
                 .author(req.author())
                 .publisher(req.publisher())
                 .recommendedAge(req.recommendedAge())
-                .booksCharacteristic(newBooksCharacteristic)
+                .bookImageUrl(req.bookImageUrl())
                 .build();
         return bookRepository.save(newBook);
+    }
+
+    public BooksCharacteristic generateBooksCharacteristicByAI(AddBookReq req) {
+        AddBookMbtiReq MbtiReq = new AddBookMbtiReq(req.title(), req.summary(), req.story());
+        AddBookMbtiResp resp = aiClientManager.createBookMbti(MbtiReq);
+        String mbti = mbtiUtil.getMBTIByElement(resp.ei(), resp.sn(), resp.tf(), resp.jp());
+        BooksCharacteristic newBooksCharacteristic = BooksCharacteristic.builder()
+                .ei(resp.ei())
+                .sn(resp.sn())
+                .tf(resp.tf())
+                .jp(resp.jp())
+                .mbti(mbti)
+                .build();
+        return booksCharacteristicRepository.save(newBooksCharacteristic);
     }
 
     public void updateBook(Long bookId, UpdateBookReq req) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
-        book.updateBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge());
+        book.updateBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge(), req.bookImageUrl());
     }
 
     public void deleteBook(Long bookId) {

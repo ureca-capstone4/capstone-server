@@ -34,10 +34,10 @@ public class BookManagerTest {
     @Test
     @Transactional // TODO 테스트 코드 트랜잭션 주의사항이 있다고 한다.. 향로와 토비의 대립을 참고하자
     void 새로운_책_만들기(){
-        AddBookReq req1 = new AddBookReq("베스트셀러1", "미친 스토리1", "최고의 요약1", "스타작가1", "초대형출판사1", 8);
-        AddBookReq req2 = new AddBookReq("베스트셀러2", "미친 스토리2", "최고의 요약2", "스타작가2", "초대형출판사2", 12);
-        AddBookReq req3 = new AddBookReq("베스트셀러3", "미친 스토리3", "최고의 요약3", "스타작가3", "초대형출판사3", 15);
-        AddBookReq req4 = new AddBookReq("베스트셀러4", "미친 스토리4", "최고의 요약4", "스타작가4", "초대형출판사4", 18);
+        AddBookReq req1 = new AddBookReq("베스트셀러1", "미친 스토리1", "최고의 요약1", "스타작가1", "초대형출판사1", 8, "sample");
+        AddBookReq req2 = new AddBookReq("베스트셀러2", "미친 스토리2", "최고의 요약2", "스타작가2", "초대형출판사2", 12, "sample");
+        AddBookReq req3 = new AddBookReq("베스트셀러3", "미친 스토리3", "최고의 요약3", "스타작가3", "초대형출판사3", 15, "sample");
+        AddBookReq req4 = new AddBookReq("베스트셀러4", "미친 스토리4", "최고의 요약4", "스타작가4", "초대형출판사4", 18, "sample");
         BooksCharacteristic characteristic1 = bookManager.generateRandomBooksCharacteristic();
         BooksCharacteristic characteristic2 = bookManager.generateRandomBooksCharacteristic();
         BooksCharacteristic characteristic3 = bookManager.generateRandomBooksCharacteristic();

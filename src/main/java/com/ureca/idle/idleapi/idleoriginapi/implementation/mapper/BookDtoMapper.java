@@ -20,7 +20,7 @@ public class BookDtoMapper {
         return new GetBookDetailResp(book.getId(), book.getTitle(),
                 book.getStory(), book.getSummary(),
                 book.getAuthor(), book.getPublisher(),
-                preference, book.getRecommendedAge());
+                preference, book.getRecommendedAge(), book.getBookImageUrl());
     }
 
     public List<GetBookProfileResp> toGetBookProfileResp(List<Book> books) {
@@ -28,7 +28,8 @@ public class BookDtoMapper {
                 .map(book -> new GetBookProfileResp(
                         book.getId(),
                         book.getTitle(),
-                        book.getRecommendedAge()
+                        book.getRecommendedAge(),
+                        book.getBookImageUrl()
                 ))
                 .collect(Collectors.toList());
     }

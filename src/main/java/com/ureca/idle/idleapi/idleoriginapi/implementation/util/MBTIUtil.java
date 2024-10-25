@@ -19,17 +19,10 @@ public class MBTIUtil {
     public String getMBTIByElement(int ei, int sn, int tf, int jp) {
         StringBuilder mbti = new StringBuilder();
 
-        if (ei >= 51) mbti.append("E");
-        else mbti.append("I");
-
-        if (sn >= 51) mbti.append("S");
-        else mbti.append("N");
-
-        if (tf >= 51) mbti.append("T");
-        else mbti.append("F");
-
-        if (jp >= 51) mbti.append("J");
-        else mbti.append("P");
+        mbti.append(ei >= 51 ? "E" : "I");
+        mbti.append(sn >= 51 ? "S" : "N");
+        mbti.append(tf >= 51 ? "T" : "F");
+        mbti.append(jp >= 51 ? "J" : "P");
 
         return mbti.toString();
     }
