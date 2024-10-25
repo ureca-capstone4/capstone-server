@@ -5,6 +5,7 @@ import com.ureca.idle.fcfsconsumer.consumer.SubmissionConsumer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @RequiredArgsConstructor
 public class SubmissionConsumerScheduledCaller implements SubmissionConsumerCaller {
