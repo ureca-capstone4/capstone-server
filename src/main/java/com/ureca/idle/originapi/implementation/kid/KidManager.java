@@ -1,22 +1,25 @@
-package com.ureca.idle.originapi.implementation.kid;
+package com.ureca.idle.idleapi.idleoriginapi.implementation.kid;
 
-import com.ureca.idle.originapi.business.kid.dto.AddKidReq;
-import com.ureca.idle.originapi.business.kid.dto.UpdateKidPersonalityReq;
-import com.ureca.idle.originapi.implementation.util.MBTI;
-import com.ureca.idle.originapi.implementation.util.MBTIUtil;
-import com.ureca.idle.originapi.persistence.kid.KidRepository;
-import com.ureca.idle.originapi.persistence.kid.KidsPersonalityDeleteHistoryRepository;
-import com.ureca.idle.originapi.persistence.kid.KidsPersonalityRepository;
-import com.ureca.idle.jpa.kid.Gender;
-import com.ureca.idle.jpa.kid.Kid;
-import com.ureca.idle.jpa.kidspersonality.KidsPersonality;
-import com.ureca.idle.jpa.kidspersonality.KidsPersonalityDeleteHistory;
-import com.ureca.idle.jpa.user.User;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.AddKidReq;
+import com.ureca.idle.idleapi.idleoriginapi.business.kid.dto.UpdateKidPersonalityReq;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTI;
+import com.ureca.idle.idleapi.idleoriginapi.implementation.util.MBTIUtil;
+import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BookRepository;
+import com.ureca.idle.idleapi.idleoriginapi.persistence.book.BooksCharacteristicRepository;
+import com.ureca.idle.idleapi.idleoriginapi.persistence.kid.KidRepository;
+import com.ureca.idle.idleapi.idleoriginapi.persistence.kid.KidsPersonalityDeleteHistoryRepository;
+import com.ureca.idle.idleapi.idleoriginapi.persistence.kid.KidsPersonalityRepository;
+import com.ureca.idle.idlejpa.bookscharacteristic.BooksCharacteristic;
+import com.ureca.idle.idlejpa.kid.Gender;
+import com.ureca.idle.idlejpa.kid.Kid;
+import com.ureca.idle.idlejpa.kidspersonality.KidsPersonality;
+import com.ureca.idle.idlejpa.kidspersonality.KidsPersonalityDeleteHistory;
+import com.ureca.idle.idlejpa.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Component
@@ -27,6 +30,10 @@ public class KidManager {
     private final KidsPersonalityRepository kidsPersonalityRepository;
     private final MBTIUtil mbtiUtil;
     private final KidsPersonalityDeleteHistoryRepository kidsPersonalityDeleteHistory;
+    private final BookRepository bookRepository;
+    private final BooksCharacteristicRepository booksCharacteristicRepository;
+
+    private static final int MBTI_WEIGHT = 1;
 
     public Kid registerKid(User user, AddKidReq req, KidsPersonality newKidsPersonality) {
 
@@ -48,7 +55,6 @@ public class KidManager {
         return repository.findKidWithPersonalityById(id)
                 .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION));
     }
-
 
     public void checkDuplicatedKidName(User user, String name) {
         if(repository.existsByUserAndName(user, name)) {
@@ -105,4 +111,14 @@ public class KidManager {
         kidPersonality.updateKidsPersonality(randomMBTI.ei(), randomMBTI.sn(), randomMBTI.tf(), randomMBTI.jp(), randomMBTI.mbti(), false);
     }
 
+    public void increasePersonality(Long kidId, Long bookId){
+        KidsPersonality kidsPersonality = kidsPersonalityRepository.findKidPersonalityByKidId(kidId);
+        BooksCharacteristic booksCharacteristic = booksCharacteristicRepository.findBooksCharacteristicByBookId(bookId);
+        int ei = kidsPersonality.getEi() + booksCharacteristic.getEi() * MBTI_WEIGHT;
+        int sn = kidsPersonality.getSn() + booksCharacteristic.getSn() * MBTI_WEIGHT;
+        int tf = kidsPersonality.getTf() + booksCharacteristic.getTf() * MBTI_WEIGHT;
+        int jp = kidsPersonality.getJp() + booksCharacteristic.getJp() * MBTI_WEIGHT;
+        MBTIUtil mbtiUtil = new MBTIUtil();
+        kidsPersonality.updateKidsPersonality(ei, sn, tf, jp, mbtiUtil.getMBTIByElement(ei, sn, tf, jp), kidsPersonality.isTested());
+    }
 }
