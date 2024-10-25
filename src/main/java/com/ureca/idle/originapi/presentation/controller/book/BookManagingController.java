@@ -2,6 +2,8 @@ package com.ureca.idle.originapi.presentation.controller.book;
 
 import com.ureca.idle.originapi.business.book.BookManagingUseCase;
 import com.ureca.idle.originapi.business.book.dto.*;
+import com.ureca.idle.originapi.business.bookPreference.BookPreferenceManagingUseCase;
+import com.ureca.idle.originapi.business.bookPreference.dto.ProcessHobulhoReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +16,9 @@ import java.util.List;
 public class BookManagingController {
 
     private final BookManagingUseCase bookManagingUseCase;
+    private final BookPreferenceManagingUseCase bookPreferenceManagingUseCase;
 
-    @PostMapping("")
+    @PostMapping("/admin")
     public ResponseEntity<AddBookResp> addBook(@RequestBody AddBookReq req) {
         AddBookResp resp = bookManagingUseCase.addBook(req);
         return ResponseEntity.ok(resp);
@@ -47,4 +50,20 @@ public class BookManagingController {
         List<GetBookProfileResp> resp = bookManagingUseCase.getRecommendedBooks(kidId);
         return ResponseEntity.ok(resp);
     }
+
+    @PostMapping("/{bookId}/like")
+    public ResponseEntity<?> likeBook(
+            @PathVariable("bookId") Long bookId, @RequestBody ProcessHobulhoReq req){
+        bookPreferenceManagingUseCase.processLike(bookId, req.kidId());
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{bookId}/dislike")
+    public ResponseEntity<?> dislikeBook(
+            @PathVariable("bookId") Long bookId, @RequestBody ProcessHobulhoReq req){
+        bookPreferenceManagingUseCase.processDislike(bookId, req.kidId());
+        return ResponseEntity.ok().build();
+    }
+
+
 }
