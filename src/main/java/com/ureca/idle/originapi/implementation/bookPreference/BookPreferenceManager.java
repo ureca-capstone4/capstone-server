@@ -58,7 +58,13 @@ public class BookPreferenceManager {
         kidManager.decreasePersonality(kidId, bookId);
     }
 
-    public void cancelHobulho(Long bookId, Long kidId){
+    public void cancelLike(Long bookId, Long kidId){
+        kidManager.decreasePersonality(kidId, bookId);
+        bookPreferenceRepository.deleteByBookAndKid(bookId, kidId);
+    }
+
+    public void cancelDislike(Long bookId, Long kidId){
+        kidManager.increasePersonality(kidId, bookId);
         bookPreferenceRepository.deleteByBookAndKid(bookId, kidId);
     }
 

@@ -33,7 +33,7 @@ public class KidManager {
     private final KidsPersonalityDeleteHistoryRepository kidsPersonalityDeleteHistory;
     private final BooksCharacteristicRepository booksCharacteristicRepository;
 
-    private static final int MBTI_WEIGHT = 1;
+    private static final double MBTI_WEIGHT = 0.1;
     private final KidRepository kidRepository;
 
     public Kid registerKid(User user, AddKidReq req, KidsPersonality newKidsPersonality) {
@@ -115,10 +115,10 @@ public class KidManager {
     public void increasePersonality(Long kidId, Long bookId){
         KidsPersonality kidsPersonality = kidRepository.findKidPersonalityByKidId(kidId);
         BooksCharacteristic booksCharacteristic = booksCharacteristicRepository.findBooksCharacteristicByBookId(bookId);
-        int ei = kidsPersonality.getEi() + booksCharacteristic.getEi() * MBTI_WEIGHT;
-        int sn = kidsPersonality.getSn() + booksCharacteristic.getSn() * MBTI_WEIGHT;
-        int tf = kidsPersonality.getTf() + booksCharacteristic.getTf() * MBTI_WEIGHT;
-        int jp = kidsPersonality.getJp() + booksCharacteristic.getJp() * MBTI_WEIGHT;
+        int ei = (int) (kidsPersonality.getEi() + booksCharacteristic.getEi() * MBTI_WEIGHT);
+        int sn = (int) (kidsPersonality.getSn() + booksCharacteristic.getSn() * MBTI_WEIGHT);
+        int tf = (int) (kidsPersonality.getTf() + booksCharacteristic.getTf() * MBTI_WEIGHT);
+        int jp = (int) (kidsPersonality.getJp() + booksCharacteristic.getJp() * MBTI_WEIGHT);
         MBTI kidMbti = personalityValidation(ei, sn, tf, jp);
         kidsPersonality.updateKidsPersonality(kidMbti.ei(), kidMbti.sn(), kidMbti.tf(), kidMbti.jp(), kidMbti.mbti(), kidsPersonality.isTested());
     }
@@ -126,17 +126,17 @@ public class KidManager {
     public void decreasePersonality(Long kidId, Long bookId){
         KidsPersonality kidsPersonality = kidRepository.findKidPersonalityByKidId(kidId);
         BooksCharacteristic booksCharacteristic = booksCharacteristicRepository.findBooksCharacteristicByBookId(bookId);
-        int ei = kidsPersonality.getEi() - booksCharacteristic.getEi() * MBTI_WEIGHT;
-        int sn = kidsPersonality.getSn() - booksCharacteristic.getSn() * MBTI_WEIGHT;
-        int tf = kidsPersonality.getTf() - booksCharacteristic.getTf() * MBTI_WEIGHT;
-        int jp = kidsPersonality.getJp() - booksCharacteristic.getJp() * MBTI_WEIGHT;
+        int ei = (int) (kidsPersonality.getEi() - booksCharacteristic.getEi() * MBTI_WEIGHT);
+        int sn = (int) (kidsPersonality.getSn() - booksCharacteristic.getSn() * MBTI_WEIGHT);
+        int tf = (int) (kidsPersonality.getTf() - booksCharacteristic.getTf() * MBTI_WEIGHT);
+        int jp = (int) (kidsPersonality.getJp() - booksCharacteristic.getJp() * MBTI_WEIGHT);
         MBTI kidMbti = personalityValidation(ei, sn, tf, jp);
         kidsPersonality.updateKidsPersonality(kidMbti.ei(), kidMbti.sn(), kidMbti.tf(), kidMbti.jp(), kidMbti.mbti(), kidsPersonality.isTested());
     }
 
     public MBTI personalityValidation(int ei, int sn, int tf, int jp){
-        if(ei < 1) ei = 1; if(sn < 1) sn = 1; if(tf < 1) tf = 1;
-        if(ei > 100) ei = 100; if(sn > 100) sn = 100; if(tf > 100) tf = 100;
+        if(ei < 1) ei = 1; if(sn < 1) sn = 1; if(tf < 1) tf = 1; if(jp < 1) jp = 1;
+        if(ei > 100) ei = 100; if(sn > 100) sn = 100; if(tf > 100) tf = 100; if(jp > 100) jp = 100;
         MBTIUtil mbtiUtil = new MBTIUtil();
         return new MBTI(ei, sn, tf, jp, mbtiUtil.getMBTIByElement(ei, sn, tf, jp));
     }
