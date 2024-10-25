@@ -30,7 +30,7 @@ public class KidsPersonality extends BaseEntity {
     @Column(nullable = false)
     private String mbti;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isTested;
 
     public void updateKidsPersonality(int ei, int sn, int tf, int jp, String mbti, boolean isTested) {
