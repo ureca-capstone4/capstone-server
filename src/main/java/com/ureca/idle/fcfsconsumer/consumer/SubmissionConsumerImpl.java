@@ -13,7 +13,7 @@ public class SubmissionConsumerImpl implements SubmissionConsumer {
 
     @Override
     public void consumeSubmissions() {
-        // 1. 요청 받기
+        // 1. 특정 트리거가 되면
         // 2. 이것저것 검증
         submissionBufferQueueConsumeClient.pullSubmission();
     }

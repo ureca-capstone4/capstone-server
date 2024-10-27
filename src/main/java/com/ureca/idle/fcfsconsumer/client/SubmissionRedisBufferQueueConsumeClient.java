@@ -1,7 +1,6 @@
-package com.ureca.idle.fcfsconsumer.client.impl;
+package com.ureca.idle.fcfsconsumer.client;
 
 
-import com.ureca.idle.fcfsconsumer.client.SubmissionBufferQueueConsumeClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
