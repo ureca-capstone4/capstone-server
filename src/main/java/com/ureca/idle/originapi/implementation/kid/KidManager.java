@@ -5,6 +5,7 @@ package com.ureca.idle.originapi.implementation.kid;
 import com.ureca.idle.jpa.bookscharacteristic.BooksCharacteristic;
 import com.ureca.idle.jpa.kid.Gender;
 import com.ureca.idle.jpa.kid.Kid;
+import com.ureca.idle.jpa.kidspersonality.KidsPersonalityChangeHistory;
 import com.ureca.idle.jpa.user.User;
 import com.ureca.idle.jpa.kidspersonality.KidsPersonality;
 import com.ureca.idle.jpa.kidspersonality.KidsPersonalityDeleteHistory;
@@ -15,6 +16,7 @@ import com.ureca.idle.originapi.implementation.util.MBTIUtil;
 import com.ureca.idle.originapi.persistence.book.BookRepository;
 import com.ureca.idle.originapi.persistence.book.BooksCharacteristicRepository;
 import com.ureca.idle.originapi.persistence.kid.KidRepository;
+import com.ureca.idle.originapi.persistence.kid.KidsPersonalityChangeHistoryRepository;
 import com.ureca.idle.originapi.persistence.kid.KidsPersonalityDeleteHistoryRepository;
 import com.ureca.idle.originapi.persistence.kid.KidsPersonalityRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +33,7 @@ public class KidManager {
     private final KidsPersonalityRepository kidsPersonalityRepository;
     private final MBTIUtil mbtiUtil;
     private final KidsPersonalityDeleteHistoryRepository kidsPersonalityDeleteHistory;
+    private final KidsPersonalityChangeHistoryRepository kidsPersonalityChangeHistory;
     private final BooksCharacteristicRepository booksCharacteristicRepository;
 
     private static final double MBTI_WEIGHT = 0.1;
@@ -68,6 +71,7 @@ public class KidManager {
                 .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION)).getPersonality();
         kidPersonality.updateKidsPersonality(req.ei(), req.sn(), req.tf(), req.jp(), req.mbti(), true);
     }
+
 
     public KidsPersonality generateRandomKidsPersonality() {
         MBTI randomMBTI = mbtiUtil.generateRandomMBTI();
@@ -141,4 +145,10 @@ public class KidManager {
         MBTIUtil mbtiUtil = new MBTIUtil();
         return new MBTI(ei, sn, tf, jp, mbtiUtil.getMBTIByElement(ei, sn, tf, jp));
     }
+
+    public List<KidsPersonalityChangeHistory> getKidsPersonalityChangeHistory(Long kidId) {
+        return kidsPersonalityChangeHistory.getKidsPersonalityChangeHistoriesById(kidId);
+
+    }
+
 }
