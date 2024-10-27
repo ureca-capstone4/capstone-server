@@ -1,8 +1,6 @@
 package com.ureca.idle.originapi.persistence.kid;
 
-import com.ureca.idle.jpa.kid.Kid;
 import com.ureca.idle.jpa.kidspersonality.KidsPersonalityChangeHistory;
-import com.ureca.idle.jpa.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

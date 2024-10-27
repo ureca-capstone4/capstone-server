@@ -36,6 +36,7 @@ public class KidManager {
     private final KidsPersonalityChangeHistoryRepository kidsPersonalityChangeHistory;
     private final BooksCharacteristicRepository booksCharacteristicRepository;
 
+
     private static final double MBTI_WEIGHT = 0.1;
     private final KidRepository kidRepository;
 
@@ -69,23 +70,12 @@ public class KidManager {
     public void updateKidPersonality(Long kidId, UpdateKidPersonalityReq req) {
         KidsPersonality kidPersonality = repository.findKidWithPersonalityById(kidId)
                 .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION)).getPersonality();
+        addKidsPersonalityChanges(kidId, kidPersonality);       // 업데이트 이전에 히스토리에 저장
         kidPersonality.updateKidsPersonality(req.ei(), req.sn(), req.tf(), req.jp(), req.mbti(), true);
     }
 
 
     public KidsPersonality generateRandomKidsPersonality() {
-        MBTI randomMBTI = mbtiUtil.generateRandomMBTI();
-        KidsPersonality randomKidsPersonality = KidsPersonality.builder()
-                .ei(randomMBTI.ei())
-                .sn(randomMBTI.sn())
-                .tf(randomMBTI.tf())
-                .jp(randomMBTI.jp())
-                .mbti(randomMBTI.mbti())
-                .build();
-        return kidsPersonalityRepository.save(randomKidsPersonality);
-    }
-
-    public KidsPersonality generateRandomKidsPersonality(Long kidId) {
         MBTI randomMBTI = mbtiUtil.generateRandomMBTI();
         KidsPersonality randomKidsPersonality = KidsPersonality.builder()
                 .ei(randomMBTI.ei())
@@ -148,7 +138,18 @@ public class KidManager {
 
     public List<KidsPersonalityChangeHistory> getKidsPersonalityChangeHistory(Long kidId) {
         return kidsPersonalityChangeHistory.getKidsPersonalityChangeHistoriesById(kidId);
+    }
 
+    public void addKidsPersonalityChanges(Long kidId,  KidsPersonality kidsPersonality) {
+        KidsPersonalityChangeHistory newPersonalityChange = KidsPersonalityChangeHistory.builder()
+                .kidsId(kidId)
+                .ei(kidsPersonality.getEi())
+                .sn(kidsPersonality.getSn())
+                .tf(kidsPersonality.getTf())
+                .jp(kidsPersonality.getJp())
+                .mbti(kidsPersonality.getMbti())
+                .build();
+        kidsPersonalityChangeHistory.save(newPersonalityChange);
     }
 
 }
