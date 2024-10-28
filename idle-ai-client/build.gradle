@@ -1,0 +1,19 @@
+dependencies {
+    implementation project(':idle-logging')
+    implementation(project(':idle-exception'))
+
+    // spring web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation('org.json:json:20210307') {
+        exclude group: "com.vaadin.external.google", module: "android-json"
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
