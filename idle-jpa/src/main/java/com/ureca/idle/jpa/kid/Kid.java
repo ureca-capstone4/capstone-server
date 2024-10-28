@@ -5,6 +5,7 @@ import com.ureca.idle.jpa.kidspersonality.KidsPersonality;
 import com.ureca.idle.jpa.user.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.time.LocalDate;
 

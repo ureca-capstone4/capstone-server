@@ -5,12 +5,14 @@ import com.ureca.idle.jpa.config.BaseEntity;
 import com.ureca.idle.jpa.kid.Kid;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@EntityScan
 public class BookPreference extends BaseEntity {
 
     @Id

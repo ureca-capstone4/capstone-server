@@ -1,0 +1,20 @@
+# 배포 환경에서 사용할 application-jpa-prod.yml 파일
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "향후 배포될 url"
+    username: idle
+    password: 1234
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true

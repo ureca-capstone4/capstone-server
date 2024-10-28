@@ -1,29 +1,34 @@
-package com.ureca.idle.jpa.bookpreference;
+package com.ureca.idle.jpa.bookscharacteristic;
 
 import com.ureca.idle.jpa.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
-
-
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class BookPreferenceDeleteHistory extends BaseEntity { // TODO 성향 삭제 시 기타 데이터로 포함될 것과 실제 선호 취소 기록과 네이밍 혼동, 추후 처리
+@EntityScan
+public class BooksCharacteristic extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private Long booksId;
+    private int ei;
 
     @Column(nullable = false)
-    private Long kidsId;
+    private int sn;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Hobulho hobulho;
+    private int tf;
+
+    @Column(nullable = false)
+    private int jp;
+
+    @Column(nullable = false)
+    private String mbti;
 }
