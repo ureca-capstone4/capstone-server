@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: local
+    include:
+      - jpa
+
+    group:
+      local: local, jpa
+      prod: prod, jpa-prod
+
+
+logging:
+  level:
+    root: INFO
+
+jwt:
+  secret: dummy-key-dummy-key-dummy-key-dummy
+  expiration: 360000000
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "local"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
