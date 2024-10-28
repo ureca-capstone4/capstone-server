@@ -1,0 +1,16 @@
+dependencies {
+    implementation project(':idle-exception')
+    implementation project(':idle-logging')
+    implementation project(':idle-jpa')
+
+    // spring web
+    implementation('org.springframework.boot:spring-boot-starter-web')
+}
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = false
+}
