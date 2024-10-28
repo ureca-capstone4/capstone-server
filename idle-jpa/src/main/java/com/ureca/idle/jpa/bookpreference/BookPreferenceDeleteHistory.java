@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@EntityScan
 public class BookPreferenceDeleteHistory extends BaseEntity { // TODO 성향 삭제 시 기타 데이터로 포함될 것과 실제 선호 취소 기록과 네이밍 혼동, 추후 처리
 
     @Id

@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@EntityScan
 public class BookPreference extends BaseEntity {
 
     @Id
