@@ -152,4 +152,8 @@ public class KidManager {
         kidsPersonalityChangeHistory.save(newPersonalityChange);
     }
 
+    public void deleteKidsPersonalityChangeHistory(Long kidId) {
+        kidsPersonalityChangeHistory.deleteAllByKidsId(kidId);
+    }
+
 }

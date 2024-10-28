@@ -21,6 +21,7 @@ public class KidsPersonalityDeleteHistoryService implements KidsPersonalityDelet
         KidsPersonality kidsPersonality = kidManager.getKidWithPersonality(kidId).getPersonality();
         kidManager.putKidPersonalityIntoDeleteHistory(kidId, kidsPersonality);
         kidManager.updateRandomKidPersonality(kidId);
+        kidManager.deleteKidsPersonalityChangeHistory(kidId);
         return kidDtoMapper.toDeleteKidsPersonality();
     }
 }

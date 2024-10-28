@@ -1,6 +1,7 @@
 package com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory;
 
 import com.ureca.idle.jpa.kidspersonality.KidsPersonalityChangeHistory;
+import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.dto.DeleteKidsPersonalityChangeHistoryResp;
 import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
 import com.ureca.idle.originapi.implementation.kid.KidManager;
 import com.ureca.idle.originapi.implementation.mapper.KidDtoMapper;
@@ -25,4 +26,13 @@ public class KidsPersonalityChangeHistoryService implements KidsPersonalityChang
         List<KidsPersonalityChangeHistory> history = kidManager.getKidsPersonalityChangeHistory(kidId);
         return kidDtoMapper.toGetKidsPersonalityChangeHistoryList(history);
     }
+
+    @Override
+    @Transactional
+    public DeleteKidsPersonalityChangeHistoryResp deleteKidspersonalityChangeHistory(Long kidId) {
+        kidManager.deleteKidsPersonalityChangeHistory(kidId);
+        return null;
+    }
+
+
 }
