@@ -6,7 +6,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:55001/idle
+    url: jdbc:mysql://localhost:3306/idle
     username: idle
     password: 1234
 
