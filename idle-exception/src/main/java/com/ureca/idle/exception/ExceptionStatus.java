@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 
 import java.util.Arrays;
 
-
 @AllArgsConstructor
 public enum ExceptionStatus {
 
