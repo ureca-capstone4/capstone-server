@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class BookPreferenceManagingService implements BookPreferenceManagingUseCase {
     private final BookPreferenceManager bookPreferenceManager;
-    private final KidManager kidManager;
 
     @Override
     @Transactional
@@ -26,7 +25,6 @@ public class BookPreferenceManagingService implements BookPreferenceManagingUseC
         } else if (bookPreference.getHobulho() == Hobulho.BULHO){
             bookPreferenceManager.cancelDislike(bookId, kidId);
             bookPreferenceManager.like(bookId, kidId);
-            kidManager.increasePersonality(kidId, bookId);
         }
     }
 
@@ -39,7 +37,6 @@ public class BookPreferenceManagingService implements BookPreferenceManagingUseC
         } else if(bookPreference.getHobulho() == Hobulho.HO){
             bookPreferenceManager.cancelLike(bookId, kidId);
             bookPreferenceManager.dislike(bookId, kidId);
-            kidManager.decreasePersonality(kidId, bookId);
         } else if (bookPreference.getHobulho() == Hobulho.BULHO){
             bookPreferenceManager.cancelDislike(bookId, kidId);
         }
