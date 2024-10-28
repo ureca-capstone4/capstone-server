@@ -32,9 +32,9 @@ public class KidManager {
     private final MBTIUtil mbtiUtil;
     private final KidsPersonalityDeleteHistoryRepository kidsPersonalityDeleteHistory;
     private final BooksCharacteristicRepository booksCharacteristicRepository;
+    private final KidRepository kidRepository;
 
     private static final double MBTI_WEIGHT = 0.1;
-    private final KidRepository kidRepository;
 
     public Kid registerKid(User user, AddKidReq req, KidsPersonality newKidsPersonality) {
 
@@ -112,7 +112,6 @@ public class KidManager {
         kidPersonality.updateKidsPersonality(randomMBTI.ei(), randomMBTI.sn(), randomMBTI.tf(), randomMBTI.jp(), randomMBTI.mbti(), false);
     }
 
-    // TODO increase, decrease -> update(-2A, +2A, -A, +A) 이걸로 바꾸기
     public void increasePersonality(Long kidId, Long bookId){
         KidsPersonality kidsPersonality = kidRepository.findKidPersonalityByKidId(kidId);
         BooksCharacteristic booksCharacteristic = booksCharacteristicRepository.findBooksCharacteristicByBookId(bookId);
