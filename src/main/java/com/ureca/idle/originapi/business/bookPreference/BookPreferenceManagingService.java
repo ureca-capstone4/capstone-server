@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BookPreferenceManagingService implements BookPreferenceManagingUseCase {
     private final BookPreferenceManager bookPreferenceManager;
 
+    // TODO 처리성 쿼리 한 번으로 줄이기
     @Override
     @Transactional
     public void processLike(Long bookId, Long kidId) {
