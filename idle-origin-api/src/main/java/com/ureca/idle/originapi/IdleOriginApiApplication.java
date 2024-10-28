@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = "com.ureca.idle.jpa")
-@ComponentScan(basePackages = {"com.ureca.idle.aiclient.business", "com.ureca.idle.aiclient.implementation","com.ureca.idle.aiclient.config"})
+@ComponentScan(basePackages = "com.ureca.idle.aiclient")
 public class IdleOriginApiApplication {
 
     public static void main(String[] args) {
