@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: local
+    include:
+      - jpa
+
+    group:
+      local: local, jpa
+      prod: prod, jpa-prod
+
+logging:
+  level:
+    root: INFO
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "local"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
