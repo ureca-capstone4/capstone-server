@@ -6,6 +6,10 @@ spring:
     username: idle
     password: 1234
 
+  batch:
+    jdbc:
+      initialize-schema: always  # 스프링 배치 메타데이터 테이블 자동 생성
+
   jpa:
     open-in-view: false
     show-sql: true
