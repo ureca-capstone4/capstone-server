@@ -30,7 +30,7 @@ public class BookPreferenceManager {
         return bookPreference.orElse(null);
     }
 
-    public void like(Long bookId, Long kidId){
+    public void like(Long bookId, Long kidId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
         Kid kid = kidRepository.findById(kidId)
@@ -44,7 +44,7 @@ public class BookPreferenceManager {
         kidManager.increasePersonality(kidId, bookId);
     }
 
-    public void dislike(Long bookId, Long kidId){
+    public void dislike(Long bookId, Long kidId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
         Kid kid = kidRepository.findById(kidId)
