@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class BookPreferenceManagingService implements BookPreferenceManagingUseCase {
     private final BookPreferenceManager bookPreferenceManager;
-    private final KidManager kidManager;
 
+    // TODO 처리성 쿼리 한 번으로 줄이기
     @Override
     @Transactional
     public void processLike(Long bookId, Long kidId) {
@@ -26,7 +26,6 @@ public class BookPreferenceManagingService implements BookPreferenceManagingUseC
         } else if (bookPreference.getHobulho() == Hobulho.BULHO){
             bookPreferenceManager.cancelDislike(bookId, kidId);
             bookPreferenceManager.like(bookId, kidId);
-            kidManager.increasePersonality(kidId, bookId);
         }
     }
 
@@ -39,7 +38,6 @@ public class BookPreferenceManagingService implements BookPreferenceManagingUseC
         } else if(bookPreference.getHobulho() == Hobulho.HO){
             bookPreferenceManager.cancelLike(bookId, kidId);
             bookPreferenceManager.dislike(bookId, kidId);
-            kidManager.decreasePersonality(kidId, bookId);
         } else if (bookPreference.getHobulho() == Hobulho.BULHO){
             bookPreferenceManager.cancelDislike(bookId, kidId);
         }
