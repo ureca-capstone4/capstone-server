@@ -1,9 +1,12 @@
 package com.ureca.idle.fcfsproducer.caller;
 
 
+import com.ureca.idle.fcfsproducer.Submission;
 import com.ureca.idle.fcfsproducer.producer.SubmissionProducer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
 
 
 @RestController
@@ -14,7 +17,8 @@ public class SubmissionProducerWebRequestCaller implements SubmissionProducerCal
 
     @Override
     public CallProducerResp callProducer() {
-        submissionProducer.produceSubmission();
+        Submission submission = new Submission(LocalDate.now(), 1, "dummy", "0109913199");
+        submissionProducer.produceSubmission(submission);
         return new CallProducerResp();
     }
 }
