@@ -73,9 +73,6 @@ public class KidManager {
     }
 
     public void updateKidPersonality(KidsPersonality kidsPersonality, UpdateKidPersonalityReq req) {
-//        KidsPersonality kidPersonality = repository.findKidWithPersonalityById(kidId)
-//                .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION)).getPersonality();
-//        addKidsPersonalityChanges(kidId, kidPersonality);       // 업데이트 이전에 히스토리에 저장
         kidsPersonality.updateKidsPersonality(req.ei(), req.sn(), req.tf(), req.jp(), req.mbti(), true);
     }
 
