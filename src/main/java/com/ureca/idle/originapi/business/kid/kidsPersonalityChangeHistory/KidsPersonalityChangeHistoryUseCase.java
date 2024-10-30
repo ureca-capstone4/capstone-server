@@ -5,6 +5,4 @@ import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.dto.Ge
 
 public interface KidsPersonalityChangeHistoryUseCase {
     GetKidsPersonalityChangeHistoryResp getKidsPersonalityChangeHistory(Long kidId);
-    DeleteKidsPersonalityChangeHistoryResp deleteKidspersonalityChangeHistory(Long kidId);
-
 }

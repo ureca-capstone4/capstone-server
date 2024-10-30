@@ -51,7 +51,9 @@ public class KidManagingService implements KidManagingUseCase {
     @Override
     @Transactional
     public UpdateKidsPersonalityResp updateKidsPersonality(Long kidId, UpdateKidPersonalityReq req) {
-        kidManager.updateKidPersonality(kidId, req);
+        KidsPersonality kidsPersonality = kidManager.getKidsPersonalityByKidId(kidId);
+        kidManager.addKidsPersonalityChanges(kidId, kidsPersonality);
+        kidManager.updateKidPersonality(kidsPersonality, req);
         return kidDtoMapper.toUpdateKidPersonality();
     }
 }

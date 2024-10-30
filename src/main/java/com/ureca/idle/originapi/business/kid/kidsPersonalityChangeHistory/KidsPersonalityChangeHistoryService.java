@@ -27,12 +27,4 @@ public class KidsPersonalityChangeHistoryService implements KidsPersonalityChang
         return kidDtoMapper.toGetKidsPersonalityChangeHistoryList(history);
     }
 
-    @Override
-    @Transactional
-    public DeleteKidsPersonalityChangeHistoryResp deleteKidspersonalityChangeHistory(Long kidId) {
-        kidManager.deleteKidsPersonalityChangeHistory(kidId);
-        return null;
-    }
-
-
 }

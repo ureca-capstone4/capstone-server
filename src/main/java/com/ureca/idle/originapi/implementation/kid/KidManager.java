@@ -61,17 +61,22 @@ public class KidManager {
                 .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION));
     }
 
+    public KidsPersonality getKidsPersonalityByKidId(Long id) {
+        return repository.findKidWithPersonalityById(id)
+                .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION)).getPersonality();
+    }
+
     public void checkDuplicatedKidName(User user, String name) {
         if(repository.existsByUserAndName(user, name)) {
             throw new KidException(KidExceptionType.ALREADY_EXITS_NAME);
         }
     }
 
-    public void updateKidPersonality(Long kidId, UpdateKidPersonalityReq req) {
-        KidsPersonality kidPersonality = repository.findKidWithPersonalityById(kidId)
-                .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION)).getPersonality();
-        addKidsPersonalityChanges(kidId, kidPersonality);       // 업데이트 이전에 히스토리에 저장
-        kidPersonality.updateKidsPersonality(req.ei(), req.sn(), req.tf(), req.jp(), req.mbti(), true);
+    public void updateKidPersonality(KidsPersonality kidsPersonality, UpdateKidPersonalityReq req) {
+//        KidsPersonality kidPersonality = repository.findKidWithPersonalityById(kidId)
+//                .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION)).getPersonality();
+//        addKidsPersonalityChanges(kidId, kidPersonality);       // 업데이트 이전에 히스토리에 저장
+        kidsPersonality.updateKidsPersonality(req.ei(), req.sn(), req.tf(), req.jp(), req.mbti(), true);
     }
 
 
@@ -140,7 +145,8 @@ public class KidManager {
         return kidsPersonalityChangeHistory.getKidsPersonalityChangeHistoriesById(kidId);
     }
 
-    public void addKidsPersonalityChanges(Long kidId,  KidsPersonality kidsPersonality) {
+    public void addKidsPersonalityChanges(Long kidId, KidsPersonality kidsPersonality) {
+        if(!kidsPersonality.isTested()) return;
         KidsPersonalityChangeHistory newPersonalityChange = KidsPersonalityChangeHistory.builder()
                 .kidsId(kidId)
                 .ei(kidsPersonality.getEi())
