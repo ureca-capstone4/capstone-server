@@ -19,11 +19,12 @@ public class ScheduledTasks {
     @Autowired
     private Job saveKidsPersonalityJob;
 
-    @Scheduled(cron = "*/10 * * * * ?")
+    @Scheduled(cron = "*/20 * * * * ?")
     public void runBatchJob() {
         try {
             JobParameters jobParameters = new JobParametersBuilder()
                     .addLong("time", System.currentTimeMillis())
+                    .addString("uniqueId", String.valueOf(System.nanoTime()))
                     .toJobParameters();
             jobLauncher.run(saveKidsPersonalityJob, jobParameters);
             System.out.println("Batch job started successfully.");

@@ -8,9 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Component
 public class KidsPersonalityBatchManager {
@@ -19,17 +16,20 @@ public class KidsPersonalityBatchManager {
     private final KidsPersonalityChangeHistoryRepository kidsPersonalityChangeHistoryRepository;
 
     @Transactional(readOnly = true)
-    public List<Kid> findAllKids() {
-        return kidRepository.findAll();
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<Kid> findKidWithPersonality(Long id) {
-        return kidRepository.findKidWithPersonalityById(id);
+    public Kid findKidWithPersonality(Long id) {
+        return kidRepository.findTestedPersonalityKidById(id);
     }
 
     @Transactional
-    public void saveKidsPersonalityHistory(KidsPersonalityChangeHistory kidsPersonalityChangeHistory) {
+    public void saveKidsPersonalityHistory(Kid kid) {
+        KidsPersonalityChangeHistory kidsPersonalityChangeHistory = KidsPersonalityChangeHistory.builder()
+                .kidsId(kid.getId())
+                .ei(kid.getPersonality().getEi())
+                .sn(kid.getPersonality().getSn())
+                .tf(kid.getPersonality().getTf())
+                .jp(kid.getPersonality().getJp())
+                .mbti(kid.getPersonality().getMbti())
+                .build();
         kidsPersonalityChangeHistoryRepository.save(kidsPersonalityChangeHistory);
     }
 }
