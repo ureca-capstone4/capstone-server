@@ -1,8 +1,6 @@
 package com.ureca.idle.batch.kidsPersonalityDeleteHistory;
 
 
-import com.ureca.idle.batch.domain.KidsPersonalityDeleteHistoryDtoRowMapper;
-import com.ureca.idle.batch.dto.KidsPersonalityDeleteHistoryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.PagingQueryProvider;
