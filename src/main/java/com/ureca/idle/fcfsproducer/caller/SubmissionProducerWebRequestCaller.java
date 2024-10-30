@@ -17,7 +17,7 @@ public class SubmissionProducerWebRequestCaller implements SubmissionProducerCal
 
     @Override
     public CallProducerResp callProducer() {
-        Submission submission = new Submission(LocalDate.now(), 1, "dummy", "0109913199");
+        Submission submission = new Submission(LocalDate.now(), 1L, "dummy", "0109913199");
         submissionProducer.produceSubmission(submission);
         return new CallProducerResp();
     }
