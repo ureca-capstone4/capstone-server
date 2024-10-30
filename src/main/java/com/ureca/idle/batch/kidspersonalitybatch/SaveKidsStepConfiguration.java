@@ -1,6 +1,6 @@
 package com.ureca.idle.batch.kidspersonalitybatch;
 
-import com.ureca.idle.jpa.kid.Kid;
+import com.ureca.idle.batch.dto.KidsPersonalityChangeHistoryResp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.repository.JobRepository;
@@ -17,13 +17,13 @@ import org.springframework.context.annotation.Configuration;
 public class SaveKidsStepConfiguration {
 
     private final JpaPagingItemReader<Long> saveKidsItemReader;
-    private final ItemProcessor<Long, Kid> saveKidsItemProcessor;
-    private final ItemWriter<Kid> saveKidsItemWriter;
+    private final ItemProcessor<Long, KidsPersonalityChangeHistoryResp> saveKidsItemProcessor;
+    private final ItemWriter<KidsPersonalityChangeHistoryResp> saveKidsItemWriter;
 
     @Bean
     public Step saveKidsPersonalityStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new StepBuilder("saveKidsPersonalityStep", jobRepository)
-                .<Long, Kid>chunk(10, transactionManager)
+                .<Long, KidsPersonalityChangeHistoryResp>chunk(10, transactionManager)
                 .reader(saveKidsItemReader)
                 .processor(saveKidsItemProcessor)
                 .writer(saveKidsItemWriter)
