@@ -23,7 +23,7 @@ public class Kid extends BaseEntity {
     @JoinColumn(name = "kids_personality_id", nullable = false)
     private KidsPersonality personality;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
