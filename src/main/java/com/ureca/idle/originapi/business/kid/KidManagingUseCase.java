@@ -6,5 +6,5 @@ public interface KidManagingUseCase {
     AddKidResp addMyKid(Long userId, AddKidReq req);
     GetKidsProfilesResp getMyKidsProfiles(Long userId);
     GetKidsDetailResp getKidsDetail(Long kidId);
-    UpdateKidPersonalityResp updateKidsPersonality(Long kidId, UpdateKidPersonalityReq req);
+    UpdateKidsPersonalityResp updateKidsPersonality(Long kidId, UpdateKidPersonalityReq req);
 }

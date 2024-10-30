@@ -1,13 +1,30 @@
 package com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory;
 
+import com.ureca.idle.jpa.kidspersonality.KidsPersonalityChangeHistory;
+import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.dto.DeleteKidsPersonalityChangeHistoryResp;
+import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
+import com.ureca.idle.originapi.implementation.kid.KidManager;
+import com.ureca.idle.originapi.implementation.mapper.KidDtoMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+
+@Service
+@RequiredArgsConstructor
 public class KidsPersonalityChangeHistoryService implements KidsPersonalityChangeHistoryUseCase{
-    // todo : 자녀 히스토리 default 로직 결정 완료 시, 작업 예정
-//    @Override
-//    public GetKidsPersonalityChangeHistoryResp getKidsPersonalityHistory(Long kidId, GetKidsPersonalityChangeHistoryReq req) {
-//        // 1. Kid id 받아서
-//        // 2. 성향변화기록 엔티티에서 req에서 준 기간만큼 조회하고
-//        // return
-//
-//        return new GetKidsPersonalityChangeHistoryResp();
-//    }
+
+    private final KidManager kidManager;
+    private final KidDtoMapper kidDtoMapper;
+
+
+    @Override
+    @Transactional
+    public GetKidsPersonalityChangeHistoryResp getKidsPersonalityChangeHistory(Long kidId) {
+        List<KidsPersonalityChangeHistory> history = kidManager.getKidsPersonalityChangeHistory(kidId);
+        return kidDtoMapper.toGetKidsPersonalityChangeHistoryList(history);
+    }
+
 }

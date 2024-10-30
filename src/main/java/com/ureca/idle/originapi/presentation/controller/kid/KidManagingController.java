@@ -2,6 +2,8 @@ package com.ureca.idle.originapi.presentation.controller.kid;
 
 import com.ureca.idle.originapi.business.kid.KidManagingUseCase;
 import com.ureca.idle.originapi.business.kid.dto.*;
+import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.KidsPersonalityChangeHistoryUseCase;
+import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
 import com.ureca.idle.originapi.business.kid.kidsPersonalityDeleteHistory.KidsPersonalityDeleteHistoryUseCase;
 import com.ureca.idle.originapi.business.kid.kidsPersonalityDeleteHistory.dto.PutKidsPersonalityToDeleteHistoryResp;
 import com.ureca.idle.originapi.presentation.web.auth.LoginUser;
@@ -18,6 +20,7 @@ public class KidManagingController {
 
     private final KidManagingUseCase kidManagingUseCase;
     private final KidsPersonalityDeleteHistoryUseCase kidsPersonalityDeleteHistoryUseCase;
+    private final KidsPersonalityChangeHistoryUseCase kidsPersonalityChangeHistoryUseCase;
 
     @PostMapping("")
     public ResponseEntity<AddKidResp> addMyKid(@LoginUser IdAndAuthority loginUser, @RequestBody AddKidReq req) {
@@ -39,9 +42,9 @@ public class KidManagingController {
 
 
     @PostMapping("/{kidId}/personalities")
-    public ResponseEntity<UpdateKidPersonalityResp> updateKidsPersonalities(@PathVariable Long kidId, @RequestBody UpdateKidPersonalityReq req) {
+    public ResponseEntity<UpdateKidsPersonalityResp> updateKidsPersonalities(@PathVariable Long kidId, @RequestBody UpdateKidPersonalityReq req) {
         // @LoginUser IdAndAuthority loginUser,
-        UpdateKidPersonalityResp resp = kidManagingUseCase.updateKidsPersonality(kidId, req);
+        UpdateKidsPersonalityResp resp = kidManagingUseCase.updateKidsPersonality(kidId, req);
         return ResponseEntity.ok(resp);
     }
 
@@ -50,6 +53,13 @@ public class KidManagingController {
     public ResponseEntity<PutKidsPersonalityToDeleteHistoryResp> deleteKidsPersonalities(@PathVariable Long kidId) {
         PutKidsPersonalityToDeleteHistoryResp resp = kidsPersonalityDeleteHistoryUseCase.putKidsPersonalityToDeleteHistory(kidId);
         return ResponseEntity.ok(resp);
+    }
+
+    @GetMapping("/{kidId}/personalityHistories")
+    public ResponseEntity<GetKidsPersonalityChangeHistoryResp> getKidsPersonalityChangeHistory(@PathVariable Long kidId) {
+        GetKidsPersonalityChangeHistoryResp resp = kidsPersonalityChangeHistoryUseCase.getKidsPersonalityChangeHistory(kidId);
+        return ResponseEntity.ok(resp);
+
     }
 
 

@@ -5,6 +5,7 @@ package com.ureca.idle.originapi.implementation.kid;
 import com.ureca.idle.jpa.bookscharacteristic.BooksCharacteristic;
 import com.ureca.idle.jpa.kid.Gender;
 import com.ureca.idle.jpa.kid.Kid;
+import com.ureca.idle.jpa.kidspersonality.KidsPersonalityChangeHistory;
 import com.ureca.idle.jpa.user.User;
 import com.ureca.idle.jpa.kidspersonality.KidsPersonality;
 import com.ureca.idle.jpa.kidspersonality.KidsPersonalityDeleteHistory;
@@ -15,6 +16,7 @@ import com.ureca.idle.originapi.implementation.util.MBTIUtil;
 import com.ureca.idle.originapi.persistence.book.BookRepository;
 import com.ureca.idle.originapi.persistence.book.BooksCharacteristicRepository;
 import com.ureca.idle.originapi.persistence.kid.KidRepository;
+import com.ureca.idle.originapi.persistence.kid.KidsPersonalityChangeHistoryRepository;
 import com.ureca.idle.originapi.persistence.kid.KidsPersonalityDeleteHistoryRepository;
 import com.ureca.idle.originapi.persistence.kid.KidsPersonalityRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +33,10 @@ public class KidManager {
     private final KidsPersonalityRepository kidsPersonalityRepository;
     private final MBTIUtil mbtiUtil;
     private final KidsPersonalityDeleteHistoryRepository kidsPersonalityDeleteHistory;
+    private final KidsPersonalityChangeHistoryRepository kidsPersonalityChangeHistory;
     private final BooksCharacteristicRepository booksCharacteristicRepository;
     private final KidRepository kidRepository;
+
 
     private static final double MBTI_WEIGHT = 0.1;
 
@@ -57,31 +61,23 @@ public class KidManager {
                 .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION));
     }
 
+    public KidsPersonality getKidsPersonalityByKidId(Long id) {
+        return repository.findKidWithPersonalityById(id)
+                .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION)).getPersonality();
+    }
+
     public void checkDuplicatedKidName(User user, String name) {
         if(repository.existsByUserAndName(user, name)) {
             throw new KidException(KidExceptionType.ALREADY_EXITS_NAME);
         }
     }
 
-    public void updateKidPersonality(Long kidId, UpdateKidPersonalityReq req) {
-        KidsPersonality kidPersonality = repository.findKidWithPersonalityById(kidId)
-                .orElseThrow(() -> new KidException(KidExceptionType.NOT_FOUND_EXCEPTION)).getPersonality();
-        kidPersonality.updateKidsPersonality(req.ei(), req.sn(), req.tf(), req.jp(), req.mbti(), true);
+    public void updateKidPersonality(KidsPersonality kidsPersonality, UpdateKidPersonalityReq req) {
+        kidsPersonality.updateKidsPersonality(req.ei(), req.sn(), req.tf(), req.jp(), req.mbti(), true);
     }
+
 
     public KidsPersonality generateRandomKidsPersonality() {
-        MBTI randomMBTI = mbtiUtil.generateRandomMBTI();
-        KidsPersonality randomKidsPersonality = KidsPersonality.builder()
-                .ei(randomMBTI.ei())
-                .sn(randomMBTI.sn())
-                .tf(randomMBTI.tf())
-                .jp(randomMBTI.jp())
-                .mbti(randomMBTI.mbti())
-                .build();
-        return kidsPersonalityRepository.save(randomKidsPersonality);
-    }
-
-    public KidsPersonality generateRandomKidsPersonality(Long kidId) {
         MBTI randomMBTI = mbtiUtil.generateRandomMBTI();
         KidsPersonality randomKidsPersonality = KidsPersonality.builder()
                 .ei(randomMBTI.ei())
@@ -140,4 +136,26 @@ public class KidManager {
         MBTIUtil mbtiUtil = new MBTIUtil();
         return new MBTI(ei, sn, tf, jp, mbtiUtil.getMBTIByElement(ei, sn, tf, jp));
     }
+
+    public List<KidsPersonalityChangeHistory> getKidsPersonalityChangeHistory(Long kidId) {
+        return kidsPersonalityChangeHistory.getKidsPersonalityChangeHistoriesById(kidId);
+    }
+
+    public void addKidsPersonalityChanges(Long kidId, KidsPersonality kidsPersonality) {
+        if(!kidsPersonality.isTested()) return;
+        KidsPersonalityChangeHistory newPersonalityChange = KidsPersonalityChangeHistory.builder()
+                .kidsId(kidId)
+                .ei(kidsPersonality.getEi())
+                .sn(kidsPersonality.getSn())
+                .tf(kidsPersonality.getTf())
+                .jp(kidsPersonality.getJp())
+                .mbti(kidsPersonality.getMbti())
+                .build();
+        kidsPersonalityChangeHistory.save(newPersonalityChange);
+    }
+
+    public void deleteKidsPersonalityChangeHistory(Long kidId) {
+        kidsPersonalityChangeHistory.deleteAllByKidsId(kidId);
+    }
+
 }
