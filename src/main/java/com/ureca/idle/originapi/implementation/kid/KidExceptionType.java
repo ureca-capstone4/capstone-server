@@ -13,6 +13,7 @@ public enum KidExceptionType implements ExceptionType {
     ALREADY_EXITS_NAME(Status.BAD_REQUEST, "이미 존재하는 이름의 KID 입니다. "),
     HI_THERE(Status.SERVER_ERROR, "안되네?");
 
+
     private final Status status;
     private final String message;
 

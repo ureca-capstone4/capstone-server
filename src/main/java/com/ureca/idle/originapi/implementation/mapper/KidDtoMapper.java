@@ -1,6 +1,8 @@
 package com.ureca.idle.originapi.implementation.mapper;
 
+import com.ureca.idle.jpa.kidspersonality.KidsPersonalityChangeHistory;
 import com.ureca.idle.originapi.business.kid.dto.*;
+import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
 import com.ureca.idle.originapi.business.kid.kidsPersonalityDeleteHistory.dto.PutKidsPersonalityToDeleteHistoryResp;
 import com.ureca.idle.jpa.kid.Kid;
 import com.ureca.idle.jpa.kidspersonality.KidsPersonality;
@@ -35,12 +37,19 @@ public class KidDtoMapper {
         );
     }
 
-    public UpdateKidPersonalityResp toUpdateKidPersonality() {
-        return new UpdateKidPersonalityResp("성공적으로 성향이 등록되었습니다.");
+    public UpdateKidsPersonalityResp toUpdateKidPersonality() {
+        return new UpdateKidsPersonalityResp("성공적으로 성향이 등록되었습니다.");
 
     }
 
     public PutKidsPersonalityToDeleteHistoryResp toDeleteKidsPersonality() {
         return new PutKidsPersonalityToDeleteHistoryResp("성공적으로 성향이 삭제되었습니다.");
+    }
+
+    public GetKidsPersonalityChangeHistoryResp toGetKidsPersonalityChangeHistoryList(List<KidsPersonalityChangeHistory> histories) {
+        return new GetKidsPersonalityChangeHistoryResp(
+                histories.stream()
+                        .toList()
+        );
     }
 }

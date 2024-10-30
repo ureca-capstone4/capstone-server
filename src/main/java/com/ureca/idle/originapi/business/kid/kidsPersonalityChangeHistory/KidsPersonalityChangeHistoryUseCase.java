@@ -1,10 +1,8 @@
 package com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory;
 
+import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.dto.DeleteKidsPersonalityChangeHistoryResp;
+import com.ureca.idle.originapi.business.kid.kidsPersonalityChangeHistory.dto.GetKidsPersonalityChangeHistoryResp;
+
 public interface KidsPersonalityChangeHistoryUseCase {
-
-    // todo : 자녀 히스토리 default 로직 결정 완료 시, 작업 예정
-//    GetKidsPersonalityChangeHistoryResp getKidsPersonalityHistory(Long kidId, GetKidsPersonalityChangeHistoryReq req) ;
-
-
-
+    GetKidsPersonalityChangeHistoryResp getKidsPersonalityChangeHistory(Long kidId);
 }
