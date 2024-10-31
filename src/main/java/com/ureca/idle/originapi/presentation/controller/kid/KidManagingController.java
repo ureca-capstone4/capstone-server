@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/kids")
 @RequiredArgsConstructor
+@CrossOrigin(origins="http://localhost:1234")
 public class KidManagingController {
 
     private final KidManagingUseCase kidManagingUseCase;
