@@ -1,7 +1,6 @@
 package com.ureca.idle.batch.kidspersonalitybatch;
 
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.database.JpaPagingItemReader;
 import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
@@ -15,7 +14,6 @@ public class SaveKidsItemReader {
     private final EntityManagerFactory entityManagerFactory;
 
     @Bean(name = "customSaveKidsItemReader")
-    @Transactional
     public JpaPagingItemReader<Long> saveKidsItemReader() {
         return new JpaPagingItemReaderBuilder<Long>()
                 .name("saveKidsItemReader")

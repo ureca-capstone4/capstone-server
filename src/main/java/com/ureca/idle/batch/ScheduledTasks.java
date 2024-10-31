@@ -1,27 +1,24 @@
 package com.ureca.idle.batch;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
 @EnableScheduling
+@RequiredArgsConstructor
 public class ScheduledTasks {
 
-    @Autowired
     private JobLauncher jobLauncher;
 
-    @Autowired
     private Job saveKidsPersonalityJob;
 
-    @Autowired
     private Job deleteBatchJob;
-
 
     @Scheduled(cron = "*/20 * * * * ?")
     public void runBatchJob() {
@@ -37,7 +34,7 @@ public class ScheduledTasks {
         }
     }
 
-    @Scheduled(cron = "*/10 * * * * *")
+//    @Scheduled(cron = "*/10 * * * * *")
     public void runDeleteJob() {
         try {
             JobParameters jobParameters = new JobParametersBuilder()
