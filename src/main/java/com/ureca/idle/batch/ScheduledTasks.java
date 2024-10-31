@@ -14,13 +14,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ScheduledTasks {
 
-    private JobLauncher jobLauncher;
+    private final JobLauncher jobLauncher;
 
-    private Job saveKidsPersonalityJob;
+    private final Job saveKidsPersonalityJob;
 
-    private Job deleteBatchJob;
+    private final Job deleteBatchJob;
 
-    @Scheduled(cron = "*/20 * * * * ?")
+    @Scheduled(cron = "*/30 * * * * ?")
     public void runBatchJob() {
         try {
             JobParameters jobParameters = new JobParametersBuilder()
