@@ -19,6 +19,10 @@ spring:
       - classpath:properties/aws.yml
       - classpath:properties/event.yml
 
+  config:
+    import:
+      - optional:file:.env[.properties]
+
 logging:
   level:
     root: INFO
