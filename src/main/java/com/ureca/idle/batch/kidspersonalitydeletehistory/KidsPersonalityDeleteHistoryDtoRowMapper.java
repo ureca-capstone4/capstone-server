@@ -1,4 +1,4 @@
-package com.ureca.idle.batch.kidsPersonalityDeleteHistory;
+package com.ureca.idle.batch.kidspersonalitydeletehistory;
 
 import org.springframework.jdbc.core.RowMapper;
 

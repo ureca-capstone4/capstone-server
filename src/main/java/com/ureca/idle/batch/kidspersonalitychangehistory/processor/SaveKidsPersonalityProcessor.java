@@ -1,6 +1,7 @@
-package com.ureca.idle.batch.kidspersonalitybatch;
+package com.ureca.idle.batch.kidspersonalitychangehistory.processor;
 
-import com.ureca.idle.batch.dto.KidsPersonalityChangeHistoryResp;
+import com.ureca.idle.batch.kidspersonalitychangehistory.KidsPersonalityBatchManager;
+import com.ureca.idle.batch.kidspersonalitychangehistory.dto.KidsPersonalityChangeHistoryResp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemProcessor;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SaveKidsItemProcessor implements ItemProcessor<Long, KidsPersonalityChangeHistoryResp> {
+public class SaveKidsPersonalityProcessor implements ItemProcessor<Long, KidsPersonalityChangeHistoryResp> {
 
     private final KidsPersonalityBatchManager kidsPersonalityBatchManager;
 

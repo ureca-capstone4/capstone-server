@@ -1,4 +1,4 @@
-package com.ureca.idle.batch.kidspersonalitybatch;
+package com.ureca.idle.batch.kidspersonalitychangehistory.reader;
 
 import jakarta.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class SaveKidsItemReader {
+public class SaveKidsPersonalityReader {
 
     private final EntityManagerFactory entityManagerFactory;
 
-    @Bean(name = "customSaveKidsItemReader")
+    @Bean(name = "customSaveKidsPersonalityReader")
     public JpaPagingItemReader<Long> saveKidsItemReader() {
         return new JpaPagingItemReaderBuilder<Long>()
-                .name("saveKidsItemReader")
+                .name("saveKidsPersonalityReader")
                 .entityManagerFactory(entityManagerFactory)
                 .queryString("SELECT k.id FROM Kid k")
                 .pageSize(10)

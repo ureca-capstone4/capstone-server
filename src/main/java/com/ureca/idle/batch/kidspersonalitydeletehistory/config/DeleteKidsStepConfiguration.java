@@ -1,5 +1,6 @@
-package com.ureca.idle.batch.kidsPersonalityDeleteHistory;
+package com.ureca.idle.batch.kidspersonalitydeletehistory.config;
 
+import com.ureca.idle.batch.kidspersonalitydeletehistory.KidsPersonalityDeleteHistoryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.repository.JobRepository;

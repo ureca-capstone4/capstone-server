@@ -1,6 +1,6 @@
-package com.ureca.idle.batch.kidspersonalitybatch;
+package com.ureca.idle.batch.kidspersonalitychangehistory;
 
-import com.ureca.idle.batch.dto.KidsPersonalityChangeHistoryResp;
+import com.ureca.idle.batch.kidspersonalitychangehistory.dto.KidsPersonalityChangeHistoryResp;
 import com.ureca.idle.jpa.kid.Kid;
 import com.ureca.idle.originapi.persistence.kid.KidRepository;
 import lombok.RequiredArgsConstructor;

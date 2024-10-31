@@ -1,6 +1,7 @@
-package com.ureca.idle.batch.kidspersonalitybatch;
+package com.ureca.idle.batch.kidspersonalitychangehistory.writer;
 
-import com.ureca.idle.batch.dto.KidsPersonalityChangeHistoryResp;
+import com.ureca.idle.batch.kidspersonalitychangehistory.KidsPersonalityBatchManager;
+import com.ureca.idle.batch.kidspersonalitychangehistory.dto.KidsPersonalityChangeHistoryResp;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import java.util.List;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SaveKidsItemWriter implements ItemWriter<KidsPersonalityChangeHistoryResp> {
+public class SaveKidsPersonalityWriter implements ItemWriter<KidsPersonalityChangeHistoryResp> {
 
     @PersistenceContext
     private EntityManager entityManager;

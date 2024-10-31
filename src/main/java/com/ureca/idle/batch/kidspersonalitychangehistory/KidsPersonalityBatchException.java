@@ -1,4 +1,4 @@
-package com.ureca.idle.batch.kidspersonalitybatch;
+package com.ureca.idle.batch.kidspersonalitychangehistory;
 
 import com.ureca.idle.exception.BaseException;
 import com.ureca.idle.exception.ExceptionType;

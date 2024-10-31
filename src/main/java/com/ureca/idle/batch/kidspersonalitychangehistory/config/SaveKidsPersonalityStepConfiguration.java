@@ -1,6 +1,6 @@
-package com.ureca.idle.batch.kidspersonalitybatch;
+package com.ureca.idle.batch.kidspersonalitychangehistory.config;
 
-import com.ureca.idle.batch.dto.KidsPersonalityChangeHistoryResp;
+import com.ureca.idle.batch.kidspersonalitychangehistory.dto.KidsPersonalityChangeHistoryResp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.repository.JobRepository;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class SaveKidsStepConfiguration {
+public class SaveKidsPersonalityStepConfiguration {
 
     private final JpaPagingItemReader<Long> saveKidsItemReader;
     private final ItemProcessor<Long, KidsPersonalityChangeHistoryResp> saveKidsItemProcessor;
