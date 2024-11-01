@@ -1,29 +1,27 @@
-package com.ureca.idle.batch.kidspersonalitydeletehistory.reader;
+package com.ureca.idle.batch.deletedkidspersonalityhistory.reader;
 
 
-import com.ureca.idle.batch.kidspersonalitydeletehistory.KidsPersonalityDeleteHistoryDto;
-import com.ureca.idle.batch.kidspersonalitydeletehistory.KidsPersonalityDeleteHistoryDtoRowMapper;
+import com.ureca.idle.batch.deletedkidspersonalityhistory.KidsPersonalityDeleteHistoryDtoRowMapper;
+import com.ureca.idle.batch.deletedkidspersonalityhistory.dto.KidsPersonalityDeleteHistoryResp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.PagingQueryProvider;
 import org.springframework.batch.item.database.builder.JdbcPagingItemReaderBuilder;
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
 @Configuration
 @RequiredArgsConstructor
-public class DeleteKidsItemReader {
+public class DeletedKidsPersonalityHistoryItemReader {
 
     @Autowired
     private DataSource dataSource;
 
-    @Bean
-    public JdbcPagingItemReader<KidsPersonalityDeleteHistoryDto> deleteItemReader() {
-        return new JdbcPagingItemReaderBuilder<KidsPersonalityDeleteHistoryDto>()
+    public JdbcPagingItemReader<KidsPersonalityDeleteHistoryResp> deleteItemReader() {
+        return new JdbcPagingItemReaderBuilder<KidsPersonalityDeleteHistoryResp>()
                 .name("deleteItemReader")
                 .dataSource(dataSource)
                 .rowMapper(new KidsPersonalityDeleteHistoryDtoRowMapper())
@@ -31,7 +29,6 @@ public class DeleteKidsItemReader {
                 .build();
     }
 
-    @Bean
     public PagingQueryProvider queryProvider() {
         SqlPagingQueryProviderFactoryBean pagingQueryProvider = new SqlPagingQueryProviderFactoryBean();
         pagingQueryProvider.setSelectClause("SELECT id, created_at");

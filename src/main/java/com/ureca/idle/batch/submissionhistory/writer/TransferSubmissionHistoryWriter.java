@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class LoadCurrentSubmissionHistoryWriter implements ItemWriter<CurrentRoundSubmission> {
+public class TransferSubmissionHistoryWriter implements ItemWriter<CurrentRoundSubmission> {
 
     @PersistenceContext
     private EntityManager entityManager;

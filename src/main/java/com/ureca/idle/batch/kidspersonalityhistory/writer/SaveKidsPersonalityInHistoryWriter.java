@@ -1,7 +1,7 @@
-package com.ureca.idle.batch.kidspersonalitychangehistory.writer;
+package com.ureca.idle.batch.kidspersonalityhistory.writer;
 
-import com.ureca.idle.batch.kidspersonalitychangehistory.KidsPersonalityBatchManager;
-import com.ureca.idle.batch.kidspersonalitychangehistory.dto.KidsPersonalityChangeHistoryResp;
+import com.ureca.idle.batch.kidspersonalityhistory.KidsPersonalityHistoryBatchManager;
+import com.ureca.idle.batch.kidspersonalityhistory.dto.ChangedKidsPersonalityHistoryResp;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.extern.slf4j.Slf4j;
@@ -15,22 +15,22 @@ import java.util.List;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SaveKidsPersonalityWriter implements ItemWriter<KidsPersonalityChangeHistoryResp> {
+public class SaveKidsPersonalityInHistoryWriter implements ItemWriter<ChangedKidsPersonalityHistoryResp> {
 
     @PersistenceContext
     private EntityManager entityManager;
-    private final KidsPersonalityBatchManager kidsPersonalityBatchManager;
+    private final KidsPersonalityHistoryBatchManager kidsPersonalityHistoryBatchManager;
 
     @Override
-    public void write(Chunk<? extends KidsPersonalityChangeHistoryResp> chunk) {
+    public void write(Chunk<? extends ChangedKidsPersonalityHistoryResp> chunk) {
 
         String sql = "INSERT INTO kids_personality_change_history " +
                 "(created_at, ei, jp, kids_id, mbti, sn, tf, updated_at) VALUES ";
         StringBuilder values = new StringBuilder();
 
-        List<? extends KidsPersonalityChangeHistoryResp> kidsPersonalityChangeHistoryRespList = chunk.getItems();
-        for (KidsPersonalityChangeHistoryResp resp : kidsPersonalityChangeHistoryRespList) {
-            kidsPersonalityBatchManager.saveKidsPersonalityHistory(resp, values);
+        List<? extends ChangedKidsPersonalityHistoryResp> kidsPersonalityChangeHistoryRespList = chunk.getItems();
+        for (ChangedKidsPersonalityHistoryResp resp : kidsPersonalityChangeHistoryRespList) {
+            kidsPersonalityHistoryBatchManager.saveKidsPersonalityHistory(resp, values);
         }
 
         if (values.length() > 0) {
@@ -38,7 +38,7 @@ public class SaveKidsPersonalityWriter implements ItemWriter<KidsPersonalityChan
             entityManager.createNativeQuery(sql).executeUpdate();
         }
 
-        for (KidsPersonalityChangeHistoryResp resp : kidsPersonalityChangeHistoryRespList) {
+        for (ChangedKidsPersonalityHistoryResp resp : kidsPersonalityChangeHistoryRespList) {
             log.info("자녀의 성향이 히스토리에 저장되었습니다.: " + resp.kidsId());
         }
     }

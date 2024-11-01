@@ -1,13 +1,13 @@
 package com.ureca.idle.batch.submissionhistory.config;
 
+import com.ureca.idle.batch.submissionhistory.reader.CurrentSubmissionHistoryItemReader;
+import com.ureca.idle.batch.submissionhistory.writer.TransferSubmissionHistoryWriter;
 import com.ureca.idle.jpa.submission.CurrentRoundSubmission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
-import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.database.JpaPagingItemReader;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +17,15 @@ import org.springframework.transaction.PlatformTransactionManager;
 @RequiredArgsConstructor
 public class LoadSubmissionHistoryStepConfiguration {
 
-    private final JpaPagingItemReader<CurrentRoundSubmission> loadSubmissionHistoryItemReader;
-    private final ItemWriter<CurrentRoundSubmission> loadSubmissionHistoryItemWriter;
+    private final CurrentSubmissionHistoryItemReader currentSubmissionHistoryItemReader;
+    private final TransferSubmissionHistoryWriter transferSubmissionHistoryWriter;
 
     @Bean
-    public Step loadCurrentSubmissionHistoryStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+    public Step processCurrentSubmissionHistoryStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new StepBuilder("saveSubmissionHistoryStep", jobRepository)
-                .<CurrentRoundSubmission, CurrentRoundSubmission>chunk(10,transactionManager)
-                .reader(loadSubmissionHistoryItemReader)
-                .writer(loadSubmissionHistoryItemWriter)
+                .<CurrentRoundSubmission, CurrentRoundSubmission>chunk(50,transactionManager)
+                .reader(currentSubmissionHistoryItemReader.currentSubmissionHistoryItemReader())
+                .writer(transferSubmissionHistoryWriter)
                 .build();
     }
 

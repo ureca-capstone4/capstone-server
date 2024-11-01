@@ -8,7 +8,6 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -16,17 +15,17 @@ import org.springframework.context.annotation.Configuration;
 public class LoadSubmissionHistoryJobConfiguration {
 
     private final Step deletePreviousSubmissionHistoryStep;
-    private final Step loadCurrentSubmissionHistoryStep;
+    private final Step processCurrentSubmissionHistoryStep;
     private final Step deleteCurrentSubmissionHistoryStep;
+    private final JobRepository jobRepository;
     private final JobTimeLoggingListener jobTimeLoggingListener;
 
-    @Bean
-    public Job loadSubmissionHistoryJob(JobRepository jobRepository) {
-        return new JobBuilder("saveSubmissionHistoryJob", jobRepository)
+    public Job updateSubmissionHistoryJob() {
+        return new JobBuilder("updateSubmissionHistoryJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
-                .listener(jobTimeLoggingListener) // JobExecutionListener 등록
+                .listener(jobTimeLoggingListener)
                 .start(deletePreviousSubmissionHistoryStep)
-                .next(loadCurrentSubmissionHistoryStep)
+                .next(processCurrentSubmissionHistoryStep)
                 .next(deleteCurrentSubmissionHistoryStep)
                 .build();
     }

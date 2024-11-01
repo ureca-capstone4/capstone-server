@@ -1,6 +1,6 @@
-package com.ureca.idle.batch.kidspersonalitychangehistory;
+package com.ureca.idle.batch.kidspersonalityhistory;
 
-import com.ureca.idle.batch.kidspersonalitychangehistory.dto.KidsPersonalityChangeHistoryResp;
+import com.ureca.idle.batch.kidspersonalityhistory.dto.ChangedKidsPersonalityHistoryResp;
 import com.ureca.idle.jpa.kid.Kid;
 import com.ureca.idle.originapi.persistence.kid.KidRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,17 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class KidsPersonalityBatchManager {
+public class KidsPersonalityHistoryBatchManager {
 
     private final KidRepository kidRepository;
 
-    @Transactional(noRollbackFor = KidsPersonalityBatchException.class)
-    public KidsPersonalityChangeHistoryResp findKidWithPersonality(Long id) {
+    @Transactional(noRollbackFor = KidsPersonalityHistoryBatchException.class)
+    public ChangedKidsPersonalityHistoryResp findKidWithPersonality(Long id) {
 
         Kid kid = kidRepository.findTestedPersonalityKidById(id)
-                .orElseThrow(() -> new KidsPersonalityBatchException(KidsPersonalityBatchExceptionType.KID_NOT_FOUND_EXCEPTION));
+                .orElseThrow(() -> new KidsPersonalityHistoryBatchException(KidsPersonalityHistoryBatchExceptionType.KID_NOT_FOUND_EXCEPTION));
 
-        return new KidsPersonalityChangeHistoryResp(
+        return new ChangedKidsPersonalityHistoryResp(
                 kid.getId(),
                 kid.getPersonality().getEi(),
                 kid.getPersonality().getSn(),
@@ -31,7 +31,7 @@ public class KidsPersonalityBatchManager {
     }
 
     @Transactional()
-    public void saveKidsPersonalityHistory(KidsPersonalityChangeHistoryResp resp, StringBuilder values) {
+    public void saveKidsPersonalityHistory(ChangedKidsPersonalityHistoryResp resp, StringBuilder values) {
         try {
             values.append("(")
                     .append("NOW(), ")
@@ -43,8 +43,8 @@ public class KidsPersonalityBatchManager {
                     .append("'").append(resp.tf()).append("', ")
                     .append("NOW()), ");
         } catch (Exception e) {
-            throw new KidsPersonalityBatchException(
-                    KidsPersonalityBatchExceptionType.KIDS_PERSONALITY_HISTORY_NOT_SAVE_EXCEPTION_TYPE);
+            throw new KidsPersonalityHistoryBatchException(
+                    KidsPersonalityHistoryBatchExceptionType.KIDS_PERSONALITY_HISTORY_NOT_SAVE_EXCEPTION_TYPE);
         }
     }
 }

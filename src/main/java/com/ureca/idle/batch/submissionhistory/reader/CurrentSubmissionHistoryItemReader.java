@@ -5,22 +5,20 @@ import jakarta.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.database.JpaPagingItemReader;
 import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class LoadCurrentSubmissionHistoryReader {
+public class CurrentSubmissionHistoryItemReader {
 
     private final EntityManagerFactory entityManagerFactory;
 
-    @Bean
-    public JpaPagingItemReader<CurrentRoundSubmission> loadCurrentSubmissionHistoryItemReader() {
+    public JpaPagingItemReader<CurrentRoundSubmission> currentSubmissionHistoryItemReader() {
         return new JpaPagingItemReaderBuilder<CurrentRoundSubmission>()
-                .name("saveSubmissionHistoryItemReader")
+                .name("currentSubmissionHistoryItemReader")
                 .entityManagerFactory(entityManagerFactory)
                 .queryString("SELECT crs FROM CurrentRoundSubmission crs")
-                .pageSize(10)
+                .pageSize(50)
                 .build();
     }
 }
