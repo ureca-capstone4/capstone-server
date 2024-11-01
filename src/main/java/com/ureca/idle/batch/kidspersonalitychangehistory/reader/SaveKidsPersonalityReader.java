@@ -13,7 +13,7 @@ public class SaveKidsPersonalityReader {
 
     private final EntityManagerFactory entityManagerFactory;
 
-    @Bean(name = "customSaveKidsPersonalityReader")
+    @Bean
     public JpaPagingItemReader<Long> saveKidsItemReader() {
         return new JpaPagingItemReaderBuilder<Long>()
                 .name("saveKidsPersonalityReader")
