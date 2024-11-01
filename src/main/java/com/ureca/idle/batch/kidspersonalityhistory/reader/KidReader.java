@@ -17,7 +17,7 @@ public class KidReader {
         return new JpaPagingItemReaderBuilder<Long>()
                 .name("kidItemReader")
                 .entityManagerFactory(entityManagerFactory)
-                .queryString("SELECT k.id FROM Kid k")
+                .queryString("SELECT k.personality.id FROM Kid k")
                 .pageSize(10)
                 .build();
     }
