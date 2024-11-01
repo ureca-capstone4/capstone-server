@@ -2,7 +2,6 @@ package com.ureca.idle.batch.submissionhistory.writer;
 
 import com.ureca.idle.batch.submissionhistory.SubmissionHistoryBatchManager;
 import com.ureca.idle.jpa.submission.CurrentRoundSubmission;
-import com.ureca.idle.jpa.submission.PreviousRoundSubmission;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.extern.slf4j.Slf4j;
