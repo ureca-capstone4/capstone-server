@@ -20,28 +20,43 @@ public class ScheduledTasks {
 
     private final Job deleteBatchJob;
 
-    @Scheduled(cron = "*/30 * * * * ?")
-    public void runBatchJob() {
+    private final Job loadSubmissionHistoryJob;
+
+//    @Scheduled(cron = "*/30 * * * * ?")
+    public void runSaveKidPersonalityBatchJob() {
         try {
             JobParameters jobParameters = new JobParametersBuilder()
                     .addLong("time", System.currentTimeMillis())
                     .addString("uniqueId", String.valueOf(System.nanoTime()))
                     .toJobParameters();
             jobLauncher.run(saveKidsPersonalityJob, jobParameters);
-            System.out.println("Batch job started successfully.");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 //    @Scheduled(cron = "*/10 * * * * *")
-    public void runDeleteJob() {
+    public void runDeleteKidPersonalityBatchJob() {
         try {
             JobParameters jobParameters = new JobParametersBuilder()
                     .addLong("time", System.currentTimeMillis())
+                    .addString("uniqueId", String.valueOf(System.nanoTime()))
                     .toJobParameters();
             jobLauncher.run(deleteBatchJob, jobParameters);
         } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Scheduled(cron = "*/20 * * * * ?")
+    public void runSaveSubmissionHistoryBatchJob() {
+        try {
+            JobParameters jobParameters = new JobParametersBuilder()
+                    .addLong("time", System.currentTimeMillis())
+                    .addString("uniqueId", String.valueOf(System.nanoTime()))
+                    .toJobParameters();
+            jobLauncher.run(loadSubmissionHistoryJob, jobParameters);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
