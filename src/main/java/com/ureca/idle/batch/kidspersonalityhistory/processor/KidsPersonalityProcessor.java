@@ -15,9 +15,9 @@ public class KidsPersonalityProcessor implements ItemProcessor<Long, ChangedKids
     private final KidsPersonalityHistoryBatchManager kidsPersonalityHistoryBatchManager;
 
     @Override
-    public ChangedKidsPersonalityHistoryResp process(Long kidsId) throws Exception {
+    public ChangedKidsPersonalityHistoryResp process(Long kidsPersonalityId) throws Exception {
         try {
-            ChangedKidsPersonalityHistoryResp resp = kidsPersonalityHistoryBatchManager.findKidWithPersonality(kidsId);
+            ChangedKidsPersonalityHistoryResp resp = kidsPersonalityHistoryBatchManager.findKidWithPersonality(kidsPersonalityId);
             return resp;
         } catch (Exception e) {
             log.info("현재 자녀의 성향 검사가 이루어지지 않았습니다.");
