@@ -23,7 +23,7 @@ public class SaveKidsPersonalityInHistoryStepConfiguration {
 
     public Step saveKidsPersonalityInHistoryStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new StepBuilder("saveKidsPersonalityStep", jobRepository)
-                .<Long, ChangedKidsPersonalityHistoryResp>chunk(10, transactionManager)
+                .<Long, ChangedKidsPersonalityHistoryResp>chunk(50, transactionManager)
                 .reader(kidReader.kidItemReader())
                 .processor(KidsPersonalityProcessor)
                 .writer(SaveKidsPersonalityInHistoryWriter)

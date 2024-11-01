@@ -19,7 +19,7 @@ public class DeleteDeletedKidsPersonalityStepConfiguration {
 
     public Step deleteBatchStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) throws Exception {
         return new StepBuilder("deleteBatchStep", jobRepository)
-                .<KidsPersonalityDeleteHistoryResp, Long>chunk(10, transactionManager)
+                .<KidsPersonalityDeleteHistoryResp, Long>chunk(50, transactionManager)
                 .reader(deletedKidsPersonalityHistoryItemReader.deleteItemReader())
                 .writer(deleteDeletedKidsPersonalityHistoryItemWriter.deleteItemWriter())
                 .build();
