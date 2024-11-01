@@ -43,7 +43,7 @@ public class TransferSubmissionHistoryWriter implements ItemWriter<CurrentRoundS
         }
     }
 
-
+// BulkInsert와 그냥 인서트 속도 테스트를 위한 벌크 없이 바로 인서트 하는 코드
 //    @Override
 //    public void write(Chunk<? extends CurrentRoundSubmission> chunk) {
 //        List<? extends CurrentRoundSubmission> currentRoundSubmissionList = chunk.getItems();
