@@ -15,7 +15,7 @@ public class KidsPersonalityHistoryBatchManager {
 
     private final KidRepository kidRepository;
 
-    @Transactional(noRollbackFor = KidsPersonalityHistoryBatchException.class)
+    @Transactional
     public ChangedKidsPersonalityHistoryResp findKidWithPersonality(Long id) {
 
         Kid kid = kidRepository.findTestedPersonalityKidById(id)
@@ -30,7 +30,7 @@ public class KidsPersonalityHistoryBatchManager {
                 kid.getPersonality().getMbti());
     }
 
-    @Transactional()
+    @Transactional
     public void saveKidsPersonalityHistory(ChangedKidsPersonalityHistoryResp resp, StringBuilder values) {
         try {
             values.append("(")
