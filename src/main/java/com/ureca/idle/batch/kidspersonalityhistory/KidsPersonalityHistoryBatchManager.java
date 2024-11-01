@@ -15,10 +15,12 @@ public class KidsPersonalityHistoryBatchManager {
 
     private final KidRepository kidRepository;
 
-    @Transactional
-    public ChangedKidsPersonalityHistoryResp findKidWithPersonality(Long id) {
+    //TODO 예외 처리 떼고 noRollbackFor 없애기
+    @Transactional(noRollbackFor = KidsPersonalityHistoryBatchException.class)
+    public ChangedKidsPersonalityHistoryResp findKidWithPersonality(Long kidsPersonalityId) {
 
-        Kid kid = kidRepository.findTestedPersonalityKidById(id)
+        Kid kid = kidRepository.findTestedPersonalityKidById(kidsPersonalityId)
+                //TODO 예외처리 없이 하기
                 .orElseThrow(() -> new KidsPersonalityHistoryBatchException(KidsPersonalityHistoryBatchExceptionType.KID_NOT_FOUND_EXCEPTION));
 
         return new ChangedKidsPersonalityHistoryResp(
