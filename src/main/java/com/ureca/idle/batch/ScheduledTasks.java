@@ -21,7 +21,8 @@ public class ScheduledTasks {
     private final SaveKidsPersonalityInHistoryJobConfiguration saveKidsPersonalityInHistoryJobConfiguration;
     private final LoadSubmissionHistoryJobConfiguration loadSubmissionHistoryJobConfiguration;
 
-//        @Scheduled(cron = "*/5 * * * * ?")
+    // 매달 말일 11시 59분에 배치 실행
+    @Scheduled(cron = "59 59 23 L * ?")
     public void runSaveKidsPersonalityInHistoryBatchJob() {
         // 현재의 자녀 성향을 자녀 성향 변화 기록에 저장
         try {
@@ -35,7 +36,8 @@ public class ScheduledTasks {
         }
     }
 
-    @Scheduled(cron = "*/10 * * * * *")
+    // 매일 새벽 2시에 배치 실행
+    @Scheduled(cron = "0 0 2 * * ?")
     public void runDeleteDeletedKidsPersonalityBatchJob() {
         // 자녀 성향 삭제 기록을 삭제하는 Job
         try {
@@ -44,14 +46,15 @@ public class ScheduledTasks {
                     .addString("uniqueId", String.valueOf(System.nanoTime()))
                     .toJobParameters();
             jobLauncher.run(deleteDeletedKidsPersonalityJobConfiguration.deleteBatchJob(), jobParameters);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-//    @Scheduled(cron = "*/10 * * * * ?")
+    // 매일 오후 1시에 배치 실행
+    @Scheduled(cron = "0 0 13 * * ?")
     public void runUpdateSubmissionHistoryBatchJob() {
-            // 현재 차수 응모 데이터를 이전 차수 응모 데이터 테이블로 배치
+        // 현재 차수 응모 데이터를 이전 차수 응모 데이터 테이블로 배치
         try {
             JobParameters jobParameters = new JobParametersBuilder()
                     .addLong("time", System.currentTimeMillis())
