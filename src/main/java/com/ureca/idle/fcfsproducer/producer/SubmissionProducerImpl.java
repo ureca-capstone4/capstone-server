@@ -1,6 +1,9 @@
 package com.ureca.idle.fcfsproducer.producer;
 
 
+import com.ureca.idle.fcfsproducer.event.EventManager;
+import com.ureca.idle.fcfsproducer.event.RedisEventManager;
+import com.ureca.idle.fcfsproducer.event.Submission;
 import com.ureca.idle.fcfsproducer.client.SubmissionBufferQueueProduceClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,11 +13,13 @@ import org.springframework.stereotype.Component;
 public class SubmissionProducerImpl implements SubmissionProducer {
 
     private final SubmissionBufferQueueProduceClient submissionBufferQueueProduceClient;
+    private final EventManager eventManager;
 
     @Override
-    public void produceSubmission() {
-        // 1. 특정 트리거가 되면
-        // 2. 이것저것 검증하고
-        submissionBufferQueueProduceClient.pushSubmission();
+    public void produceSubmission(Submission submission) {
+        eventManager.checkEventEnd();
+        eventManager.checkDuplicatedSubmission(submission);
+        submissionBufferQueueProduceClient.pushSubmission(submission);
+        eventManager.registerToDuplicatedSubmission(submission);
     }
 }

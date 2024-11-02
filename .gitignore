@@ -52,3 +52,7 @@ out/
 
 # Environment Variable Files #
 *.env
+
+# Properties #
+**/aws.yml
+

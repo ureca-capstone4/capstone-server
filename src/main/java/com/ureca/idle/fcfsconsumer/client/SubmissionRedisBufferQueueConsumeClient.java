@@ -1,7 +1,6 @@
-package com.ureca.idle.fcfsconsumer.client.impl;
+package com.ureca.idle.fcfsconsumer.client;
 
 
-import com.ureca.idle.fcfsconsumer.client.SubmissionBufferQueueConsumeClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -14,6 +13,6 @@ public class SubmissionRedisBufferQueueConsumeClient implements SubmissionBuffer
 
     @Override
     public void pullSubmission() {
-
+        // pull submission process will not be started here because of @SqsListener
     }
 }
