@@ -1,14 +1,11 @@
 package com.ureca.idle.batch.deletedkidspersonalityhistory.reader;
 
-
-import com.ureca.idle.batch.deletedkidspersonalityhistory.KidsPersonalityDeleteHistoryDtoRowMapper;
-import com.ureca.idle.batch.deletedkidspersonalityhistory.dto.KidsPersonalityDeleteHistoryResp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.PagingQueryProvider;
 import org.springframework.batch.item.database.builder.JdbcPagingItemReaderBuilder;
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
@@ -17,15 +14,16 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class DeletedKidsPersonalityHistoryItemReader {
 
-    @Autowired
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
-    public JdbcPagingItemReader<KidsPersonalityDeleteHistoryResp> deleteItemReader() {
-        return new JdbcPagingItemReaderBuilder<KidsPersonalityDeleteHistoryResp>()
+    @Bean
+    public JdbcPagingItemReader<Long> deleteItemReader() {
+        return new JdbcPagingItemReaderBuilder<Long>()
                 .name("deleteItemReader")
                 .dataSource(dataSource)
-                .rowMapper(new KidsPersonalityDeleteHistoryDtoRowMapper())
+                .rowMapper((rs, rowNum) -> rs.getLong("id"))
                 .queryProvider(queryProvider())
+                .pageSize(10)
                 .build();
     }
 
@@ -36,7 +34,6 @@ public class DeletedKidsPersonalityHistoryItemReader {
         pagingQueryProvider.setWhereClause("WHERE DATE_SUB(NOW(), Interval 30 day) > created_at");  // 현재 일자가 created_at가 30일을 초과한 경우
         pagingQueryProvider.setDataSource(dataSource);
         pagingQueryProvider.setSortKey("id");
-
         try {
             return pagingQueryProvider.getObject();
         } catch (Exception e) {

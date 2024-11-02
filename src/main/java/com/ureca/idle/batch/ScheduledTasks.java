@@ -37,7 +37,7 @@ public class ScheduledTasks {
     }
 
     // 매일 새벽 2시에 배치 실행
-    @Scheduled(cron = "0 0 2 * * ?")
+    @Scheduled(cron = "*/10 * * * * ?")
     public void runDeleteDeletedKidsPersonalityBatchJob() {
         // 자녀 성향 삭제 기록을 삭제하는 Job
         try {
@@ -45,7 +45,7 @@ public class ScheduledTasks {
                     .addLong("time", System.currentTimeMillis())
                     .addString("uniqueId", String.valueOf(System.nanoTime()))
                     .toJobParameters();
-            jobLauncher.run(deleteDeletedKidsPersonalityJobConfiguration.deleteBatchJob(), jobParameters);
+            jobLauncher.run(deleteDeletedKidsPersonalityJobConfiguration.deleteKidsPersonalityBatchJob(), jobParameters);
         } catch (Exception e) {
             e.printStackTrace();
         }
