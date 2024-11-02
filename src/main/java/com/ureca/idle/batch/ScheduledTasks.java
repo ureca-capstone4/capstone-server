@@ -37,7 +37,7 @@ public class ScheduledTasks {
     }
 
     // 매일 새벽 2시에 배치 실행
-    @Scheduled(cron = "*/10 * * * * ?")
+    @Scheduled(cron = "0 0 2 * * ?")
     public void runDeleteDeletedKidsPersonalityBatchJob() {
         // 자녀 성향 삭제 기록을 삭제하는 Job
         try {
