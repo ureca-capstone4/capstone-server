@@ -5,13 +5,15 @@ import com.ureca.idle.originapi.business.personalityQuestion.PersonalityQuestion
 import com.ureca.idle.originapi.business.personalityQuestion.dto.GetPersonalityQuestionsResp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/personalities")
+@RequestMapping("/api/v1/personality/questions")
 @RequiredArgsConstructor
+@CrossOrigin(origins="http://localhost:1234")
 public class PersonalityQuestionController {
     private final PersonalityQuestionManagingUseCase personalityQuestionManagingUseCase;
 
