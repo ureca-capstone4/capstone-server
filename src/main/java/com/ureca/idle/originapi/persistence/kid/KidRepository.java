@@ -18,7 +18,6 @@ public interface KidRepository extends JpaRepository<Kid, Long> {
     Optional<Kid> getKidById(Long id);
     @Query("SELECT k.personality FROM Kid k WHERE k.id = :kidId")
     KidsPersonality findKidPersonalityByKidId(@Param("kidId") Long kidId);
-    @Query("SELECT k FROM Kid k JOIN FETCH k.personality WHERE k.id = :id AND k.personality.isTested = true")
-    Kid findTestedPersonalityKidById(@Param("id") Long id);
+    @Query("SELECT k FROM Kid k JOIN FETCH k.personality WHERE k.personality.id = :id AND k.personality.isTested = true")
+    Optional<Kid> findTestedPersonalityKidById(@Param("id") Long id);
 }
-
