@@ -112,4 +112,8 @@ public class BookManager {
                 .build();
         return booksCharacteristicRepository.save(randomBooksCharacteristic);
     }
+
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
 }

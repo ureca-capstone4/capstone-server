@@ -2,6 +2,7 @@ package com.ureca.idle.originapi.implementation.mapper;
 
 import com.ureca.idle.jpa.bookscharacteristic.BooksCharacteristic;
 import com.ureca.idle.originapi.business.book.dto.AddBookResp;
+import com.ureca.idle.originapi.business.book.dto.GetAllBooksResp;
 import com.ureca.idle.originapi.business.book.dto.GetBookDetailResp;
 import com.ureca.idle.originapi.business.book.dto.GetBookProfileResp;
 import com.ureca.idle.jpa.book.Book;
@@ -38,6 +39,19 @@ public class BookDtoMapper {
                 .map(book -> new GetBookProfileResp(
                         book.getId(),
                         book.getTitle(),
+                        book.getRecommendedAge(),
+                        book.getBookImageUrl()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public List<GetAllBooksResp> toGetAllBooks(List<Book> books) {
+        return books.stream()
+                .map(book -> new GetAllBooksResp(
+                        book.getId(),
+                        book.getTitle(),
+                        book.getAuthor(),
+                        book.getPublisher(),
                         book.getRecommendedAge(),
                         book.getBookImageUrl()
                 ))
