@@ -1,5 +1,6 @@
 package com.ureca.idle.originapi.implementation.mapper;
 
+import com.ureca.idle.jpa.bookscharacteristic.BooksCharacteristic;
 import com.ureca.idle.originapi.business.book.dto.AddBookResp;
 import com.ureca.idle.originapi.business.book.dto.GetBookDetailResp;
 import com.ureca.idle.originapi.business.book.dto.GetBookProfileResp;
@@ -13,7 +14,16 @@ import java.util.stream.Collectors;
 public class BookDtoMapper {
 
     public AddBookResp toAddBookResp(Book newBook) {
-        return new AddBookResp("성공적으로 " + newBook.getTitle() + " 이(가) 추가되었습니다.");
+        BooksCharacteristic booksCharacteristic = newBook.getBooksCharacteristic();
+        return new AddBookResp(
+                newBook.getTitle(),
+                booksCharacteristic.getEi(),
+                booksCharacteristic.getSn(),
+                booksCharacteristic.getTf(),
+                booksCharacteristic.getJp(),
+                booksCharacteristic.getMbti()
+        );
+        //return new AddBookResp("성공적으로 " + newBook.getTitle() + " 이(가) 추가되었습니다.");
     }
 
     public GetBookDetailResp toSelectBookDetailResp(Book book, String preference) {
