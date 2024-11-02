@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+//@CrossOrigin("https://urecapstone.netlify.app")
+@CrossOrigin("http://localhost:1234")
 @RequiredArgsConstructor
-@CrossOrigin(origins="http://localhost:1234")
 public class AuthController {
 
     private final AuthUseCase authUseCase;
