@@ -26,13 +26,13 @@ public class KidDtoMapper {
     }
 
     public GetKidsProfileResp toGetMyKidsProfileResp(Kid kid) {
-        return new GetKidsProfileResp(kid.getId(), kid.getName(), kid.getProfileImageUrl());
+        return new GetKidsProfileResp(kid.getId(), kid.getName(), kid.getGender().getValue(),  kid.getProfileImageUrl());
     }
 
     public GetKidsDetailResp toGetKidsDetailResp(Kid kid) {
         KidsPersonality personality = kid.getPersonality();
         return new GetKidsDetailResp(
-                new GetKidsProfileResp(kid.getId(), kid.getName(), kid.getProfileImageUrl()),
+                new GetKidsProfileResp(kid.getId(), kid.getName(), kid.getGender().getValue(), kid.getProfileImageUrl()),
                 new GetKidsPersonalityResp(personality.getId(), personality.getEi(), personality.getSn(), personality.getTf(), personality.getJp(), personality.getMbti())
         );
     }
