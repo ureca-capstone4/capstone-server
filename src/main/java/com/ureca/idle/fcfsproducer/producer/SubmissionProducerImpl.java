@@ -1,6 +1,7 @@
 package com.ureca.idle.fcfsproducer.producer;
 
 
+import com.ureca.idle.fcfsproducer.event.EventManager;
 import com.ureca.idle.fcfsproducer.event.RedisEventManager;
 import com.ureca.idle.fcfsproducer.event.Submission;
 import com.ureca.idle.fcfsproducer.client.SubmissionBufferQueueProduceClient;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class SubmissionProducerImpl implements SubmissionProducer {
 
     private final SubmissionBufferQueueProduceClient submissionBufferQueueProduceClient;
-    private final RedisEventManager eventManager;
+    private final EventManager eventManager;
 
     @Override
     public void produceSubmission(Submission submission) {
