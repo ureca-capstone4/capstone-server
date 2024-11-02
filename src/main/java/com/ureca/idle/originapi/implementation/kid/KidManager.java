@@ -138,7 +138,7 @@ public class KidManager {
     }
 
     public List<KidsPersonalityChangeHistory> getKidsPersonalityChangeHistory(Long kidId) {
-        return kidsPersonalityChangeHistory.getKidsPersonalityChangeHistoriesById(kidId);
+        return kidsPersonalityChangeHistory.getKidsPersonalityChangeHistoriesByKidsId(kidId);
     }
 
     public void addKidsPersonalityChanges(Long kidId, KidsPersonality kidsPersonality) {
