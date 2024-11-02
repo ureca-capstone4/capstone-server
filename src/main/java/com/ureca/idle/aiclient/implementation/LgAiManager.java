@@ -34,15 +34,13 @@ public class LgAiManager implements AiClientManager {
         String apiUrl = "http://" + ip + ":8000/chat";
         String response = restTemplate.postForObject(apiUrl, requestBody, String.class);
 
-        //응답 처리
-        try{
-            //전체 JSON에서 response라는 필드 추출
+        // 응답 처리
+        try {
+            // 전체 JSON에서 response라는 필드 추출
             JSONObject jsonResponseWrapper = new JSONObject(response);
-            String jsonResponseString = jsonResponseWrapper.getString("response");
+            JSONObject jsonResponse = jsonResponseWrapper.getJSONObject("response");  // JSON 객체로 가져오기
 
-            //추출한 문자열을 다시 JSON으로 파싱
-            JSONObject jsonResponse = new JSONObject(jsonResponseString);
-
+            // 추출한 JSON 객체에서 값을 가져오기
             AddBookMbtiResp resp = new AddBookMbtiResp(
                     jsonResponse.getInt("ei"),
                     jsonResponse.getInt("sn"),

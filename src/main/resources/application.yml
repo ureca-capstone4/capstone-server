@@ -18,6 +18,7 @@ spring:
       - classpath:properties/jpa.yml
       - classpath:properties/aws.yml
       - classpath:properties/event.yml
+      - classpath:properties/ai.yml
 
 logging:
   level:

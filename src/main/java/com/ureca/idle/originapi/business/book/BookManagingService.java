@@ -1,5 +1,6 @@
 package com.ureca.idle.originapi.business.book;
 
+
 import com.ureca.idle.jpa.book.Book;
 import com.ureca.idle.jpa.bookscharacteristic.BooksCharacteristic;
 import com.ureca.idle.originapi.business.book.dto.*;
@@ -21,8 +22,11 @@ public class BookManagingService implements BookManagingUseCase {
     @Override
     @Transactional
     public AddBookResp addBook(AddBookReq req) {
-        BooksCharacteristic randomBooksCharacteristic = bookManager.generateRandomBooksCharacteristic();
-        Book newBook = bookManager.addBook(req, randomBooksCharacteristic);
+        /*BooksCharacteristic randomBooksCharacteristic = bookManager.generateRandomBooksCharacteristic();
+        Book newBook = bookManager.addBook(req, randomBooksCharacteristic);*/
+
+        BooksCharacteristic aiBooksCharacteristic = bookManager.generateBooksCharacteristicByAI(req);
+        Book newBook = bookManager.addBook(req, aiBooksCharacteristic);
         return bookDtoMapper.toAddBookResp(newBook);
     }
 
