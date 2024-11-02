@@ -14,6 +14,9 @@ public class CurrentRoundSubmission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String timeStamp;
+
     @Column(nullable = false, unique = true)
     private Long userId;
 

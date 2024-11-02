@@ -1,12 +1,15 @@
 package com.ureca.idle.fcfsproducer.caller;
 
 
-import com.ureca.idle.fcfsproducer.Submission;
+import com.ureca.idle.fcfsproducer.event.Submission;
 import com.ureca.idle.fcfsproducer.producer.SubmissionProducer;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @RestController
@@ -15,10 +18,17 @@ public class SubmissionProducerWebRequestCaller implements SubmissionProducerCal
 
     private final SubmissionProducer submissionProducer;
 
+    // TODO Auth 토큰 넣고 실제 환경 테스트 도입 때 개발 요
     @Override
-    public CallProducerResp callProducer() {
-        Submission submission = new Submission(LocalDate.now(), 1L, "dummy", "0109913199");
+    public CallProducerResp callSubmissionProducer(@RequestBody CallSubmissionProducerReq req) {
+        return new CallProducerResp("not yet implemented, token required");
+    }
+
+    @PostMapping("/{userId}")
+    public CallProducerResp testCallSubmissionProducer(@PathVariable String userId) {
+        LocalDateTime currentTimeStamp = LocalDateTime.now();
+        Submission submission = new Submission(currentTimeStamp.toString(), userId, userId, "000000");
         submissionProducer.produceSubmission(submission);
-        return new CallProducerResp();
+        return new CallProducerResp("OK");
     }
 }

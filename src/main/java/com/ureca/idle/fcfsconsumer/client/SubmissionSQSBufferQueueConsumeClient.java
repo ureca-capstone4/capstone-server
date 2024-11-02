@@ -11,6 +11,6 @@ public class SubmissionSQSBufferQueueConsumeClient implements SubmissionBufferQu
 
     @Override
     public void pullSubmission() {
-
+        // pull submission process will not be started here because of @SqsListener
     }
 }

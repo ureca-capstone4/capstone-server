@@ -13,6 +13,6 @@ public class SubmissionRedisBufferQueueConsumeClient implements SubmissionBuffer
 
     @Override
     public void pullSubmission() {
-
+        // pull submission process will not be started here because of @SqsListener
     }
 }
