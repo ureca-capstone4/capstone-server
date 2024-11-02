@@ -38,8 +38,8 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
-    implementation platform('io.awspring.cloud:spring-cloud-aws-dependencies:3.1.1')
-//    implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs'
+    implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.2.1")
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     compileOnly 'org.projectlombok:lombok'
