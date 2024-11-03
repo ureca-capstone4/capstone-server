@@ -15,10 +15,11 @@ import java.util.Map;
 public class CurrentSubmissionHistoryItemReader {
 
     private final EntityManagerFactory entityManagerFactory;
+    private final TimeUtils timeUtils;
 
     public JpaPagingItemReader<CurrentRoundSubmission> currentSubmissionHistoryItemReader() {
-        String startTimeStr = TimeUtils.getStartTime();
-        String endTimeStr = TimeUtils.getEndTime();
+        String startTimeStr = timeUtils.getStartTime();
+        String endTimeStr = timeUtils.getEndTime();
 
         String queryString = "SELECT crs FROM CurrentRoundSubmission crs " +
                 "WHERE crs.timeStamp >= :startTime AND crs.timeStamp <= :endTime";

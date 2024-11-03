@@ -2,3 +2,5 @@ event:
   fcfs:
     title: FCFS
     limit: 100
+    startTime: "13:00:00"
+    endTime: "12:59:59"

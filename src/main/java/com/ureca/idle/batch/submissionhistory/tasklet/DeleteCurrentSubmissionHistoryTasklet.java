@@ -16,11 +16,12 @@ import org.springframework.stereotype.Component;
 public class DeleteCurrentSubmissionHistoryTasklet implements Tasklet {
 
     private final JdbcTemplate jdbcTemplate;
+    private final TimeUtils timeUtils;
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        String startTimeStr = TimeUtils.getStartTime();
-        String endTimeStr = TimeUtils.getEndTime();
+        String startTimeStr = timeUtils.getStartTime();
+        String endTimeStr = timeUtils.getEndTime();
 
         String deleteQuery = "DELETE FROM current_round_submission WHERE time_stamp >= ? AND time_stamp <= ?";
         int rowsAffected = jdbcTemplate.update(deleteQuery, startTimeStr, endTimeStr);
