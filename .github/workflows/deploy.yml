@@ -28,13 +28,16 @@ jobs:
 
       - name: create env and secure file
         run: |
-          cd src/main/resources/properties
+          cd idle-server/src/main/resources/properties
           touch ai.yml
           echo "${{ secrets.AI }}" >> ai.yml
-          cd src/main/resources/properties
           touch aws.yml
           echo "${{ secrets.AWS }}" >> aws.yml
-
+          touch mysql.yml
+          echo "${{ secrets.MYSQL }}" >> mysql.yml
+          touch redis.yml
+          echo "${{ secrets.REDIS }}" >> redis.yml
+          
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
