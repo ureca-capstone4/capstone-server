@@ -18,9 +18,8 @@ public class SubmissionManagingService implements SubmissionManagingUseCase{
     private final SubmissionDtoMapper submissionDtoMapper;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public GetSubmissionResultsResp getSubmissionResults() {
-        // TODO: 이거 DTO Mapper로 변환해서 작업
         List<PreviousRoundSubmission> results = submissionManager.getPreviousRoundSubmissions();
         return submissionDtoMapper.toGetSubmissionResultsResp(results);
     }

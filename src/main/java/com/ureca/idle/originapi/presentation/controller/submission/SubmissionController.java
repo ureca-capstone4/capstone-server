@@ -15,13 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/submissions")
 @RequiredArgsConstructor
 @CrossOrigin(origins="http://localhost:1234")
-public class submissionController {
+public class SubmissionController {
 
     private final SubmissionManagingUseCase submissionManagingUseCase;
 
     @GetMapping("/results")
     public ResponseEntity<GetSubmissionResultsResp> getPreviousSubmissionResults(@LoginUser IdAndAuthority loginUser) {
-        // TODO : 토큰 활용한 인증/인가 로직 고안 및 구현 예정
         GetSubmissionResultsResp resp = submissionManagingUseCase.getSubmissionResults();
         return ResponseEntity.ok(resp);
 
