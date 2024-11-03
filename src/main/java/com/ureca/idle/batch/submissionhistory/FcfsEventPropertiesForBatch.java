@@ -4,10 +4,12 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalTime;
+
 @Data
 @Component
 @ConfigurationProperties(prefix = "event.fcfs")
 public class FcfsEventPropertiesForBatch {
-    private String startTime;
-    private String endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
 }

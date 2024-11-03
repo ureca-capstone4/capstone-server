@@ -15,17 +15,19 @@ public class TimeUtils {
 
     public String getStartTime() {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime startTime = now.minusDays(1).withHour(Integer.parseInt(fcfsEventPropertiesForBatch.getStartTime().split(":")[0]))
-                .withMinute(Integer.parseInt(fcfsEventPropertiesForBatch.getStartTime().split(":")[1]))
-                .withSecond(Integer.parseInt(fcfsEventPropertiesForBatch.getStartTime().split(":")[2]));
+        LocalDateTime startTime = now.minusDays(1)
+                .withHour(fcfsEventPropertiesForBatch.getStartTime().getHour())
+                .withMinute(fcfsEventPropertiesForBatch.getStartTime().getMinute())
+                .withSecond(fcfsEventPropertiesForBatch.getStartTime().getSecond());
         return startTime.format(FORMATTER);
     }
 
     public String getEndTime() {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime endTime = now.withHour(Integer.parseInt(fcfsEventPropertiesForBatch.getEndTime().split(":")[0]))
-                .withMinute(Integer.parseInt(fcfsEventPropertiesForBatch.getEndTime().split(":")[1]))
-                .withSecond(Integer.parseInt(fcfsEventPropertiesForBatch.getEndTime().split(":")[2]));
+        LocalDateTime endTime = now
+                .withHour(fcfsEventPropertiesForBatch.getEndTime().getHour())
+                .withMinute(fcfsEventPropertiesForBatch.getEndTime().getMinute())
+                .withSecond(fcfsEventPropertiesForBatch.getEndTime().getSecond());
         return endTime.format(FORMATTER);
     }
 }
