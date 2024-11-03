@@ -41,13 +41,10 @@ public class Book extends BaseEntity {
 
     private String bookImageUrl;
 
-    public void updateBook(String title, String story, String summary, String author, String publisher, int recommendedAge, String bookImageUrl) {
+    public void updateBook(String title, String author, String publisher, int recommendedAge) {
         this.title = title;
-        this.story = story;
-        this.summary = summary;
         this.author = author;
         this.publisher = publisher;
         this.recommendedAge = recommendedAge;
-        this.bookImageUrl = bookImageUrl;
     }
 }
