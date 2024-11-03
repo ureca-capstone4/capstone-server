@@ -23,7 +23,8 @@ public class LoadSubmissionHistoryJobConfiguration {
         return new JobBuilder("updateSubmissionHistoryJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .listener(jobTimeLoggingListener)
-                .start(loadSubmissionHistoryStepConfiguration.processCurrentSubmissionHistoryStep(jobRepository, transactionManager))
+                .start(loadSubmissionHistoryStepConfiguration.clearRedisStep(jobRepository, transactionManager))
+                .next(loadSubmissionHistoryStepConfiguration.processCurrentSubmissionHistoryStep(jobRepository, transactionManager))
                 .next(loadSubmissionHistoryStepConfiguration.deleteCurrentSubmissionHistoryStep(jobRepository, transactionManager))
                 .build();
     }

@@ -1,6 +1,7 @@
 package com.ureca.idle.batch.submissionhistory.config;
 
 import com.ureca.idle.batch.submissionhistory.reader.CurrentSubmissionHistoryItemReader;
+import com.ureca.idle.batch.submissionhistory.tasklet.ClearRedisTasklet;
 import com.ureca.idle.batch.submissionhistory.tasklet.DeleteCurrentSubmissionHistoryTasklet;
 import com.ureca.idle.batch.submissionhistory.writer.TransferSubmissionHistoryWriter;
 import com.ureca.idle.jpa.submission.CurrentRoundSubmission;
@@ -18,6 +19,7 @@ public class LoadSubmissionHistoryStepConfiguration {
     private final CurrentSubmissionHistoryItemReader currentSubmissionHistoryItemReader;
     private final TransferSubmissionHistoryWriter transferSubmissionHistoryWriter;
     private final DeleteCurrentSubmissionHistoryTasklet deleteCurrentSubmissionHistoryTasklet;
+    private final ClearRedisTasklet clearRedisTasklet;
 
     public Step processCurrentSubmissionHistoryStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new StepBuilder("saveSubmissionHistoryStep", jobRepository)
@@ -33,4 +35,11 @@ public class LoadSubmissionHistoryStepConfiguration {
                 .tasklet(deleteCurrentSubmissionHistoryTasklet, transactionManager)
                 .build();
     }
+
+    public Step clearRedisStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        return new StepBuilder("clearRedisStep", jobRepository)
+                .tasklet(clearRedisTasklet, transactionManager)
+                .build();
+    }
+
 }
