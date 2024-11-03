@@ -18,7 +18,7 @@ public class SubmissionManager {
     public List<PreviousRoundSubmission> getPreviousRoundSubmissions() {
         LocalDateTime endTime = LocalDateTime.now().with(LocalTime.of(13, 0)); // 오늘 오후 1시
         LocalDateTime startTime = endTime.minusDays(1);
-        List<PreviousRoundSubmission> results = previousRoundSubmissionRepository.findPreviousSubmissionResult(startTime.toString(), endTime.toString());
+        List<PreviousRoundSubmission> results = previousRoundSubmissionRepository.findPreviousSubmissionResult(startTime, endTime);
         return results;
     }
 

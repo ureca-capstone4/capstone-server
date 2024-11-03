@@ -3,6 +3,8 @@ package com.ureca.idle.jpa.submission;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -15,7 +17,7 @@ public class PreviousRoundSubmission {
     private Long id;
 
     @Column(nullable = false)
-    private String timeStamp;
+    private LocalDateTime timeStamp;
 
     @Column(nullable = false)
     private Long userId;
