@@ -28,7 +28,7 @@ jobs:
 
       - name: create env and secure file
         run: |
-          cd /src/main/resources/properties
+          cd ./src/main/resources/properties
           touch ai.yml
           echo "${{ secrets.AI }}" >> ai.yml
           touch aws.yml
