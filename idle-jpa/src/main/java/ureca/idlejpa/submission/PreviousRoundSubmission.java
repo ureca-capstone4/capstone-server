@@ -1,6 +1,8 @@
 package ureca.idlejpa.submission;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 
 @Getter
 @Builder

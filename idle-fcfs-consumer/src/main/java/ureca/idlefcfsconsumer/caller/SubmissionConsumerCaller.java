@@ -1,8 +1,10 @@
 package ureca.idlefcfsconsumer.caller;
 
-import com.ureca.idle.fcfsproducer.event.Submission;
+
+import ureca.idlefcfsconsumer.event.Submission;
 
 import java.util.List;
+
 
 public interface SubmissionConsumerCaller {
 

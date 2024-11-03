@@ -13,6 +13,9 @@ repositories {
 }
 
 dependencies {
+    implementation(project(':idle-exception'))
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation('org.json:json:20210307') {
         exclude group: "com.vaadin.external.google", module:"android-json"
     }

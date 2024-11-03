@@ -1,7 +1,8 @@
 package ureca.idlefcfsconsumer.consumer;
 
-import com.ureca.idle.jpa.submission.CurrentRoundSubmission;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import ureca.idlejpa.submission.CurrentRoundSubmission;
+
 
 public interface CurrentRoundSubmissionRepository extends JpaRepository<CurrentRoundSubmission, Long> {
 

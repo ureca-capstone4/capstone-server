@@ -13,6 +13,9 @@ repositories {
 }
 
 dependencies {
+    implementation(project(':idle-exception'))
+    api project(":idle-jpa")
+
     implementation 'org.springframework.boot:spring-boot-starter-batch' //배치 의존성 추가
     testImplementation 'org.springframework.batch:spring-batch-test'
 }

@@ -1,8 +1,10 @@
 package ureca.idlejpa.book;
 
-import com.ureca.idle.jpa.bookscharacteristic.BooksCharacteristic;
-import com.ureca.idle.jpa.config.BaseEntity;
 import jakarta.persistence.*;
+import lombok.*;
+import ureca.idlejpa.bookscharacteristic.BooksCharacteristic;
+import ureca.idlejpa.config.BaseEntity;
+
 
 @Getter
 @Builder

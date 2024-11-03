@@ -1,6 +1,7 @@
 package ureca.idlefcfsproducer.client;
 
-import com.ureca.idle.fcfsproducer.event.Submission;
+
+import ureca.idlefcfsproducer.event.Submission;
 
 public interface SubmissionBufferQueueProduceClient {
 

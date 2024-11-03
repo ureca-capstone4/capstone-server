@@ -1,7 +1,6 @@
 package ureca.idleaiclient.implementation;
 
-import com.ureca.idle.aiclient.business.dto.AddBookMbtiReq;
-import com.ureca.idle.aiclient.business.dto.AddBookMbtiResp;
+
 import lombok.RequiredArgsConstructor;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,9 +8,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import ureca.idleaiclient.business.dto.AddBookMbtiReq;
+import ureca.idleaiclient.business.dto.AddBookMbtiResp;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 @Component
 @RequiredArgsConstructor

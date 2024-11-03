@@ -1,9 +1,10 @@
 package ureca.idleaiclient.implementation;
 
 
-import com.ureca.idle.exception.ExceptionType;
-import com.ureca.idle.exception.Status;
 import lombok.AllArgsConstructor;
+import ureca.idleexception.ExceptionType;
+import ureca.idleexception.Status;
+
 
 @AllArgsConstructor
 public enum AiExceptionType implements ExceptionType {

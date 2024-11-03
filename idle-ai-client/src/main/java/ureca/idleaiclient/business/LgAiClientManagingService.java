@@ -1,9 +1,11 @@
 package ureca.idleaiclient.business;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import ureca.idleaiclient.business.dto.AddBookMbtiReq;
 import ureca.idleaiclient.business.dto.AddBookMbtiResp;
 import ureca.idleaiclient.implementation.AiClientManager;
+
 
 @Service
 @RequiredArgsConstructor

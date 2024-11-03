@@ -1,12 +1,13 @@
 package ureca.idlefcfsconsumer.caller;
 
 
-import com.ureca.idle.fcfsconsumer.consumer.SubmissionConsumer;
-import com.ureca.idle.fcfsproducer.event.Submission;
+
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import ureca.idlefcfsconsumer.consumer.SubmissionConsumer;
+import ureca.idlefcfsconsumer.event.Submission;
 
 import java.util.List;
 

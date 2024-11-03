@@ -1,0 +1,4 @@
+event:
+  fcfs:
+    title: FCFS
+    limit: 100

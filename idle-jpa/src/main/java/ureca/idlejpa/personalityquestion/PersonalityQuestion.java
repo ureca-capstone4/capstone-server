@@ -1,7 +1,8 @@
 package ureca.idlejpa.personalityquestion;
 
-import com.ureca.idle.jpa.config.BaseEntity;
 import jakarta.persistence.*;
+import lombok.*;
+import ureca.idlejpa.config.BaseEntity;
 
 @Getter
 @Builder

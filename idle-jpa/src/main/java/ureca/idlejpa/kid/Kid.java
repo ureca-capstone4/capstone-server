@@ -1,11 +1,13 @@
 package ureca.idlejpa.kid;
 
-import com.ureca.idle.jpa.config.BaseEntity;
-import com.ureca.idle.jpa.kidspersonality.KidsPersonality;
-import com.ureca.idle.jpa.user.User;
 import jakarta.persistence.*;
+import lombok.*;
+import ureca.idlejpa.config.BaseEntity;
+import ureca.idlejpa.kidspersonality.KidsPersonality;
+import ureca.idlejpa.user.User;
 
 import java.time.LocalDate;
+
 
 @Getter
 @Builder
