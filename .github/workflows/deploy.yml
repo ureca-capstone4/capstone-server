@@ -46,7 +46,7 @@ jobs:
 
       - name: Image build and push
         run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           sudo docker build -t a8118199/idle-server . 
           sudo docker push a8118199/idle-server
 
