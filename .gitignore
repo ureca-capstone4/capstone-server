@@ -54,6 +54,6 @@ out/
 *.env
 
 # Properties #
-**/aws.yml
 **/ai.yml
-
+**/mysql.yml
+**/redis.yml
