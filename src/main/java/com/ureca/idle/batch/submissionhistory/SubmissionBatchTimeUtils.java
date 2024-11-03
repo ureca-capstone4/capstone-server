@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 @RequiredArgsConstructor
-public class TimeUtils {
+public class SubmissionBatchTimeUtils {
 
     private final FcfsEventPropertiesForBatch fcfsEventPropertiesForBatch;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

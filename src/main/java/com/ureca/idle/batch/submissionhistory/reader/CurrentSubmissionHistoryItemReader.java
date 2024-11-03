@@ -1,6 +1,6 @@
 package com.ureca.idle.batch.submissionhistory.reader;
 
-import com.ureca.idle.batch.submissionhistory.TimeUtils;
+import com.ureca.idle.batch.submissionhistory.SubmissionBatchTimeUtils;
 import com.ureca.idle.jpa.submission.CurrentRoundSubmission;
 import jakarta.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +15,11 @@ import java.util.Map;
 public class CurrentSubmissionHistoryItemReader {
 
     private final EntityManagerFactory entityManagerFactory;
-    private final TimeUtils timeUtils;
+    private final SubmissionBatchTimeUtils submissionBatchTimeUtils;
 
     public JpaPagingItemReader<CurrentRoundSubmission> currentSubmissionHistoryItemReader() {
-        String startTimeStr = timeUtils.getStartTime();
-        String endTimeStr = timeUtils.getEndTime();
+        String startTimeStr = submissionBatchTimeUtils.getStartTime();
+        String endTimeStr = submissionBatchTimeUtils.getEndTime();
 
         String queryString = "SELECT crs FROM CurrentRoundSubmission crs " +
                 "WHERE crs.timeStamp >= :startTime AND crs.timeStamp <= :endTime";

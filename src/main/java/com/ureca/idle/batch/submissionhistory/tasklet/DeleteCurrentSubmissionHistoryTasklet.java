@@ -1,6 +1,6 @@
 package com.ureca.idle.batch.submissionhistory.tasklet;
 
-import com.ureca.idle.batch.submissionhistory.TimeUtils;
+import com.ureca.idle.batch.submissionhistory.SubmissionBatchTimeUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;
@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
 public class DeleteCurrentSubmissionHistoryTasklet implements Tasklet {
 
     private final JdbcTemplate jdbcTemplate;
-    private final TimeUtils timeUtils;
+    private final SubmissionBatchTimeUtils submissionBatchTimeUtils;
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        String startTimeStr = timeUtils.getStartTime();
-        String endTimeStr = timeUtils.getEndTime();
+        String startTimeStr = submissionBatchTimeUtils.getStartTime();
+        String endTimeStr = submissionBatchTimeUtils.getEndTime();
 
         String deleteQuery = "DELETE FROM current_round_submission WHERE time_stamp >= ? AND time_stamp <= ?";
         int rowsAffected = jdbcTemplate.update(deleteQuery, startTimeStr, endTimeStr);
