@@ -59,4 +59,4 @@ jobs:
             sudo docker rm idle-server
             sudo docker rmi a8118199/idle-server
             sudo docker pull a8118199/idle-server
-            sudo docker run -d --name idle-server -p 8080:8080 -e "SPRING_PROFILES_ACTIVE=prod" a8118199/idle-server
+            sudo docker run -d --name idle-server -p 8080:8080 a8118199/idle-server
