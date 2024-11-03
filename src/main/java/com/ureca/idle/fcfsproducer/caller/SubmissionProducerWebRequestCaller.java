@@ -27,7 +27,7 @@ public class SubmissionProducerWebRequestCaller implements SubmissionProducerCal
     @PostMapping("/{userId}")
     public CallProducerResp testCallSubmissionProducer(@PathVariable String userId) {
         LocalDateTime currentTimeStamp = LocalDateTime.now();
-        Submission submission = new Submission(currentTimeStamp.toString(), userId, userId, "000000");
+        Submission submission = new Submission(currentTimeStamp, userId, userId, "000000");
         submissionProducer.produceSubmission(submission);
         return new CallProducerResp("OK");
     }
