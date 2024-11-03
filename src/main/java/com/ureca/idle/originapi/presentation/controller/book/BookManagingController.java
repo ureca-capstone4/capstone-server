@@ -26,6 +26,12 @@ public class BookManagingController {
         return ResponseEntity.ok(resp);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<GetAllBooksResp>> getAllBooks() {
+        List<GetAllBooksResp> resp = bookManagingUseCase.getAllBooks();
+        return ResponseEntity.ok(resp);
+    }
+
     @DeleteMapping("/{bookId}")
     public ResponseEntity<String> deleteBook(@PathVariable Long bookId) {
         bookManagingUseCase.deleteBook(bookId);

@@ -61,4 +61,14 @@ public class BookManagingService implements BookManagingUseCase {
         }
         return bookDtoMapper.toGetBookProfileResp(recommendedBooks);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GetAllBooksResp> getAllBooks() {
+        List<Book> allBooks = bookManager.getAllBooks();
+        if(allBooks.isEmpty()){
+            return null;
+        }
+        return bookDtoMapper.toGetAllBooks(allBooks);
+    }
 }
