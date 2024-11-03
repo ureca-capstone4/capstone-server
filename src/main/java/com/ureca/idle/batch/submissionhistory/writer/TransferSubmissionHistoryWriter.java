@@ -25,7 +25,7 @@ public class TransferSubmissionHistoryWriter implements ItemWriter<CurrentRoundS
     public void write(Chunk<? extends CurrentRoundSubmission> chunk) {
 
         String sql = "INSERT INTO previous_round_submission " +
-                "(user_id, name, phone_num) VALUES ";
+                "(user_id, name, phone_num, time_stamp) VALUES ";
         StringBuilder values = new StringBuilder();
 
         List<? extends CurrentRoundSubmission> currentRoundSubmissionList = chunk.getItems();

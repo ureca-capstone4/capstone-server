@@ -17,7 +17,8 @@ public class SubmissionHistoryBatchManager {
             values.append("(")
                     .append("'").append(currentRoundSubmission.getUserId()).append("', ")
                     .append("'").append(currentRoundSubmission.getName()).append("', ")
-                    .append("'").append(currentRoundSubmission.getPhoneNum()).append("'), ");
+                    .append("'").append(currentRoundSubmission.getPhoneNum()).append("', ")
+                    .append("'").append(currentRoundSubmission.getTimeStamp()).append("'), ");
         } catch (Exception e) {
             throw new SubmissionHistoryBatchException(
                     SubmissionHistoryBatchExceptionType.PREVIOUS_SUBMISSION_HISTORY_NOT_SAVE_EXCEPTION_TYPRE);

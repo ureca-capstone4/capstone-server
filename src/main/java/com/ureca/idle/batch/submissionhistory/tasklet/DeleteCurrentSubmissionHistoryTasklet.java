@@ -1,5 +1,6 @@
 package com.ureca.idle.batch.submissionhistory.tasklet;
 
+import com.ureca.idle.batch.submissionhistory.SubmissionBatchTimeUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.StepContribution;
@@ -15,11 +16,17 @@ import org.springframework.stereotype.Component;
 public class DeleteCurrentSubmissionHistoryTasklet implements Tasklet {
 
     private final JdbcTemplate jdbcTemplate;
+    private final SubmissionBatchTimeUtils submissionBatchTimeUtils;
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        jdbcTemplate.execute("TRUNCATE TABLE current_round_submission");
-        log.info("현재 차수 응모 데이터가 전부 삭제되었습니다.");
+        String startTimeStr = submissionBatchTimeUtils.getStartTime();
+        String endTimeStr = submissionBatchTimeUtils.getEndTime();
+
+        String deleteQuery = "DELETE FROM current_round_submission WHERE time_stamp >= ? AND time_stamp <= ?";
+        int rowsAffected = jdbcTemplate.update(deleteQuery, startTimeStr, endTimeStr);
+
+        log.info("{}개의 현재 차수 응모 데이터가 삭제되었습니다.", rowsAffected);
         return RepeatStatus.FINISHED;
     }
 }
