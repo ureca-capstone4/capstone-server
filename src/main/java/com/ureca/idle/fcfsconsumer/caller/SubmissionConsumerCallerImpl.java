@@ -2,7 +2,7 @@ package com.ureca.idle.fcfsconsumer.caller;
 
 
 import com.ureca.idle.fcfsconsumer.consumer.SubmissionConsumer;
-import com.ureca.idle.fcfsproducer.event.Submission;
+import com.ureca.idle.fcfsconsumer.consumer.Submission;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

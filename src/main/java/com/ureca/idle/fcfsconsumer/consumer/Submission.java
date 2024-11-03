@@ -1,4 +1,4 @@
-package com.ureca.idle.fcfsproducer.event;
+package com.ureca.idle.fcfsconsumer.consumer;
 
 
 import java.io.Serializable;

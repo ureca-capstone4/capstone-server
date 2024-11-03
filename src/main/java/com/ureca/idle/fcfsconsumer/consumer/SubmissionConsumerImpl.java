@@ -1,7 +1,6 @@
 package com.ureca.idle.fcfsconsumer.consumer;
 
 import com.ureca.idle.fcfsconsumer.client.SubmissionBufferQueueConsumeClient;
-import com.ureca.idle.fcfsproducer.event.Submission;
 import com.ureca.idle.jpa.submission.CurrentRoundSubmission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
