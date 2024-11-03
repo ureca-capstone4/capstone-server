@@ -62,7 +62,7 @@ public class BookManager {
     public void updateBook(Long bookId, UpdateBookReq req) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
-        book.updateBook(req.title(), req.story(), req.summary(), req.author(), req.publisher(), req.recommendedAge(), req.bookImageUrl());
+        book.updateBook(req.title(), req.author(), req.publisher(), req.recommendedAge());
     }
 
     public void deleteBook(Long bookId) {
