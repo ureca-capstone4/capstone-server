@@ -1,9 +1,11 @@
 package ureca.idleoriginapi.business.auth;
 
-import com.ureca.idle.originapi.business.auth.dto.LoginReq;
-import com.ureca.idle.originapi.business.auth.dto.LoginResp;
-import com.ureca.idle.originapi.business.auth.dto.SignupReq;
-import com.ureca.idle.originapi.business.auth.dto.SignupResp;
+
+import ureca.idleoriginapi.business.auth.dto.LoginReq;
+import ureca.idleoriginapi.business.auth.dto.LoginResp;
+import ureca.idleoriginapi.business.auth.dto.SignupReq;
+import ureca.idleoriginapi.business.auth.dto.SignupResp;
+
 
 public interface AuthUseCase {
     LoginResp login(LoginReq req);

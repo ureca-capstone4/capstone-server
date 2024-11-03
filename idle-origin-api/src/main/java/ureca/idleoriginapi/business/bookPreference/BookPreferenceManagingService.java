@@ -1,12 +1,10 @@
 package ureca.idleoriginapi.business.bookPreference;
 
 
-import com.ureca.idle.jpa.bookpreference.BookPreference;
-import com.ureca.idle.jpa.bookpreference.Hobulho;
-import com.ureca.idle.originapi.implementation.bookPreference.BookPreferenceManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import ureca.idlejpa.bookpreference.BookPreference;
+import ureca.idleoriginapi.implementation.bookPreference.BookPreferenceManager;
 
 @Service
 @RequiredArgsConstructor
@@ -15,7 +13,6 @@ public class BookPreferenceManagingService implements BookPreferenceManagingUseC
 
     // TODO 처리성 쿼리 한 번으로 줄이기
     @Override
-    @Transactional
     public void processLike(Long bookId, Long kidId) {
         BookPreference bookPreference = bookPreferenceManager.getPreference(bookId, kidId);
         if(!bookPreferenceManager.checkBookPreferenceExistence(bookPreference)) {

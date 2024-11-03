@@ -1,12 +1,12 @@
 package ureca.idleoriginapi.business.auth;
 
-import com.ureca.idle.jpa.user.User;
-import com.ureca.idle.originapi.business.auth.dto.LoginReq;
-import com.ureca.idle.originapi.business.auth.dto.LoginResp;
-import com.ureca.idle.originapi.business.auth.dto.SignupReq;
-import com.ureca.idle.originapi.business.auth.dto.SignupResp;
-import com.ureca.idle.originapi.implementation.mapper.AuthDtoMapper;
-import com.ureca.idle.originapi.implementation.user.UserManager;
+import ureca.idlejpa.user.User;
+import ureca.idleoriginapi.business.auth.dto.LoginReq;
+import ureca.idleoriginapi.business.auth.dto.LoginResp;
+import ureca.idleoriginapi.business.auth.dto.SignupReq;
+import ureca.idleoriginapi.business.auth.dto.SignupResp;
+import ureca.idleoriginapi.implementation.mapper.AuthDtoMapper;
+import ureca.idleoriginapi.implementation.user.UserManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
