@@ -1,0 +1,62 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          package: 'jdk'
+          jdk-version: '17.0.12'
+
+      - name: checkout
+        uses: actions/checkout@main
+
+      - name: create env and secure file
+        run: |
+          cd src/main/resources/properties
+          touch ai.yml
+          echo "${{ secrets.AI }}" >> ai.yml
+          cd src/main/resources/properties
+          touch aws.yml
+          echo "${{ secrets.AWS }}" >> aws.yml
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean build
+
+      - name: Image build and push
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          sudo docker build -t a8118199/idle-server . 
+          sudo docker push a8118199/idle-server
+
+      - name: docker run
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }} 
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
+          script: |
+            sudo docker stop idle-server
+            sudo docker rm idle-server
+            sudo docker rmi a8118199/idle-server
+            sudo docker pull a8118199/idle-server
+            sudo docker run -d --name idle-server -p 8080:8080 a8118199/idle-server
