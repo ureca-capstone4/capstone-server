@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+bootJar { enabled = false }
+jar { enabled = true }
+
+group = 'ureca'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+tasks.register("prepareKotlinBuildScriptModel"){}

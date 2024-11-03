@@ -1,0 +1,3 @@
+package ureca.idleoriginapi.business.kid.dto;
+
+public record AddKidResp(String name) {}

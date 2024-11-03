@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+bootJar { enabled = false }
+jar { enabled = true }
+
+group = 'com.ureca'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.json:json:20210307') {
+        exclude group: "com.vaadin.external.google", module:"android-json"
+    }
+}
+
+tasks.register("prepareKotlinBuildScriptModel"){}

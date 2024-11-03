@@ -1,0 +1,18 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: idle
+  profiles:
+    active: local
+  jackson:
+    default-property-inclusion: non_null
+  config:
+    import:
+      - classpath:properties/ai.yml
+
+logging:
+  level:
+    root: INFO

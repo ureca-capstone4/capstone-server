@@ -1,1 +1,11 @@
 rootProject.name = 'idle'
+
+include 'idle-ai-client'
+include 'idle-batch'
+include 'idle-cache'
+include 'idle-exception'
+include 'idle-fcfs-consumer'
+include 'idle-fcfs-producer'
+include 'idle-jpa'
+include 'idle-logging'
+include 'idle-origin-api'

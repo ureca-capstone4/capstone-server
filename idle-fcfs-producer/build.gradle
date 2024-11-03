@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+bootJar { enabled = true }
+jar { enabled = false }
+
+group = 'com.ureca'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.2.1")
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs'
+}
+
+tasks.register("prepareKotlinBuildScriptModel"){}
