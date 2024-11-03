@@ -19,7 +19,7 @@ public class LgAiManager implements AiClientManager {
 
     private final RestTemplate restTemplate;
 
-    @Value("${idle.ai_server.ip}")
+    @Value("${lg.ai.ip}")
     private String ip;
 
     @Override
