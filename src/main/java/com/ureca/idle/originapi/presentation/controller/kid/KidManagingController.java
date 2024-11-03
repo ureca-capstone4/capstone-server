@@ -44,8 +44,8 @@ public class KidManagingController {
 
 
     @PostMapping("/{kidId}/personalities")
-    public ResponseEntity<UpdateKidsPersonalityResp> updateKidsPersonalities(@PathVariable Long kidId, @RequestBody UpdateKidPersonalityReq req) {
-        // @LoginUser IdAndAuthority loginUser,
+    public ResponseEntity<UpdateKidsPersonalityResp> updateKidsPersonalities(@LoginUser IdAndAuthority loginUser, @PathVariable Long kidId, @RequestBody UpdateKidPersonalityReq req) {
+
         UpdateKidsPersonalityResp resp = kidManagingUseCase.updateKidsPersonality(kidId, req);
         return ResponseEntity.ok(resp);
     }
