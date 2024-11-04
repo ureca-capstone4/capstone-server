@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/kids")
-//@CrossOrigin("https://urecapstone.netlify.app")
+@CrossOrigin("https://urecapstone.netlify.app")
 @RequiredArgsConstructor
-@CrossOrigin(origins="http://localhost:1234")
 public class KidManagingController {
 
     private final KidManagingUseCase kidManagingUseCase;
