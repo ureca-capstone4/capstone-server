@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/submissions")
 @RequiredArgsConstructor
-@CrossOrigin(origins="http://localhost:1234")
 public class SubmissionController {
 
     private final SubmissionManagingUseCase submissionManagingUseCase;
