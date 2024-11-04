@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/personality/questions")
-//@CrossOrigin("https://urecapstone.netlify.app")
-@CrossOrigin(origins="http://localhost:1234")
+@CrossOrigin("https://urecapstone.netlify.app")
 @RequiredArgsConstructor
 public class PersonalityQuestionController {
     private final PersonalityQuestionManagingUseCase personalityQuestionManagingUseCase;
