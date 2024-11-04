@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/books")
-@CrossOrigin(origins="https://urecapstone.netlify.app")
 @RequiredArgsConstructor
 public class BookManagingController {
 
